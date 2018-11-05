@@ -27,7 +27,43 @@
  npm install
  ```
  pronto, você já pode codar!
+
+para visualizar:
  
+ ```terminal
+ npm run dev
+ ```
+ 
+ ------
+ visualizando o seu component (tela) (exemplo component home.vue)
+  ```terminal
+ em App.vue
+ - adicione import e no export (PASSO 1)
+ - dentro da tag template coloque a tag <home/> (PASSO 2)
+ - edite a tag template de home.vue (PASSO 3)
+
+[PASSO 1]
+<script>
+import home from "./components/home/home";
+
+export default {
+  name: 'app',
+  components: {
+    home
+  },
+
+[PASSO 2]
+<template>
+  <div id="app">
+  <home/>
+  
+[PASSO 3]
+em findMySpace\src\components\home\home.vue
+<template>
+  <div>     
+		  <div>CODEI AQUI</div>
+```
+
  ## REGRAS:
  
  ### USE [GITFLOW!](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
