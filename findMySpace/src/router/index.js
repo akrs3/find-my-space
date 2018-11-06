@@ -8,6 +8,7 @@ import profile from '../components/profile/profile'
 import signUp from '../components/signUp/signUp'
 import shared from '../components/shared/naviBar'
 import space from '../components/space/space'
+import bestSpaces from '../components/bestSpaces/bestSpaces'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
 			path: '/shared',
 			name: 'Shared',
 			component: shared
+		},
+		{
+			path: '/spaces',
+			name: 'spaces',
+			component: bestSpaces
 		}
 	]
 })
