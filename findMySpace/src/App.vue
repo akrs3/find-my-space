@@ -1,13 +1,17 @@
 <template>
   <div id="app">
+  <naviBar/>
   <router-view/>
   </div>
 </template>
 
 <script>
-
+import naviBar from './components/shared/naviBar'
 export default {
   name: 'app',
+  components: {
+	naviBar
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
