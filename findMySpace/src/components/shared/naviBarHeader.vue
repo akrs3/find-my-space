@@ -1,8 +1,8 @@
 <template>
   <div>
-  <nav class="navbar" style="background-color: #73567c">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #73567c">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">       
-		<a class="title"><img src="./assets/logo-white.png"></a>
+	<a class="title"><img src="./assets/logo-white.png"></a>
     </div>
     <div class="navbar-collapse collapse order-3 dual-collapse2" style="display: none;" >
         <ul class="navbar-nav ml-auto">
