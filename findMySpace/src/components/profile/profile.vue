@@ -36,7 +36,7 @@
 	      <div class="row about">
 	        <div class="col-md-8">
 	          <img src="../../assets/profile/adition.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px;"/>
-            <a href="novo-grupo" style="float:left; margin-left: 10px;">adicionar novo grupo</a>
+            <a :href="'#novo-grupo'" style="float:left; margin-left: 10px;">adicionar novo grupo</a>
           </div>
           <div class="col-md-4"></div>
         </div>
