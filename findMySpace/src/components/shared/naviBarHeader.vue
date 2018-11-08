@@ -55,9 +55,11 @@ export default {
 	background-color: #73567c;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 1rem 2rem;
+	padding-left: 1rem;
 	margin-bottom: 20px;
     overflow: hidden;
+	min-height: 20px;
 }
 
 .naviBarHeaderGridButton{
