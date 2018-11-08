@@ -7,8 +7,8 @@
     <div class="profile-content">
       
       <!-- Imagem e Nome -->
-      <div class="about-me" style="margin-bottom:80px">
-        <img src="../../assets/profile/carol.png" class="rounded-circle" style="width:300px; margin-top:100px; "/>
+      <div class="about-me" style="margin-bottom:20px">
+        <img src="../../assets/profile/carol.png" class="rounded-circle" style="width:120px; margin-top:10px; "/>
         <div>
           <span class="name-person">Carol</span>
         </div>
@@ -19,34 +19,34 @@
 
         <div class="row about">
           <div class="col-md-8">
-            <img src="../../assets/profile/edit.png" class="rounded-circle" style="width:70px; float:left; margin-left:20px; "/>
-            <a href="#" style="float:left; margin-left: 20px;">minhas preferências</a>
+            <img src="../../assets/profile/edit.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
+            <a href="#" style="float:left; margin-left: 10px;">minhas preferências</a>
           </div>
           <div class="col-md-4"></div>
         </div><br />
 
 	      <div class="row about">
 	        <div class="col-md-8">
-	          <img src="../../assets/profile/favorite.png" class="rounded-circle" style="width:70px; float:left; margin-left:20px; "/>
-            <a href="#" style="float:left; margin-left: 20px;">meus espaços favoritos</a>
+	          <img src="../../assets/profile/favorite.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
+            <a href="#" style="float:left; margin-left: 10px;">meus espaços favoritos</a>
           </div>
           <div class="col-md-4"></div>
 	      </div><br />
         
 	      <div class="row about">
 	        <div class="col-md-8">
-	          <img src="../../assets/profile/adition.png" class="rounded-circle" style="width:60px; float:left; margin-left:20px;"/>
-            <a href="#" style="float:left; margin-left: 20px;">adicionar novo grupo</a>
+	          <img src="../../assets/profile/adition.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px;"/>
+            <a href="novo-grupo" style="float:left; margin-left: 10px;">adicionar novo grupo</a>
           </div>
           <div class="col-md-4"></div>
         </div>
 
-      </div><br /><br />
+      </div><br />
 
     <!-- Meus Grupos -->
 
       <div class="profile-my-groups">
-        <div v-for="group in groups" style="margin-bottom:70px;">
+        <div v-for="group in groups" style="margin-bottom:20px;">
           <div class="row name-group">
               <span>{{ group.name }}</span>
           </div>
@@ -61,24 +61,33 @@
 
           <div class="row">
             <div class="col-md-8 descr-day-place">
-              <h5>{{ group.date }} - {{ group.hour_begin }} às {{ group.hour_end }}</h5>
-              <h5>{{ group.address }}</h5>
+              <div class="row" style="float:left; margin-left:0px;">
+                <h5>{{ group.date }} - {{ group.hour_begin }} às {{ group.hour_end }}</h5>
+              </div>
+              
+              <img v-if="group.status == 'confirmado'" src="../../assets/profile/confirm.png" class="rounded-circle" style="width:30px; margin-left:30px;">
+              <img v-else src="../../assets/profile/pendent.png" class="rounded-circle" style="width:30px; margin-left:30px;">
+               
             </div>
             
-            <div class="col-md-4">
-              <img v-if="group.status == 'confirmado'" src="../../assets/profile/confirm.png" class="rounded-circle" style="width:90px;">
-              <img v-else src="../../assets/profile/pendent.png" class="rounded-circle" style="width:90px;">
-              
-              <div class="next" style="margin-top:10px; margin-left:50px;">
-                <span>{{ group.status }}</span>
+            <div class="col-md-4 descr-day-place">
+              <div class="row" style="float:left; margin-left:0px;">
+                <h5>{{ group.address }}</h5>
               </div>
+              <div class="row">
+                <div class="next" style="float:rigth; margin-left:20px;">
+                  <span>{{ group.status }}</span>
+                </div>
+              </div>
+              
             </div>
-          </div>
-          
-        </div>
-      </div>
 
+          </div>
+        </div>
+          
+      </div>
     </div>
+
   </div>
   
 </template>
@@ -132,47 +141,46 @@ export default {
     
 		font-weight: bold;
     margin-bottom: 100px;
-    font-size: 50pt; 
+    font-size: 16pt; 
     align: center;
 	}
 
 	.about a {
 		color: #6e5077;
-		font-size: 30pt;
+		font-size: 12pt;
 	}
 
   .name-group span {
 		
 		font-weight: bold;
-		font-size: 35pt;
+		font-size: 14pt;
     margin-top: 10px;
     float:left; 
-    margin-left: 40px;
+    margin-left: 30px;
 	}
 
 	.title-space span{
 		font-weight: bold;
-		font-size: 30pt;
-    margin-top: 10px;
-    float:left; 
-    margin-left: 40px;
-	}
-
-	.descr-day-place h5{
-		font-weight: bold;
-		font-size: 30pt;
-		color: #757376;
+		font-size: 12pt;
     margin-top: 10px;
     float:left; 
     margin-left: 30px;
+	}
+
+	.descr-day-place h5{
+		font-size: 12pt;
+		color: #757376;
+    margin-top: 10px;
+    float:left; 
+    margin-left: 20px;
 
 	}
 
   .next span {
     color: #757376; 
-    font-size: 20pt; 
-    float:left; 
-    margin-left: 40px;
+    font-size: 10pt; 
+    /*float:left; */
+    margin-left: 30px;
   }
 
   hr { 
@@ -180,8 +188,8 @@ export default {
     color: #6e5077;
     background-color: #6e5077;
     border: none;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
     align:center;
   }
 
