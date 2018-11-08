@@ -1,23 +1,24 @@
 <template>
 	<div>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- cdn não é a melhor forma, mas eu nao lembro como faz com webpack -->
-	<div id="mySidenav" class="sidenav" align="left">
-	<a class="title"><img src="./assets/logo.png"></a>
-	<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'">&times;</a>
-	<br><br>
-	<router-link to="login">entrar</router-link>
-	<a href="#">inscreva seu grupo</a>
-	<a href="#">eu tenho um espaço</a>
-	<hr>
-	<a href="#">reporte um problema</a>
-	<a href="#">sobre nós</a>
-</div>
+		<div id="mySidenav" class="sidenav" align="left" onfocusout="document.getElementById('mySidenav').style.width = '0'">
+			<div style="padding-bottom: 20px">
+				<a class="title"><img src="../../assets/navBar/logo.png"></a>
+				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'">&times;</a>
+			</div>
+			<router-link to="login">entrar</router-link>
+			<a href="#">inscreva seu grupo</a>
+			<a href="#">eu tenho um espaço</a>
+			<hr>
+			<a href="#">reporte um problema</a>
+			<a href="#">sobre nós</a>
+		</div>
+		
 
-<div class="hello">
-	<div align="right" style="margin-top: 1%; margin-right: 2%">
-		<span style="font-size:30px;cursor:pointer" onclick="document.getElementById('mySidenav').style.width = '250px'">&#9776;</span>
-	</div>
-</div>	
+		<div class="hello">
+			<div align="right" style="margin-top: 1%; margin-right: 2%">
+				<span style="font-size:30px;cursor:pointer" onclick="{var g = document.getElementById('mySidenav');	g.style.width = '250px';}">&#9776;</span>
+			</div>
+		</div>	
   
   </div>
 </template>
@@ -117,7 +118,7 @@ hr{
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
+    padding-left: 45px;
 }
 
 .sidenav .title {

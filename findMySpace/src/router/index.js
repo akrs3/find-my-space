@@ -8,6 +8,7 @@ import profile from '../components/profile/profile'
 import signUp from '../components/signUp/signUp'
 import shared from '../components/shared/naviBar'
 import space from '../components/space/space'
+import newGroup from '../components/newGroup/newGroup'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
 			path: '/espaco',
 			name: 'Espaço',
 			component: space
+		},
+		{
+			path: '/novo-grupo',
+			name: 'Novo Group',
+			component: newGroup
 		},
 		{
 			path: '/shared',

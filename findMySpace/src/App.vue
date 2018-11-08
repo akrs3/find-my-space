@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-  <naviBar/>
+  <naviBarHeader/>
   <router-view/>
+  
   </div>
 </template>
 
 <script>
 import naviBar from './components/shared/naviBar'
+import naviBarHeader from './components/shared/naviBarHeader'
 export default {
   name: 'app',
   components: {
-	naviBar
+	naviBar,
+	naviBarHeader
   },
   data () {
     return {
