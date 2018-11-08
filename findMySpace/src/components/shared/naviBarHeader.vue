@@ -17,6 +17,7 @@
 		</nav>
 	-->
 	
+<meta name="viewport" content="width=device-width, initial-scale=1">
 		<ul class="naviBarHeaderBar">
 			<li class="naviBarHeaderLogo">
 				<img src="./assets/logo-white.png">
