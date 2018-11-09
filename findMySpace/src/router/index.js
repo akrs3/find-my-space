@@ -8,6 +8,7 @@ import profile from '../components/profile/profile'
 import signUp from '../components/signUp/signUp'
 import shared from '../components/shared/naviBar'
 import space from '../components/space/space'
+import cadastrarSpace from '../components/space/cadastrarSpace'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
 			path: '/espaco',
 			name: 'Espaço',
 			component: space
+		},
+		{
+			path: '/cadastrarSpace',
+			name: 'Cadastrar Espaço',
+			component: cadastrarSpace
 		},
 		{
 			path: '/shared',
