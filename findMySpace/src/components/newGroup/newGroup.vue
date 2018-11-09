@@ -29,7 +29,7 @@
 		      	<span style="color: #757376; font-size: 11pt">envie esse link para os membros se juntarem</span>
 		      	<br/>
 		      	<span style="font-weight: bold; font-size: 15pt; word-wrap: break-word">
-		      		http://findmyspace.com/#/invite:group
+		      	{{ groupInviteURL }} 
 		      	</span>
 		    </div>
 		</div>
@@ -51,7 +51,8 @@ export default {
 
   data() {
   	return {
-  		groupName: ''
+  		groupName: '',
+      groupInviteURL: 'http://findmyspace.com/#/invite:group'
   	}
   },
 
