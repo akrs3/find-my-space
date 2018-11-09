@@ -32,7 +32,7 @@
 		    </div>
 
   	    <!-- Create Button -->
-        <roundedButton title='concluído!' compressed='false' v-bind:handler='createGroup' />
+        <roundedButton title='concluído!' v-bind:compressed='false' v-bind:handler='createGroup' />
 
       </div>
 

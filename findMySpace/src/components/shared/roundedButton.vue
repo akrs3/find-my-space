@@ -59,7 +59,7 @@ export default {
   display: inline-block;
   font-size: 15px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 </style>

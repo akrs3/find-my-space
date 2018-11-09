@@ -91,7 +91,7 @@
 				    	</span>
 		      		</div>
 		      		<div class="col" align="left">
-		      			<roundedButton title='reservar' subtitle='você ainda não será cobrado' compressed='true' v-bind:handler='scheduleSpace' />
+		      			<roundedButton title='reservar' subtitle='você ainda não será cobrado' v-bind:compressed='true' v-bind:handler='scheduleSpace' />
 		      		</div>
 		      	</div>
 
