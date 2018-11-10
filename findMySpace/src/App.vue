@@ -2,18 +2,19 @@
   <div id="app">
   <naviBarHeader/>
   <router-view/>
-  
   </div>
 </template>
 
 <script>
+import cadastrarSpace from './components/space/cadastrarSpace'
 import naviBar from './components/shared/naviBar'
 import naviBarHeader from './components/shared/naviBarHeader'
 export default {
   name: 'app',
   components: {
 	naviBar,
-	naviBarHeader
+	naviBarHeader,
+	cadastrarSpace
   },
   data () {
     return {
