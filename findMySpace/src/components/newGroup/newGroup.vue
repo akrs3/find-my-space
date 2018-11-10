@@ -85,6 +85,9 @@ export default {
 
 .new-group-content {
 	min-height: calc(100vh - 170px);
+	
+	margin-left: 6%;
+	margin-right: 6%;
 }
 
 .new-group-content span {

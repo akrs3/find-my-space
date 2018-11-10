@@ -22,7 +22,7 @@
 			<li class="naviBarHeaderLogo">
 				<img src="../../assets/navBar/logo-white.png">
 			</li>
-		  <li class="naviBarHeaderGridButton">
+		  <li align="right" class="naviBarHeaderGridButton">
 			<naviBar/>
 		  </li>
 		</ul>
@@ -53,24 +53,33 @@ export default {
 }
 
 .naviBarHeaderBar {
+	height: 47px !important;
 	background-color: #73567c;
     list-style-type: none;
     margin: 0;
-    padding: 1rem 2rem;
 	padding-left: 1rem;
-	margin-bottom: 20px;
     overflow: hidden;
 	min-height: 20px;
+	
+	margin:0 auto;
+	
+	margin-bottom: 20px;
+    width:100%;
+    text-align:center;
 }
 
 .naviBarHeaderGridButton{
-	float:right; 
+	float: right;
+	margin-right: 22px;
 	color:#c4b7c7;
+	margin-top: 4px;
 
 }
 
 .naviBarHeaderLogo{
 	float:left;
+	min-height: 44px;
+	margin-top: 4px;
 }
 
 

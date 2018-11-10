@@ -48,8 +48,6 @@
 
 <script>
 
-import nunito from '../../assets/css/nunito.css'
-
 export default {
   components: {
   }  
@@ -105,7 +103,6 @@ textArea {
 }
 
 .bodyCadSpac {
-	font-family: Nunito;
 	color:#6e5077;
 	margin-left: 6%;
 	margin-right: 6%;
