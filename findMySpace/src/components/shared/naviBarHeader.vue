@@ -3,7 +3,7 @@
   <!-- bootstap nao estava adaptivo (qnd dava resize na pagina nao ajustava os itens)
 	  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #73567c">
 			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">       
-			<img align="left" src="./assets/logo-white.png">
+			<img align="left" src="../../assets/navBar/logo-white.png">
 			</div>
 			<div class="navbar-collapse collapse order-3 dual-collapse2" style="display: none;" >
 				<ul class="navbar-nav ml-auto">
@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 		<ul class="naviBarHeaderBar">
 			<li class="naviBarHeaderLogo">
-				<img src="./assets/logo-white.png">
+				<img src="../../assets/navBar/logo-white.png">
 			</li>
 		  <li class="naviBarHeaderGridButton">
 			<naviBar/>
