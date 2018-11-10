@@ -1,7 +1,8 @@
 <template>
   <div>	
-	<naviBarHeader/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <naviBarHeader/>
 
       <div class="container-fluid new-group">
 
@@ -12,7 +13,7 @@
 	      	<!-- Header -->
 	      	<div style="margin-top:10px" align="left">
 		      	<span style="font-weight: bold; font-size: 14pt;">cadastrar novo grupo</span>
-		      	<hr/>
+		      	<divisor />
 		      </div>
 
 	      	<!-- Group Attributes -->
@@ -45,12 +46,14 @@ import naviBarHeader from '../shared/naviBarHeader'
 
 import backButton from '../shared/backButton'
 import roundedButton from '../shared/roundedButton'
+import divisor from '../shared/divisor'
 
 export default {
   components: {
 	naviBarHeader,
     roundedButton,
-    backButton
+    backButton,
+    divisor
   },
 
   data() {
@@ -98,20 +101,13 @@ export default {
 	color: #6E5077;
 }
 
-.new-group-content hr {
-	background-color: #6E5077; 
-	height: 1px; 
-	border: none;
-}
-
 .new-group-content input {
 	font-weight: bold;
 	font-size: 15pt;
 	color: #6E5077;
 	border: none;
- 	outline:none;
+ 	outline: none;
 }
-
 
 ::-webkit-input-placeholder { /* Chrome */
   color: #6E5077;
