@@ -10,12 +10,12 @@
 
         	<!-- Header -->
         	 <div class="row align-items-start" style="margin-top: 20px; width: 100%">
-        		<div class="col-11" align="left">
+        		<div class="col-10" align="left">
 		      		<span style="color: #6E5077; font-weight: bold; font-size: 14pt; word-wrap: break-word">
 		      			meus espaços favoritos
 			      	</span>
 			    </div>
-			    <div class="col-1" style="margin-top: 2.5px" align="right">
+			    <div class="col-2" style="margin-top: 2.5px; padding-right: 0px" align="right">
 			      	<img src="./assets/heart_filled.png" width="22px" height="22px" align="top">
 				</div>
 	      	</div>
