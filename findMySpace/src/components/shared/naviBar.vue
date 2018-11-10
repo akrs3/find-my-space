@@ -16,17 +16,14 @@
 		<div id="areaCloseBehind" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'" style="width:0; height:100%; z-index: 9; background:rgba(0,0,0,0.25); display:none" class="sidenav" align="right">
 		</div>
     
-		<div>
-			<div align="right" style="margin-top: 1%; margin-right: 2%">
-				<span style="font-size:30px;cursor:pointer" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}">&#9776;</span>
+			<div align="right">
+				<span class="gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"></span>
 			</div>
-		</div>	
 	
   </div>
 </template>
 
 <script>
-import nunito from '../../assets/css/nunito.css'
 export default {
   components: {	
   } 
@@ -59,7 +56,7 @@ hr{
 
 .sidenav a {
 	width: 250px;
-	font-family: Nunito;
+	//font-family: Nunito;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 19px;
@@ -98,6 +95,14 @@ hr{
 
 .linksNaviBar {
 	width:100%;
+}
+
+.gridButton {
+	display: block;
+	background: url("../../assets/navBar/gridButton.png") no-repeat center center;
+	width: 44px !important; 
+	height: 44px !important; 
+	min-height: 44px;
 }
 
 @media screen and (max-height: 450px) {

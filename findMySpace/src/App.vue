@@ -6,15 +6,13 @@
 </template>
 
 <script>
-import cadastrarSpace from './components/space/cadastrarSpace'
-import naviBar from './components/shared/naviBar'
+import nunito from './assets/css/nunito.css'
+
 import naviBarHeader from './components/shared/naviBarHeader'
 export default {
   name: 'app',
   components: {
-	naviBar,
-	naviBarHeader,
-	cadastrarSpace
+	naviBarHeader
   },
   data () {
     return {
@@ -26,7 +24,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Nunito;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
