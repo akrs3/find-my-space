@@ -1,25 +1,30 @@
 <template>
 	<div>
-		<div id="mySidenav" class="sidenav" align="left" onfocusout="document.getElementById('mySidenav').style.width = '0'">
+	
+		
+		<div id="mySidenav" class="sidenav" style="z-index: 10" align="left">
 			<div style="padding-bottom: 20px">
-				<a class="title"><img src="../../assets/navBar/logo.png"></a>
-				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'">&times;</a>
+				<router-link to="home" style="width:82%" class="title"><img src="../../assets/navBar/logo.png"></router-link>
+				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
-			<router-link to="login">entrar</router-link>
-			<a href="#">inscreva seu grupo</a>
-			<a href="#">eu tenho um espaço</a>
+			<router-link class="linksNaviBar" to="login">entrar</router-link>
+			<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+			<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
 			<hr>
-			<a href="#">reporte um problema</a>
-			<a href="#">sobre nós</a>
+			<router-link class="linksNaviBar" to="">reporte um problema</router-link >
+			<router-link class="linksNaviBar" to="">sobre nós</router-link >
+		</div>
+		
+		<div id="areaCloseBehind" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'" style="width:0; height:100%; z-index: 9; background:rgba(0,0,0,0.25); display:none" class="sidenav" align="right">
 		</div>
 		
 
-		<div class="hello">
+		<div>
 			<div align="right" style="margin-top: 1%; margin-right: 2%">
-				<span style="font-size:30px;cursor:pointer" onclick="{var g = document.getElementById('mySidenav');	g.style.width = '250px';}">&#9776;</span>
+				<span style="font-size:30px;cursor:pointer" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}">&#9776;</span>
 			</div>
 		</div>	
-  
+	
   </div>
 </template>
 
@@ -126,6 +131,10 @@ hr{
     float: left;
     top: 11px;
     font-size: 20px;
+}
+
+.linksNaviBar {
+	width:100%;
 }
 
 @media screen and (max-height: 450px) {

@@ -40,7 +40,7 @@ export default new Router({
 			component: signUp
 		},
 		{
-			path: '/espaco',
+			path: '/novo-espaco',
 			name: 'Espaço',
 			component: space
 		},
