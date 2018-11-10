@@ -60,25 +60,29 @@
           </div>
 
           <div class="row">
-            <div class="col-md-8 descr-day-place">
-              <div class="row" style="float:left; margin-left:0px;">
+            <div class="descr-day-place" style="float:left; width:70%;">
+              <div class="row" style="margin-left:0px;">
                 <h5>{{ group.date }} - {{ group.hour_begin }} às {{ group.hour_end }}</h5>
               </div>
-              
-              <img v-if="group.status == 'confirmado'" src="../../assets/profile/confirm.png" class="rounded-circle" style="width:30px; margin-left:30px;">
-              <img v-else src="../../assets/profile/pendent.png" class="rounded-circle" style="width:30px; margin-left:30px;">
+
+              <div class="row" style="margin-left:0px;">
+                <h5>{{ group.address }}</h5>
+              </div>             
                
             </div>
             
-            <div class="col-md-4 descr-day-place">
-              <div class="row" style="float:left; margin-left:0px;">
-                <h5>{{ group.address }}</h5>
-              </div>
-              <div class="row">
+            <div class="descr-day-place" style="float:right; width:20%; margin-rigth:20px">
+
+              <img v-if="group.status == 'confirmado'" src="../../assets/profile/confirm.png" class="rounded-circle" style="width:30px; margin-left:30px;">
+              <img v-else src="../../assets/profile/pendent.png" class="rounded-circle" style="width:30px; margin-left:30px;">
+              <span>{{ group.status }}</span>
+
+
+              <!--<div class="row">
                 <div class="next" style="float:rigth; margin-left:20px;">
                   <span>{{ group.status }}</span>
                 </div>
-              </div>
+              </div>-->
               
             </div>
 
@@ -172,7 +176,7 @@ export default {
 		color: #757376;
     margin-top: 10px;
     float:left; 
-    margin-left: 20px;
+    margin-left: 30px;
 
 	}
 
