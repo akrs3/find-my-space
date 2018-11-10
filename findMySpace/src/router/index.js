@@ -10,6 +10,7 @@ import shared from '../components/shared/naviBar'
 import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
 import newGroup from '../components/newGroup/newGroup'
+import favorites from '../components/favorites/favorites'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ export default new Router({
 			path: '/shared',
 			name: 'Shared',
 			component: shared
+		},
+		{
+			path: '/favoritos',
+			name: 'Espaços Favoritos',
+			component: favorites
 		}
 	]
 })
