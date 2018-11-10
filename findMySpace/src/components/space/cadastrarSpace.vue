@@ -1,4 +1,7 @@
 <template>
+	<div>
+	<naviBarHeader/>
+	
   <div class="bodyCadSpac">
 	<p align="left"><strong> cadastrar novo espaço </strong></p>
 	<hr>
@@ -43,13 +46,16 @@
 		</table>
 	</form>
 	
+	</div>
   </div>
 </template>
 
 <script>
+import naviBarHeader from '../shared/naviBarHeader'
 
 export default {
   components: {
+    naviBarHeader
   }  
 }
 </script>

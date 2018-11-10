@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div>	
+	<naviBarHeader/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
       <div class="container-fluid new-group">
@@ -40,11 +41,14 @@
 </template>
 
 <script>
+import naviBarHeader from '../shared/naviBarHeader'
+
 import backButton from '../shared/backButton'
 import roundedButton from '../shared/roundedButton'
 
 export default {
   components: {
+	naviBarHeader,
     roundedButton,
     backButton
   },

@@ -1,5 +1,6 @@
 <template>
-  <div>
+ <div> 
+	<naviBarHeader/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <div class="container" style="padding-bottom: 20px">
