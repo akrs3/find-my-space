@@ -5,12 +5,14 @@
 				<router-link to="home" style="width:82%" class="title"><img src="../../assets/navBar/logo.png"></router-link>
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
-			<router-link class="linksNaviBar" to="login">entrar</router-link>
-			<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
-			<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
-			<hr>
-			<router-link class="linksNaviBar" to="">reporte um problema</router-link >
-			<router-link class="linksNaviBar" to="">sobre nós</router-link >
+			<div class="menuNav">	
+				<router-link class="linksNaviBar" to="login">entrar</router-link>
+				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+				<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
+				<hr>
+				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
+				<router-link class="linksNaviBar" to="">sobre nós</router-link >
+			</div>
 		</div>
 		
 		<div id="areaCloseBehind" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'" style="width:0; height:100%; z-index: 9; background:rgba(0,0,0,0.25); display:none" class="sidenav" align="right">
@@ -108,5 +110,6 @@ hr{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+  .menuNav {margin-top:40px}
 }
 </style>

@@ -1,19 +1,39 @@
 <template>
 	<div>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<header class="displayContainer backgroundImage">
-      
-	  <ul class="naviBarHeaderBar">
-			<li class="naviBarHeaderLogo">
-				<img src="../../assets/navBar/logo-white.png">
-			</li>
-		  <li align="right" class="naviBarHeaderGridButton">
-			<naviBar/>
-		  </li>
-		</ul>
-		
-	  <span class="displayInTheMiddle alignLeft title">Encontre o <b>melhor local</b>,<br>no <b>melhor preço</b>,<br>no <b>horário perfeito</b><br>para seu grupo.</span>      
-    </header>
+		<div class="displayContainer backgroundImage">
+		  
+			  <ul class="naviBarHeaderBar">
+					<li class="naviBarHeaderLogo">
+						<img src="../../assets/navBar/logo-white.png">
+					</li>
+				  <li align="right" class="naviBarHeaderGridButton">
+					<naviBar/>
+				  </li>
+				</ul>
+			<div class="titlediv"  align="center" >
+			
+				<p class="title" > 
+				Encontre o 
+				<b> melhor local</b>,
+				<br>
+				 no 
+				 <b> melhor preço</b>,
+				<br>
+				 no 
+				 <b> horário perfeito </b>
+				<br>
+				 para seu grupo.
+				</p>
+			
+			  <!-- 
+			<p align="center" class="title">Encontre o <b>melhor local</b>,<br>no <b>melhor preço</b>,<br>no <b>horário perfeito</b><br>para seu grupo.
+			</p>      
+			
+				<span class="displayInTheMiddle alignLeft title">Encontre o <b>melhor local</b>,<br>no <b>melhor preço</b>,<br>no <b>horário perfeito</b><br>para seu grupo.</span>      
+				-->
+			</div>
+		</div>
 	</div>
   </div>
 </template>
@@ -21,6 +41,7 @@
 <script>
 import naviBar from '../../components/shared/naviBar'
 import cssBarraPadrao from '../../assets/css/styleBarPadrao.css'
+import nunito from '../../assets/css/nunito.css'
 
 export default {
 
@@ -31,29 +52,47 @@ export default {
 </script>
 
 <style scoped>
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .displayContainer {
   position:fixed;
 }
 
+
+@media screen and (max-width: 320px) {
+  .title {
+	font-size: 28px !important;
+  }
+}
+
+@media screen and (max-height: 320px) {
+  .titlediv {
+	font-size: 28px !important;
+	top: 0 !important;
+  }
+}
+
+.naviBarHeaderBar{
+	margin-top:3%;
+}
+.titlediv {
+	top: 27%;
+	height: 100%;
+	position: relative;
+}
 .title {
   color:#fff!important;
   font-size:35px;
-}
-
-.displayInTheMiddle {
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  -ms-transform:translate(-50%,-50%);
-  width: 390px;
-  height:200px;
-  display: block;
-}
-
-.alignLeft {
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: Nunito;
   text-align:left!important
+  
 }
 
 .backgroundImage {
