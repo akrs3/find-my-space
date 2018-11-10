@@ -14,9 +14,15 @@
                             <div class="card  mb-4 shadow-sm">
                                 <img class="card-img-top img-fluid thumbnail" :src="space.image" alt="Card image cap" style="width:100%; display:block;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <h3 class="card-title title col-md-4">{{space.name}}</h3>
+                                    <div class="row">
+                                        <div class="col-md-6  content">
+                                            <h4 class="title">{{space.price}}</h4>
+                                        </div>
+                                        <div class="col-md-6  content">
+                                            <h4 class="title">{{space.space}}</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -69,5 +75,9 @@ hr {
 }
 .title {
     text-align: left;
+}
+.content {
+    max-width: 40%;
+    padding: 0;
 }
 </style>
