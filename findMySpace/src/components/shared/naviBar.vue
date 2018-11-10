@@ -1,9 +1,8 @@
 <template>
 	<div>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- cdn não é a melhor forma, mas eu nao lembro como faz com webpack -->
 		<div id="mySidenav" class="sidenav" align="left" onfocusout="document.getElementById('mySidenav').style.width = '0'">
 			<div style="padding-bottom: 20px">
-				<a class="title"><img src="./assets/logo.png"></a>
+				<a class="title"><img src="../../assets/navBar/logo.png"></a>
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'">&times;</a>
 			</div>
 			<router-link to="login">entrar</router-link>
