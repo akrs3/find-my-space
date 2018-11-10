@@ -7,10 +7,14 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import moment from 'vue-moment'
-
 Vue.use(BootstrapVue);
-Vue.use(moment);
+
+const moment = require('moment')
+require('moment/locale/pt-br')
+
+Vue.use(require('vue-moment'), {
+    moment
+})
 
 new Vue({
   el: '#app',

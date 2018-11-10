@@ -11,6 +11,7 @@ import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
 import newGroup from '../components/newGroup/newGroup'
 import favorites from '../components/favorites/favorites'
+import groupProfiles from '../components/groupProfile/groupProfile'
 
 Vue.use(Router)
 
@@ -55,8 +56,8 @@ export default new Router({
 			path: '/novo-espaco',
 			name: 'Cadastrar Espaço',
 			component: cadastrarSpace
-    },
-    {
+    	},
+    	{
 			path: '/novo-grupo',
 			name: 'Novo Group',
 			component: newGroup
@@ -70,6 +71,11 @@ export default new Router({
 			path: '/favoritos',
 			name: 'Espaços Favoritos',
 			component: favorites
+		},
+		{ 
+			path: '/grupo',
+			name: 'Grupo',
+			component: groupProfiles
 		}
 	]
 })
