@@ -8,6 +8,10 @@ import profile from '../components/profile/profile'
 import signUp from '../components/signUp/signUp'
 import shared from '../components/shared/naviBar'
 import space from '../components/space/space'
+import cadastrarSpace from '../components/space/cadastrarSpace'
+import newGroup from '../components/newGroup/newGroup'
+import favorites from '../components/favorites/favorites'
+import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
 
 Vue.use(Router)
@@ -16,6 +20,11 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
+			name: 'Home',
+			component: home
+		},
+		{
+			path: '/home',
 			name: 'Home',
 			component: home
 		},
@@ -45,13 +54,33 @@ export default new Router({
 			component: space
 		},
 		{
+			path: '/novo-espaco',
+			name: 'Cadastrar Espaço',
+			component: cadastrarSpace
+    	},
+    	{
+			path: '/novo-grupo',
+			name: 'Novo Group',
+			component: newGroup
+		},
+		{
 			path: '/shared',
 			name: 'Shared',
 			component: shared
 		},
 		{
-			path: '/spaces',
-			name: 'spaces',
+			path: '/favoritos',
+			name: 'Espaços Favoritos',
+			component: favorites
+		},
+		{ 
+			path: '/grupo',
+			name: 'Grupo',
+			component: groupProfiles
+		},
+		{ 
+			path: '/melhoreslocais',
+			name: 'Melhores Locais',
 			component: bestSpaces
 		}
 	]

@@ -69,9 +69,9 @@ em findMySpace\src\components\home\home.vue
  ### USE [GITFLOW!](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
  
  * Tente ter algum tipo de padrão de nomeclatura de suas variáveis
- * **Tudo de estrutura deve ser feito com Bootstrap** Ex: a posição de elementos, ou a distacia entre eles...
+ * **Tudo de estrutura deve ser feito com Bootstrap** Ex: a posição de elementos, ou a distância entre eles...
  * Se não tiver conseguindo fazer alguma coisa, pede ajuda ao coleguinha, somos muitos, alguem consegue ajudar
- * Lembresse dos repasses!
+ * Lembre-se dos repasses!
  
  ## DICAS:
 

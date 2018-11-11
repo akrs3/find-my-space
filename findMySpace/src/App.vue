@@ -5,9 +5,15 @@
 </template>
 
 <script>
+import nunito from './assets/css/nunito.css'
+import nunitobold from './assets/css/nunito-bold.css'
 
+import naviBarHeader from './components/shared/naviBarHeader'
 export default {
   name: 'app',
+  components: {
+	naviBarHeader
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -18,7 +24,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Nunito;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

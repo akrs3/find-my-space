@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import designUX from '../../assets/css/designUX.css'
+
 export default {
 
   data() {
