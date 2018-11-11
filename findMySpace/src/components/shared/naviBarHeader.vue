@@ -32,11 +32,13 @@
 
 <script>
 import naviBar from './naviBar'
+import login from '../login/login'
 import cssBarraPadrao from '../../assets/css/styleBarPadrao.css'
 
 export default {
   components: {
-	naviBar
+	naviBar,
+	login
   }  
 }
 </script>
