@@ -1,9 +1,10 @@
 <template>
-
+<div>
+  <naviBarHeader/>
   <div class="container-fluid profile">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <naviBarHeader/>
+    
     <div class="profile-content">
       
       <!-- Imagem e Nome -->
@@ -93,7 +94,7 @@
     </div>
 
   </div>
-  
+</div>  
 </template>
 
 <script>
