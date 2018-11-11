@@ -6,6 +6,7 @@
 
 <script>
 import nunito from './assets/css/nunito.css'
+import nunitobold from './assets/css/nunito-bold.css'
 
 import naviBarHeader from './components/shared/naviBarHeader'
 export default {

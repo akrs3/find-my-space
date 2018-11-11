@@ -3,7 +3,7 @@
 	<naviBarHeader/>
 	
   <div class="bodyCadSpac">
-	<p align="left"><strong> cadastrar novo espaço </strong></p>
+	<p align="left"><b> cadastrar novo espaço </b> </p>
 	<hr>
 	
 	<form action="" onsubmit="{ return false;}">
@@ -52,6 +52,7 @@
 
 <script>
 import naviBarHeader from '../shared/naviBarHeader'
+import designUX from '../../assets/css/designUX.css'
 
 export default {
   components: {
@@ -62,10 +63,6 @@ export default {
 
 <style scoped>
 hr{ 
-  height: 1px;
-  color: #6e5077;
-  background-color: #6e5077;
-  border: none;
   margin: 0;
 }
 
