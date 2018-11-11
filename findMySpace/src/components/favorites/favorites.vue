@@ -16,7 +16,7 @@
 			      	</span>
 			    </div>
 			    <div class="col-2" style="margin-top: 2.5px; padding-right: 0px" align="right">
-			      	<img src="./assets/heart_filled.png" width="22px" height="22px" align="top">
+			      	<img src="../../assets/heart_filled.png" width="22px" height="22px" align="top">
 				</div>
 	      	</div>
 
@@ -36,19 +36,19 @@
 
 			      			<div class="row align-items-center">
 			      				<div class="col-auto">
-			      					<img src="./assets/icon_price.png" width="20px" height="20px">
+			      					<img src="../../assets/icon_price.png" width="20px" height="20px">
 			      					R${{ space.pricePerHour }}/hora
 			      				</div>
 			      				<div class="col-auto">
-			      					<img src="./assets/icon_location.png" width="20px" height="20px">
+			      					<img src="../../assets/icon_location.png" width="20px" height="20px">
 			      					{{ space.neighborhood }}
 			      				</div>
 			      			</div>
 
 	      				</div>
 	      				<div class="col-auto" style="margin-top: 3px">
-	      					<img v-for="n in space.rating" src="./assets/start_filled.png" width="14px" height="14px" style="margin-right: 5px">
-	      					<img v-for="n in calRemaingRaiting(space.rating)" src="./assets/star_empty.png" width="14px" height="14px" align="top" style="margin-right: 5px">
+	      					<img v-for="n in space.rating" src="../../assets/start_filled.png" width="14px" height="14px" style="margin-right: 5px">
+	      					<img v-for="n in calRemaingRaiting(space.rating)" src="../../assets/star_empty.png" width="14px" height="14px" align="top" style="margin-right: 5px">
 	      				</div>
 	      			</div>
 	      		</div>
