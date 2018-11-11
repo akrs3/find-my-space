@@ -65,14 +65,22 @@ export default {
 
 @media screen and (max-width: 320px) {
   .title {
-	font-size: 28px !important;
+	font-size: 23px !important;
+  }
+  .titlediv {
+	top: 24% !important;
   }
 }
 
 @media screen and (max-height: 320px) {
   .titlediv {
-	font-size: 28px !important;
 	top: 0 !important;
+  }
+  .title {
+	font-size: 26px !important;
+  }
+  .naviBarHeaderBar {
+	margin-bottom: 0px !important;
   }
 }
 
@@ -97,10 +105,12 @@ export default {
 
 .backgroundImage {
   background: url("../../assets/home/studio.png") no-repeat center center;
+  background-position: 32% center;
   background-size: cover; /* background size */
   min-height: 100%; /* Set the minimum height of a element */
   width:100%;
   height:100%;
+  
 }
 
 .opacity,.hoverOpacity:hover {
