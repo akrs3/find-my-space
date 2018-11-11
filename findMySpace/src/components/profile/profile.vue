@@ -3,7 +3,7 @@
   <div class="container-fluid profile">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <naviBarHeader/>
     <div class="profile-content">
       
       <!-- Imagem e Nome -->
@@ -28,7 +28,7 @@
 	      <div class="row about">
 	        <div class="col-md-8">
 	          <img src="../../assets/profile/favorite.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
-            <a href="#" style="float:left; margin-left: 10px;">meus espaços favoritos</a>
+            <router-link to="favoritos" style="float:left; margin-left: 10px;">meus espaços favoritos</router-link>
           </div>
           <div class="col-md-4"></div>
 	      </div><br />
@@ -36,7 +36,7 @@
 	      <div class="row about">
 	        <div class="col-md-8">
 	          <img src="../../assets/profile/adition.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px;"/>
-            <a :href="'#novo-grupo'" style="float:left; margin-left: 10px;">adicionar novo grupo</a>
+            <router-link to="novo-grupo" style="float:left; margin-left: 10px;">adicionar novo grupo</router-link>
           </div>
           <div class="col-md-4"></div>
         </div>
@@ -97,7 +97,14 @@
 </template>
 
 <script>
+import naviBarHeader from '../shared/naviBarHeader'
+
+
 export default {
+
+  components: {
+    naviBarHeader,
+  },
 
   data(){
     return {
@@ -123,7 +130,8 @@ export default {
       ]
     }
   }
-  //components: {}  
+
+   
 }
 </script>
 
