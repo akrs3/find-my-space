@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <router-view/>
+	<router-view/>
   </div>
 </template>
 
@@ -8,11 +8,11 @@
 import nunito from './assets/css/nunito.css'
 import nunitobold from './assets/css/nunito-bold.css'
 
-import naviBarHeader from './components/shared/naviBarHeader'
+//import naviBarHeader from './components/shared/naviBarHeader'
 export default {
   name: 'app',
   components: {
-	naviBarHeader
+	//naviBarHeader
   },
   data () {
     return {

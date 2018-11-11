@@ -6,13 +6,14 @@ import login from '../components/login/login'
 import ownerProfile from '../components/ownerProfile/ownerProfile'
 import profile from '../components/profile/profile'
 import signUp from '../components/signUp/signUp'
-import shared from '../components/shared/naviBar'
+import naviBar from '../components/shared/naviBar'
 import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
 import newGroup from '../components/newGroup/newGroup'
 import favorites from '../components/favorites/favorites'
 import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
+import sitemap from '../components/aboutus/sitemap'
 
 Vue.use(Router)
 
@@ -64,9 +65,9 @@ export default new Router({
 			component: newGroup
 		},
 		{
-			path: '/shared',
-			name: 'Shared',
-			component: shared
+			path: '/naviBar',
+			name: 'naviBar',
+			component: naviBar
 		},
 		{
 			path: '/favoritos',
@@ -82,6 +83,11 @@ export default new Router({
 			path: '/melhoreslocais',
 			name: 'Melhores Locais',
 			component: bestSpaces
+		},
+		{ 
+			path: '/sitemap',
+			name: 'sitemap',
+			component: sitemap
 		}
 	]
 })

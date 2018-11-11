@@ -11,7 +11,7 @@
 				<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
 				<hr>
 				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
-				<router-link class="linksNaviBar" to="">sobre nós</router-link >
+				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
 			</div>
 		</div>
 		
