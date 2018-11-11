@@ -13,8 +13,8 @@
 			      	</span>
 			    </div>
 			    <div class="col-2" style="margin-top: 2.5px">
-			      	<img v-if="space.isFavorite" src="../../assets/heart_filled.png" width="22px" height="22px" align="top">
-					<img v-else src="../../assets/heart_empty.png" width="22px" height="22px" align="top">
+			      	<img v-if="space.isFavorite" src="./assets/heart_filled.png" width="22px" height="22px" align="top">
+					<img v-else src="./assets/heart_empty.png" width="22px" height="22px" align="top">
 				</div>
 	      	</div>
 
@@ -27,13 +27,13 @@
 	      	</div>
 
 	      	<div style="margin-top: 10px">
-	      		<img src="../../assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
+	      		<img src="./assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
 	      	</div>
 
 	      	<div class="row align-items-center" style="margin-top: 15px">
 	      		<div class="col-auto" align="left">
-		      		<img v-for="n in space.rating" src="../../assets/start_filled.png" width="21px" height="21px" align="top" style="margin-right: 5px">
-		      		<img v-for="n in remainingRating" src="../../assets/star_empty.png" width="21px" height="21px" align="top" style="margin-right: 5px">
+		      		<img v-for="n in space.rating" src="./assets/start_filled.png" width="21px" height="21px" align="top" style="margin-right: 5px">
+		      		<img v-for="n in remainingRating" src="./assets/star_empty.png" width="21px" height="21px" align="top" style="margin-right: 5px">
 			    </div>
 			    <div class="col" align="left">
 			    	<span style="color: #757376; font-size: 10pt;">
@@ -61,7 +61,7 @@
 			    	</span>
 	      		</div>
 	      		<div class="col-auto" align="center">
-					<img src="../../assets/right_arrow.png" width="41.88px" height="14.33px">
+					<img src="./assets/right_arrow.png" width="41.88px" height="14.33px">
 	      		</div>
 	      		<div class="col-auto" align="left">
 					<span style="color: #757376; font-weight: bold; font-size: 10pt;">horário</span>
