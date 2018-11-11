@@ -17,3 +17,14 @@ https://blog.prototypr.io/5-ux-tips-to-consider-on-a-mobile-eaa38da0a79f
 	margin-left: 6%;
 	margin-right: 6%;
 }
+
+hr{ 
+  height: 1px !important;
+  color: #6e5077 !important;
+  background-color: #6e5077 !important;
+  border: none !important;
+}
+
+.corBold {
+	color: #6e5077;
+}

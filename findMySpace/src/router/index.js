@@ -12,6 +12,7 @@ import cadastrarSpace from '../components/space/cadastrarSpace'
 import newGroup from '../components/newGroup/newGroup'
 import favorites from '../components/favorites/favorites'
 import groupProfiles from '../components/groupProfile/groupProfile'
+import bestSpaces from '../components/bestSpaces/bestSpaces'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
 			path: '/grupo',
 			name: 'Grupo',
 			component: groupProfiles
+		},
+		{ 
+			path: '/melhoreslocais',
+			name: 'Melhores Locais',
+			component: bestSpaces
 		}
 	]
 })

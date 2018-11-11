@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import designUX from '../../assets/css/designUX.css'
 export default {
   components: {	
   } 
@@ -33,11 +34,7 @@ export default {
 </script>
 
 <style scoped>
-hr{ 
-  height: 1px;
-  color: #6e5077;
-  background-color: #6e5077;
-  border: none;
+hr{
   margin-left: 30px;
   margin-right: 30px;
 }

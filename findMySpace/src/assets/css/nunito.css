@@ -25,9 +25,11 @@
 }
 
 * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+	font-smooth: always !important;
+	text-rendering: optimizeLegibility !important;
+	text-shadow: 0.6px 0px 0.001px rgba(94,68,102,0.13);
 }
 
 body {
