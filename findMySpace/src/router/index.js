@@ -15,6 +15,9 @@ import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
 import sitemap from '../components/aboutus/sitemap'
 
+
+import hourTable from '../components/shared/hourTable'
+
 Vue.use(Router)
 
 export default new Router({
@@ -88,6 +91,11 @@ export default new Router({
 			path: '/sitemap',
 			name: 'sitemap',
 			component: sitemap
+		},
+		{
+			path: '/tabela',
+			name: 'tabela',
+			component: hourTable
 		}
 	]
 })
