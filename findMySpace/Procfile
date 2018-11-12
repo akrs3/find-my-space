@@ -1,0 +1,1 @@
+worker: npm run dev --node-flags --max-old-space-size=436
