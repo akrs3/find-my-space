@@ -62,7 +62,12 @@
         let userName = this.userName
         let password = this.password
 
-        alert(userName)
+        window.firebase.auth().signInWithEmailAndPassword(this.userName, this.password).then((data) => {
+          console.log(data);
+          alert("Logado!");
+        }).catch((error) => {
+          alert(error);
+        })
       }
     }
   }
