@@ -8,7 +8,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "start": "node server.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+    "build": "node build/build.js"
+
+    //"build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
