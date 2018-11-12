@@ -3,7 +3,7 @@
   "description": "A Vue.js project",
 	"version": "1.0.0",
 	"engines": {
-	"node": "6.10.3"
+	"node": "10.13.0"
 	},
   "author": "Eduardo Leite <elsn2@cin.ufpe.br>",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "start": "node server.js",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
