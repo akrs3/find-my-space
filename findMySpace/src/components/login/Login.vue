@@ -19,12 +19,12 @@
         <table align="left">
           <tr>
             <p class="queryLogin" align="left">email ou nome de usuario</p>
-            <input align="left" type="text" id="user" v-model="userName">
+            <input align="left" type="email" id="user" v-model="userName">
           </tr>
           
           <tr>
             <p class="queryLogin" align="left">senha</p>
-            <input align="left" type="text" id="password" v-model="password">
+            <input align="left" type="password" id="password" v-model="password">
           </tr>
         </table>
       </div>
@@ -36,63 +36,89 @@
 </template>
 
 <script>
-  import naviBarHeader from '../shared/naviBarHeader'
-  import backButton from '../shared/backButton'
-  import roundedButton from '../shared/roundedButton'
-  import divisor from '../shared/divisor'
-  import nunito from '../../assets/css/nunito.css'
+import naviBarHeader from "../shared/naviBarHeader";
+import backButton from "../shared/backButton";
+import roundedButton from "../shared/roundedButton";
+import divisor from "../shared/divisor";
+import nunito from "../../assets/css/nunito.css";
 
-  export default {
-    components: {
-      naviBarHeader,
-      backButton,
-      divisor,
-      roundedButton
-    },
+export default {
+  components: {
+    naviBarHeader,
+    backButton,
+    divisor,
+    roundedButton
+  },
 
-    data() {
+  data() {
     return {
-      userName: '',
-      password: '',
-      }
-    },
+      userName: "",
+      password: ""
+    };
+  },
 
-    methods: {
-      signIn: function() {
-        let userName = this.userName
-        let password = this.password
+  methods: {
+    signIn: function() {
+      let userName = this.userName;
+      let password = this.password;
 
-        window.firebase.auth().signInWithEmailAndPassword(this.userName, this.password).then((data) => {
-          console.log(data);
-          alert("Logado!");
-        }).catch((error) => {
-          alert(error);
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          firebase
+            .database()
+            .ref("/user/" + user.uid)
+            .once("value")
+            .then(result => {
+              if (result.val) {
+                var value = result.val();
+                console.log(value);
+                if (value.role == "owner") {
+                  alert("Logged as studio owner");
+                } else if (value.role == "buyer") {
+                  alert("Logged as dancer!");
+                } else {
+                  console.error("Malformed data");
+                  return;
+                }
+              }
+            });
+        }
+      });
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.userName, this.password)
+        .then(() => {
+          console.log("Login Completed");
         })
-      }
+        .catch(error => {
+          alert(error);
+        });
     }
   }
+};
 </script>
 
 <style scoped>
-  input {
-    display: inline-block;
-    float: left;
-    background: transparent;
-    border: none;
-    border-bottom: 1px dotted #7f7d80;
-    margin-bottom: 40px;
-    font-weight: bold;
-    font-size: 24px;
-  }
+input {
+  display: inline-block;
+  float: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dotted #7f7d80;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 24px;
+}
 
-  .bodyLogin {
-    font-family: Nunito;
-    color:#6e5077;
-    margin-left: 6%;
-    margin-right: 6%;
-  }
+.bodyLogin {
+  font-family: Nunito;
+  color: #6e5077;
+  margin-left: 6%;
+  margin-right: 6%;
+}
 
-  .queryLogin {
-    margin-top: 20px;
-  }
+.queryLogin {
+  margin-top: 20px;
+}
 </style>
