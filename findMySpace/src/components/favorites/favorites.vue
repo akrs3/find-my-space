@@ -24,7 +24,7 @@
 
 	      	<!-- Space List -->
 	      	<div class="row" style="margin-top: 30px">
-	      		<div class="col-12" align="left" v-for="space in spaces" style="margin-bottom: 30px">
+	      		<div class="col-md-4" align="left" v-for="space in spaces" style="margin-bottom: 30px">
 	      			
 	      			<img v-bind:src="space.imageBase64" class="img-fluid  w-100" />
 
