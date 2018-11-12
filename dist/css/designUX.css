@@ -1,0 +1,30 @@
+/*
+https://medium.com/@carolinalina/how-to-design-ui-buttons-that-convert-d5ebb1080969
+
+https://www.smashingmagazine.com/2012/02/finger-friendly-design-ideal-mobile-touchscreen-target-sizes/
+
+https://blog.prototypr.io/5-ux-tips-to-consider-on-a-mobile-eaa38da0a79f
+
+
+*/
+
+.buttonUX {
+	width: 44px; height: 44px;
+	min-width: 36px; min-height: 36px;
+}
+
+.marginFMS {
+	margin-left: 6%;
+	margin-right: 6%;
+}
+
+hr{ 
+  height: 1px !important;
+  color: #6e5077 !important;
+  background-color: #6e5077 !important;
+  border: none !important;
+}
+
+.corBold {
+	color: #6e5077;
+}
