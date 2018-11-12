@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "start": "node server.js",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run dev",
+    "heroku-postbuild": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
