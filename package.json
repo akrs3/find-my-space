@@ -1,7 +1,10 @@
 {
   "name": "find-my-space",
   "description": "A Vue.js project",
-  "version": "1.0.0",
+	"version": "1.0.0",
+	"engines": {
+	"node": "6.10.3"
+	},
   "author": "Eduardo Leite <elsn2@cin.ufpe.br>",
   "license": "MIT",
   "private": true,
