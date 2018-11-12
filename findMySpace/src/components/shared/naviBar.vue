@@ -7,7 +7,8 @@
 			</div>
 			<div class="menuNav">	
 				<router-link class="linksNaviBar" to="">
-					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'"><span style="float:left; font-size: 19px" class="corBold "> entrar </span></b-btn></router-link>
+				<!-- gambiarra apagar botao ok-->
+					<b-btn onclick="document.getElementsByClassName('btn btn-primary')[1].style='background-color: #6e5077; margin-bottom: 50px; width: 50%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;'" v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'"><span style="float:left; font-size: 19px" class="corBold "> entrar </span></b-btn></router-link>
 				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
 				<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
 				<hr>
@@ -25,7 +26,7 @@
 			
 			
 			<!-- LOGIN -->
-			  <b-modal size="sm" align="left" id="myModal">
+			  <b-modal size="sm" ok-only align="left" id="myModal">
 				<table align="center">
 					<tr>
 						<p class="queryCadSpac" align="left">Usuário: </p>
