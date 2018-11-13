@@ -5,14 +5,14 @@
 
 			<div class="container-fluid my-preferences">
 				<div class ="new-group-content">
-	      	<!-- Back Button -->
-	      	<backButton />
-	      
-	      	<!-- Header -->
-	      	<div style="margin-top:10px" align="left">
-		      	<span style="font-weight: bold; font-size: 14pt;margin-left:10px;">minhas preferências</span>
-		      	<divisor />
-		      </div>
+					<!-- Back Button -->
+					<backButton />
+				
+					<!-- Header -->
+					<div style="margin-top:10px" align="left">
+						<span style="font-weight: bold; font-size: 14pt;margin-left:10px;">minhas preferências</span>
+						<divisor />
+					</div>
 
 					<!-- CORPO DA PAGINA DAS MINHAS PREFERÊNCIAS -->
 					...<br/>

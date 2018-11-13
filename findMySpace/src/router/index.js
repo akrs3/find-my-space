@@ -9,6 +9,7 @@ import signup from '../components/signup/signup'
 import naviBar from '../components/shared/naviBar'
 import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
+import cadastrarSpace1 from '../components/space/cadastrarSpace1'
 import newGroup from '../components/newGroup/newGroup'
 import myPreferences from '../components/myPreferences/myPreferences'
 import favorites from '../components/favorites/favorites'
@@ -54,6 +55,11 @@ export default new Router({
 			path: '/espaco',
 			name: 'Espaço',
 			component: space
+		},
+		{
+			path: '/novo-espaco-1',
+			name: 'Cadastrar Espaço - 1',
+			component: cadastrarSpace1
 		},
 		{
 			path: '/novo-espaco',

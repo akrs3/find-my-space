@@ -1,53 +1,51 @@
 <template>
 	<div>
-	<naviBarHeader/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<naviBarHeader/>
 	
-  <div class="bodyCadSpac">
-	<p align="left"><b> cadastrar novo espaço </b> </p>
-	<hr>
-	
-	<form action="" onsubmit="{ return false;}">
-		<table align="left">
-			<tr>
-				<p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
-				<input align="left" type="text" name="nomeSpace" placeholder="Awesome Space">
-			</tr>
+		<div class="bodyCadSpac">
+			<p align="left"><b> cadastrar novo espaço </b> </p>
+			<hr>
 			
-			<tr>
-				<p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
-				<input style="width:100px" align="left" type="number" name="custoHora" placeholder="50">
-			</tr>
-			
-			<tr>
-				<p class="queryCadSpac" align="left">endereço do espaço</p>
-				<input align="left" type="text" name="endSpace" placeholder="Rua do melhor, n 10">
-			</tr>
-			
-			<tr>
-				<p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
-				<textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
-			</tr>
-			
-			<tr>
-				<p class="queryCadSpac" align="left">adicione algumas fotos do seu espaço</p>
-				
-				<div class="fotoArea"> 
-					<button onclick="alert('ok!')" class="centerImg"/>
-				</div>
-			</tr>
-			
-			<tr>
-				<button onclick="alert('conclui!')" style=" background-color: #6e5077; margin-bottom: 50px; width: 100%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;" align="left">concluído!</button>
-				
-			</tr>
-			
-			
-			
-		</table>
-	</form>
-	
+			<form action="" onsubmit="{ return false;}">
+				<table align="left">
+					<tr>
+						<p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
+						<input align="left" type="text" name="nomeSpace" placeholder="Awesome Space">
+					</tr>
+					
+					<tr>
+						<p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
+						<input style="width:100px" align="left" type="number" name="custoHora" placeholder="50">
+					</tr>
+					
+					<tr>
+						<p class="queryCadSpac" align="left">endereço do espaço</p>
+						<input align="left" type="text" name="endSpace" placeholder="Rua do melhor, n 10">
+					</tr>
+					
+					<tr>
+						<p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
+						<textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
+					</tr>
+					
+					<tr>
+						<p class="queryCadSpac" align="left">adicione algumas fotos do seu espaço</p>
+						
+						<div class="fotoArea"> 
+							<button onclick="alert('ok!')" class="centerImg"/>
+						</div>
+					</tr>
+					
+					<tr>
+						<button onclick="alert('conclui!')" style=" background-color: #6e5077; margin-bottom: 50px; width: 100%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;" align="left">concluído!</button>
+						
+					</tr>
+							
+				</table>
+			</form>
+		</div>
 	</div>
-  </div>
 </template>
 
 <script>
