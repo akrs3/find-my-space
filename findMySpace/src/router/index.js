@@ -10,6 +10,7 @@ import naviBar from '../components/shared/naviBar'
 import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
 import newGroup from '../components/newGroup/newGroup'
+import myPreferences from '../components/myPreferences/myPreferences'
 import favorites from '../components/favorites/favorites'
 import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
@@ -58,11 +59,16 @@ export default new Router({
 			path: '/novo-espaco',
 			name: 'Cadastrar Espaço',
 			component: cadastrarSpace
-    	},
+		},
     	{
 			path: '/novo-grupo',
 			name: 'Novo Group',
 			component: newGroup
+		},
+		{
+			path: '/minhas-preferencias',
+			name: 'Minhas Preferências',
+			component: myPreferences
 		},
 		{
 			path: '/naviBar',
