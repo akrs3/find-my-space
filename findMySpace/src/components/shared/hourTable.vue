@@ -7,7 +7,7 @@
 
 
 	      	<div class="row align-items-center" v-for="i in rowsCount">
-	      		<div v-for="j in 9" v-bind:class="getCellStyle(i, j)" style="padding-left: 0px; padding-right: 0px;">
+	      		<div v-for="j in 9" v-bind:class="getCellStyle(i, j)" v-on:click="handleClickOnCell(i, j)" style="padding-left: 0px; padding-right: 0px;">
 
 	      			<div v-if="i == 1 && j > 2">
 		      			<span style="color: #6E5077; font-size: 16pt;">{{ getWeekdayForColumn(i, j) }}</span>
@@ -19,7 +19,7 @@
 		      			<span style="color: #6E5077; font-size: 18pt;">{{ getHourForLine(i, j) }}h</span>
 	      			</div>
 
-	      			<hr v-if="cellHasDivisor(i, j)" class="rowDivisor"/>
+	      			<hr v-if="cellHasDivisor(i, j)"/>
 	      		</div>
 	      	</div>
 
@@ -48,8 +48,30 @@ export default {
 
 			events: [ 
 				{
-					fromDate: moment().add(-1, 'days').hour(10).toDate(),
-					toDate: moment().add(-1, 'days').hour(23).toDate(),
+					fromDate: moment().add(1, 'days').hour(10).toDate(),
+					toDate: moment().add(1, 'days').hour(23).toDate(),
+					group: {
+						id: 1,
+						name: 'Super Girls',
+						contact: '(81) 99999-9999'
+					},
+					isAccepted: false
+				},
+
+				{
+					fromDate: moment().add(3, 'days').hour(10).toDate(),
+					toDate: moment().add(3, 'days').hour(18).toDate(),
+					group: {
+						id: 1,
+						name: 'Super Girls',
+						contact: '(81) 99999-9999'
+					},
+					isAccepted: false
+				},
+
+				{
+					fromDate: moment().add(5, 'days').hour(16).toDate(),
+					toDate: moment().add(5, 'days').hour(22).toDate(),
 					group: {
 						id: 1,
 						name: 'Super Girls',
@@ -63,8 +85,14 @@ export default {
 
 	methods: {
 
+		handleClickOnCell: function(i, j) {
+			console.log('clicou na tabela ', i, j)
+		},
+
 		getStartAndFinalMomentForCell: function(i, j) {
-			let hour = this.hours[(i-3)/2]
+			let isIntermediary = ((i-3)/2) % 1 != 0
+
+			let hour = this.hours[Math.floor((i-3)/2)]
 
 			let m = moment(this.date).isoWeekday(j-2)
 			let m1 = moment(this.date).isoWeekday(j-2)
@@ -77,7 +105,7 @@ export default {
 			m1.minute(0);
 			m1.second(0);
 
-			return [m, m1]
+			return [m, m1, isIntermediary]
 		},
 
 		getMonthDayForColumn: function(i, j) {
@@ -93,7 +121,7 @@ export default {
 		},
 
 		getCellStyle: function(i, j) {
-			let styling = 'borderes '
+			let styling = 'cell '
 
 			if (j == 2)
 				styling += 'col-1 '
@@ -124,13 +152,15 @@ export default {
 			//paddings
 			if (i == 1)
 				styling += 'weekDaysCell '
+			else if ((j == 1) && (i > 2) && (i <= this.rowsCount))
+				styling += 'hourCell '
 			else if ((i == 2) || (i == 40))
 				styling += 'roundedCell '
 			else
 				styling += 'defaultCell '
 
 			//events
-			if ((i > 2) && (j > 1) && ((i - 2) % 2))
+			if ((i > 2) && (j > 1) && (i <= this.rowsCount))
 				styling += this.populateEventForCell(i, j)
 
 
@@ -148,6 +178,7 @@ export default {
 			const moments = this.getStartAndFinalMomentForCell(i, j);
 			const cellStartMoment = moments[0]
 			const cellFinalMoment = moments[1]
+			const isCellIntermediary = moments[2]
 
 			const cellRangeMoment = moment.range(cellStartMoment, cellFinalMoment)
 
@@ -157,14 +188,22 @@ export default {
 				const eventStartMoment = moment(event.fromDate)
 				const eventFinalMoment = moment(event.toDate) 
 
+				if (!isCellIntermediary) {
+					if (eventStartMoment.within(moment.rangeFromInterval('hour', 1, cellStartMoment)))
+						return 'eventStyleATop'
+					else if (cellFinalMoment.within(moment.rangeFromInterval('hour', 1, eventFinalMoment)))
+						return 'eventStyleABottom'
+				} else if (cellFinalMoment.isAfter(eventFinalMoment))
+					continue;
+
 				const eventRangeMoment = moment.range(eventStartMoment, eventFinalMoment)
 
 				if (eventRangeMoment.overlaps(cellRangeMoment) || cellRangeMoment.overlaps(eventRangeMoment)) {
-				 	return 'event1'
+				 	return 'eventStyleA'
 				}
 			}
 
-			return ''
+			return;
 		}
 	},
 
@@ -175,7 +214,7 @@ export default {
 		},
 
 		rowsCount: function() {
-			return this.hours.length + 21
+			return this.hours.length + 20
 		}
 	}
 
@@ -185,23 +224,23 @@ export default {
 
 <style scoped>
 
-.borderes {
-	border: 0px solid black;
+.cell {
+	position: relative;
+  	min-height: 50px;
 }
 
-.defaultCell {
+.roundedCell {}
 
-}
-
-.roundedCell {
-	padding-top: 5.0px;
-	padding-bottom: 5.0px;
-}
+.defaultCell {}
 
 .weekDaysCell {
-	padding-top: 5px;
-	padding-bottom: 15px;
+	padding-bottom: 20px;
 }
+
+.hourCell {
+	position: relative;
+    top: -20px;
+ }
 
 .darkColumnColor {
 	background:rgba(139, 115, 146, 0.47);
@@ -227,14 +266,33 @@ export default {
 	border-bottom-right-radius: 15px
 }
 
-.rowDivisor {
+.cell hr {
+	position: absolute;
+  	width: 100%;
+  	top: 0;
+  	margin: 0;
 	background-color: #6E5077; 
 	opacity: 0.37;
   	height: 1px; 
-  	border: none;
 }
 
-.event1 {
+.eventStyleA {
 	background-color: rgba(110, 80, 119, 0.85);
+}
+
+.eventStyleATop {
+	background-image: url('../../assets/hourTable/arrow_up.png');
+	background-position: center;
+  	background-repeat: no-repeat;
+    background-size: 50px 25px;
+	background-color: rgba(110, 80, 119, 1)
+}
+
+.eventStyleABottom {
+	background-image: url('../../assets/hourTable/arrow_down.png');
+	background-position: center;
+  	background-repeat: no-repeat;
+    background-size: 50px 25px;
+	background-color: rgba(110, 80, 119, 1)
 }
 </style>
