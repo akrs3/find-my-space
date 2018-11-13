@@ -1,16 +1,22 @@
 <template>
 	<div>
 		<naviBarHeader/>
-		<div class="container-fluid cadastrar-space"
-  		<div class="bodyCadSpac">
-				<p align="left" style="margin-left:10px;"><b> cadastrar novo espaço </b> </p>
-				<divisor/>
+		<div class="container-fluid cadastrar-space">
+			<div class="cadastrar-space-content">
+				
+				<div class="bodyCadSpac">
+					<!-- Back Button -->
+					<backButton />
+
+					<p align="left" style="margin-left:10px;"><b> cadastrar novo espaço </b> </p>
+					<divisor/>
+				</div>
+				<!-- CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
+					...<br/>
+					...<br/>
+					...
+				<!-- FIM DO CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
 			</div>
-			<!-- CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
-				...<br/>
-				...<br/>
-				...
-			<!-- FIM DO CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
 		</div>
 	</div>
 </template>
