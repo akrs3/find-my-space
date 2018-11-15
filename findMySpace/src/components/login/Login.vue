@@ -13,13 +13,6 @@
 				
 						<input align="left" type="password" name="senha">
 			</tr>
-			
-			<!--
-			<tr align="left">
-				<router-link to="signup" class="queryCadSpac" align="left"><b>não tenho conta</b></router-link>
-				
-			</tr>
-			-->
 		</table>
   </div>
 </template>
