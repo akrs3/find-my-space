@@ -13,25 +13,14 @@
 				
 						<input align="left" type="password" name="senha">
 			</tr>
-			
-			<!--
-			<tr align="left">
-				<router-link to="signup" class="queryCadSpac" align="left"><b>não tenho conta</b></router-link>
-				
-			</tr>
-			-->
 		</table>
   </div>
 </template>
 
 <script>
-import signup from '../signup/signup'
-import naviBarHeader from '../shared/naviBarHeader'
 
 export default {
    components: {
-	naviBarHeader,
-	signup
   }  
 }
 </script>

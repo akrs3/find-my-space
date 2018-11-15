@@ -20,7 +20,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 		<ul class="naviBarHeaderBar">
 			<li class="naviBarHeaderLogo">
-				<img src="../../assets/navBar/logo-white.png">
+				
+				<router-link :to="{ path: '/' }"> <img src="../../assets/navBar/logo-white.png"> </router-link>
 			</li>
 		  <li align="right" class="naviBarHeaderGridButton">
 			<naviBar/>
@@ -32,13 +33,12 @@
 
 <script>
 import naviBar from './naviBar'
-import login from '../login/login'
+
 import cssBarraPadrao from '../../assets/css/styleBarPadrao.css'
 
 export default {
   components: {
-	naviBar,
-	login
+	naviBar
   }  
 }
 </script>

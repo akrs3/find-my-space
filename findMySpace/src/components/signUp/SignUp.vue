@@ -25,11 +25,9 @@
 </template>
 
 <script>
-import naviBarHeader from '../shared/naviBarHeader'
 
 export default {
    components: {
-	naviBarHeader
   }  
 }
 </script>

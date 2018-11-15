@@ -7,7 +7,7 @@
 			</div>
 			<div class="menuNav">	
 				<router-link class="linksNaviBar" to="">				
-					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'">
+					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'" @click="showLogin">
 						<span style="float:left; font-size: 19px" class="corBold "> entrar </span>
 					</b-btn>
 				</router-link>
@@ -115,7 +115,7 @@ hr{
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: #f9f8f9;
     overflow-x: hidden;
     transition: 0.5s;
@@ -203,4 +203,5 @@ input {
 	margin-left: 6%;
 	margin-right: 6%;
 }
+
 </style>
