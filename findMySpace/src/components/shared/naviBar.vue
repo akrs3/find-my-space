@@ -6,9 +6,12 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
 			<div class="menuNav">	
-				<router-link class="linksNaviBar" to="">
-				<!-- gambiarra apagar botao ok-->
-					<b-btn onclick="document.getElementsByClassName('btn btn-primary')[1].style='background-color: #6e5077; margin-bottom: 50px; width: 50%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;'" v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'"><span style="float:left; font-size: 19px" class="corBold "> entrar </span></b-btn></router-link>
+				<router-link class="linksNaviBar" to="">				
+					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'">
+						<span style="float:left; font-size: 19px" class="corBold "> entrar </span>
+					</b-btn>
+				</router-link>
+				
 				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
 				<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
 				<hr>
@@ -19,43 +22,82 @@
 		
 		<div id="areaCloseBehind" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'" style="width:0; height:100%; z-index: 9; background:rgba(0,0,0,0.25); display:none" class="sidenav" align="right">
 		</div>
-    
-			<div align="right">
-				<span class="gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"></span>
+
+		
+		<!-- BOTAO GRID -->
+		<div align="right">
+			<span class="gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"></span>
+		</div>
+		
+		
+		<!-- LOGIN -->
+		<b-modal hide-footer size="sm" ok-only align="left" id="myModal" ref="myModal">
+			<login/>
+			<div class="modal-footer">
+				<a style="cursor:pointer" class="linksNaviBar botaoLogin" v-b-modal="'myModalSignup'">
+					<b style="float:left;" class="corBold "> não tenho conta </b>
+				</a>
+				<button type="button" class="botaoTemaFms btn-primary" @click="hideLogin">OK</button>
+				
 			</div>
+		</b-modal>
+		  
+		  
+		<!-- SIGUP -->
+		<b-modal hide-footer size="sm" ok-only align="left" id="myModalSignup" ref="myModalSignup">
+			<signup/>
 			
-			
-			<!-- LOGIN -->
-			  <b-modal size="sm" ok-only align="left" id="myModal">
-				<table align="center">
-					<tr>
-						<p class="queryCadSpac" align="left">Usuário: </p>
-						
-						
-								<input align="left" type="text" name="user">
-					</tr>
-					
-					<tr align="left">
-						<p class="queryCadSpac" align="left">Senha: </p>
-						
-								<input align="left" type="password" name="senha">
-					</tr>
-				</table>
-			  </b-modal>
+			<div class="modal-footer">
+				<button type="button" class="botaoTemaFms btn-primary" @click="hideSignup">OK</button>
+				
+			</div>
+		</b-modal>
 	
   </div>
 </template>
 
 <script>
+import login from '../login/login'
+import signup from '../signup/signup'
 import designUX from '../../assets/css/designUX.css'
 
 export default {
   components: {
-  } 
+	login,
+	signup
+  },
+  methods: {
+    showLogin () {
+		this.$refs.myModal.show()
+    },
+    hideLogin () {
+		this.$refs.myModal.hide()
+    },
+    showSignup () {
+		this.$refs.myModalSignup.show()
+    },
+    hideSignup () {
+		if( (document.getElementsByName('confirmesenha')[0].value) === (document.getElementsByName('senhaSignup')[0].value) ){
+			//sucesso
+			this.$refs.myModalSignup.hide();
+		}else{
+			alert("a confirmação está diferente da senha");
+		}
+    }
+  }
 }
 </script>
 
 <style scoped>
+.botaoTemaFms{
+	border:0;
+	background-color: #6e5077;
+	width: 50%; 
+	min-height:44px; 
+	border-radius: 20px; 
+	color: #ffffff; 
+	font-weight: bold;
+}
 .botaoLogin {
 	background: transparent;
 	border: none;

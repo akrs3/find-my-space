@@ -5,7 +5,7 @@ import home from '../components/home/home'
 import login from '../components/login/login'
 import ownerProfile from '../components/ownerProfile/ownerProfile'
 import profile from '../components/profile/profile'
-import signUp from '../components/signUp/signUp'
+import signup from '../components/signup/signup'
 import naviBar from '../components/shared/naviBar'
 import space from '../components/space/space'
 import cadastrarSpace from '../components/space/cadastrarSpace'
@@ -47,7 +47,7 @@ export default new Router({
 		{
 			path: '/signup',
 			name: 'Registrar',
-			component: signUp
+			component: signup
 		},
 		{
 			path: '/espaco',
