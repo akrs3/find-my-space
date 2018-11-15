@@ -115,7 +115,7 @@ hr{
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: #f9f8f9;
     overflow-x: hidden;
     transition: 0.5s;
