@@ -34,12 +34,15 @@
 <script>
 import naviBar from './naviBar'
 import login from '../login/login'
+import signup from '../signup/signup'
+
 import cssBarraPadrao from '../../assets/css/styleBarPadrao.css'
 
 export default {
   components: {
 	naviBar,
-	login
+	login,
+	signup
   }  
 }
 </script>
