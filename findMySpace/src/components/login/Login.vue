@@ -25,13 +25,9 @@
 </template>
 
 <script>
-import signup from '../signup/signup'
-import naviBarHeader from '../shared/naviBarHeader'
 
 export default {
    components: {
-	naviBarHeader,
-	signup
   }  
 }
 </script>
