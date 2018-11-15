@@ -63,7 +63,7 @@ export default {
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .title {
 	font-size: 23px !important;
   }
@@ -72,7 +72,7 @@ export default {
   }
 }
 
-@media screen and (max-height: 320px) {
+@media screen and (max-height: 370px) {
   .titlediv {
 	top: 0 !important;
   }
@@ -81,6 +81,16 @@ export default {
   }
   .naviBarHeaderBar {
 	margin-bottom: 0px !important;
+  }
+}
+
+
+@media screen and (min-height: 370px) {
+  .titlediv {
+	top: 25% !important;
+  }
+  .title {
+	font-size: 26px !important;
   }
 }
 
