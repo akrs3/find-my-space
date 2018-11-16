@@ -69,8 +69,10 @@
 		</div>
 
 		<!-- Find Button --> 
-        <roundedButton title='encontre meu espaço!' style="margin-top: 25px" v-bind:compressed='false' v-bind:handler='findSpace' />
-
+		<!-- talvez aqui fique o locais favoritos, pois pela buscaButton esta acessivel nessa tela, favoritos nao... troquei pra favoritos --> 
+		<router-link :to="{ path: '/favoritos' }">
+			<roundedButton title='encontre meu espaço!' style="margin-top: 25px" v-bind:compressed='false' v-bind:handler='findSpace' />
+		</router-link>
 	</div>
   </div>
 </template>

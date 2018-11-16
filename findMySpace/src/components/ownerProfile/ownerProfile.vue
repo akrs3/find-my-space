@@ -19,7 +19,7 @@
 
         <div class="row about">
           <div class="col-md-8">
-            <img src="../../assets/ownerProfile/adition.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
+            <img class="rounded-circle addButton padraoButton" style="width:30px; float:left; margin-left:10px; "/>
             <router-link to="novo-espaco" style="float:left; margin-left: 10px;">adicionar novo espaço</router-link>
           </div>
           <div class="col-md-4"></div>
@@ -56,17 +56,30 @@ export default {
     min-height: cal(100vh - 170px);
   }
 
-	.name-person {
-    
+	.name-person {    
 		font-weight: bold;
-    margin-bottom: 100px;
-    font-size: 16pt; 
-    align: center;
+		margin-bottom: 100px;
+		font-size: 16pt; 
+		align: center;
 	}
 
 	.about a {
 		color: #6e5077;
 		font-size: 12pt;
+	}
+	
+	
+	.padraoButton {
+		cursor: pointer;
+		display: block;
+		width: 30px !important; 
+		height: 30px !important; 
+		min-height: 30px;
+	}
+
+	.addButton {
+		background: url("../../assets/profile/addProfile.png") no-repeat center center;
+		background-size: 30px;
 	}
 
   .next span {

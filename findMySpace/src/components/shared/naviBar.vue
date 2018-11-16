@@ -26,7 +26,18 @@
 		
 		<!-- BOTAO GRID -->
 		<div align="right">
-			<span class="gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"></span>
+			<table>
+				<tr>
+					<th>
+						<router-link class="padraoButton buscaButton" :to="{ path: '/melhoreslocais' }"/>	
+					</th>
+					
+					<th>
+						<span class="padraoButton  gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"/>
+					</th>
+				
+				</tr>
+			</table>
 		</div>
 		
 		
@@ -37,7 +48,9 @@
 				<a style="cursor:pointer" class="linksNaviBar botaoLogin" v-b-modal="'myModalSignup'">
 					<b style="float:left;" class="corBold "> não tenho conta </b>
 				</a>
-				<button type="button" class="botaoTemaFms btn-primary" @click="hideLogin">OK</button>
+				<router-link style="display:inline-block; width:100%; height:100%" :to="{ path: '/perfil' }"> 
+					<button type="button" class="botaoTemaFms btn-primary" @click="hideLogin"> OK </button>
+				</router-link> 
 				
 			</div>
 		</b-modal>
@@ -92,7 +105,7 @@ export default {
 .botaoTemaFms{
 	border:0;
 	background-color: #6e5077;
-	width: 50%; 
+	width: 100%; 
 	min-height:44px; 
 	border-radius: 20px; 
 	color: #ffffff; 
@@ -164,13 +177,20 @@ hr{
 .linksNaviBar {
 	width:100%;
 }
-
-.gridButton {
+.padraoButton {
+	cursor: pointer;
 	display: block;
-	background: url("../../assets/navBar/gridButton.png") no-repeat center center;
 	width: 44px !important; 
 	height: 44px !important; 
 	min-height: 44px;
+}
+
+.gridButton {
+	background: url("../../assets/navBar/gridButton.png") no-repeat center center;
+}
+
+.buscaButton {
+	background: url("../../assets/navBar/buscaButton.png") no-repeat center center;
 }
 
 @media screen and (max-height: 450px) {
@@ -204,4 +224,7 @@ input {
 	margin-right: 6%;
 }
 
+a {
+	color:#fff;
+}
 </style>

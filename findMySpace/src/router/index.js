@@ -36,12 +36,12 @@ export default new Router({
 		},
 		{
 			path: '/me',
-			name: 'Perfil Usuário',
+			name: 'Perfil Dono',
 			component: ownerProfile
 		},
 		{
 			path: '/perfil',
-			name: 'Perfil',
+			name: 'Perfil Dançarino',
 			component: profile
 		},
 		{
