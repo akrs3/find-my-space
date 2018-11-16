@@ -27,8 +27,13 @@
 	      	</div>
 
 	      	<div style="margin-top: 10px">
-	      		<img src="../../assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
-	      	</div>
+	      		<!-- 
+					<img src="../../assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
+				-->
+				<div style="display:block; margin-bottom:11px">
+					<imgslider class="img-fluid space-content-spaceImages-image" alt="Responsive image"/>
+				</div>
+			</div>
 
 	      	<div class="row align-items-center" style="margin-top: 15px">
 	      		<div class="col-auto" align="left">
@@ -103,11 +108,13 @@
 import naviBarHeader from '../shared/naviBarHeader'
 import roundedButton from '../shared/roundedButton'
 import divisor from '../shared/divisor'
+import imgslider from '../imgslider/imgslider'
 
 export default {
   components: {
   	naviBarHeader,
   	roundedButton,
+  	imgslider,
   	divisor
   },
 
