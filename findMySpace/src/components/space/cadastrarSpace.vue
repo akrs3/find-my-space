@@ -10,22 +10,22 @@
 		<table align="left">
 			<tr>
 				<p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
-				<input align="left" type="text" name="nomeSpace">
+				<input align="left" type="text" name="nomeSpace" placeholder="Awesome Space">
 			</tr>
 			
 			<tr>
 				<p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
-				<input style="width:100px" align="left" type="number" name="custoHora">
+				<input style="width:100px" align="left" type="number" name="custoHora" placeholder="50">
 			</tr>
 			
 			<tr>
 				<p class="queryCadSpac" align="left">endereço do espaço</p>
-				<input align="left" type="text" name="endSpace">
+				<input align="left" type="text" name="endSpace" placeholder="Rua do melhor, n 10">
 			</tr>
 			
 			<tr>
 				<p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
-				<textArea align="left" type="text" name="endSpace"/>
+				<textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
 			</tr>
 			
 			<tr>
@@ -66,15 +66,25 @@ hr{
   margin: 0;
 }
 
+.corPadrao{
+	color: #6E5077;
+}
+
 input {
 	display: inline-block;
 	float: left;
 	background: transparent;
 	border: none;
-	border-bottom: 1px dotted #7f7d80;
+	border-bottom: 1px #7f7d80;
 	margin-bottom: 40px;
 	font-weight: bold;
 	font-size: 24px;
+	color: #684572;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */    
+	color: #6E5077 !important;
+	opacity: 0.55 !important;
 }
 
 textArea {
@@ -82,9 +92,10 @@ textArea {
 	float: left;
 	background: transparent;
 	border: none;
-	border-bottom: 0.5px dotted #7f7d80;
+	border-bottom: 0.5px #7f7d80;
 	margin-bottom: 40px;
 	font-size: 20px;
+	color: #684572;
 	width: 100%; height: 100%; min-height:100px;
 }
 
