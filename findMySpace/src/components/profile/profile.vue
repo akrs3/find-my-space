@@ -21,7 +21,9 @@
         <div class="row about">
           <div class="col-md-8">
             <img src="../../assets/profile/edit.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
-            <a href="#" style="float:left; margin-left: 10px;">minhas preferências</a>
+            
+			<!-- AJUSTAR AO SURGIR TELA PREFERENCIAS eh intermediario entre telas profile e grupo-->
+			<router-link :to="{path: '/grupo'}" style="float:left; margin-left: 10px;">minhas preferências</router-link>
           </div>
           <div class="col-md-4"></div>
         </div><br />
@@ -36,7 +38,7 @@
         
 	      <div class="row about">
 	        <div class="col-md-8">
-	          <img src="../../assets/profile/adition.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px;"/>
+	          <img src="../../assets/profile/addProfile.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px;"/>
             <router-link to="novo-grupo" style="float:left; margin-left: 10px;">adicionar novo grupo</router-link>
           </div>
           <div class="col-md-4"></div>
