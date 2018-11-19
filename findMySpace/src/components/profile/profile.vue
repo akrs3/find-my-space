@@ -23,7 +23,7 @@
             <img src="../../assets/profile/edit.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
             
 			<!-- AJUSTAR AO SURGIR TELA PREFERENCIAS eh intermediario entre telas profile e grupo-->
-			<router-link :to="{path: '/grupo'}" style="float:left; margin-left: 10px;">minhas preferências</router-link>
+			<router-link to="minhas-preferencias" style="float:left; margin-left: 10px;">minhas preferências</router-link>
           </div>
           <div class="col-md-4"></div>
         </div><br />
