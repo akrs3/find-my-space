@@ -54,11 +54,14 @@ export default {
                     .then(result => {
                         if (result.val) {
                             var value = result.val();
-                            console.log(value);
                             if (value.role == "owner") {
-                                alert("Logged as studio owner");
+                                this.$router.push({
+                                    path: "/me"
+                                })
                             } else if (value.role == "buyer") {
-                                alert("Logged as dancer!");
+                                this.$router.push({
+                                    path: "/perfil"
+                                })
                             } else {
                                 console.error("Malformed data");
                             return;
