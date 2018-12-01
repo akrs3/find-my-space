@@ -28,10 +28,10 @@
       </div>
 
       <div class="spaces">
-        <div v-for="space in spaces">
-          <h4>{{space.name}}</h4>
+        <div v-for="space in spaces" :key="space">
+          <router-link to="espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
           <ol>
-            <div v-for=" hour in space.hours" class="row">
+            <div v-for=" hour in space.hours" class="row" :key="hour">
               <li class="col-md-12"><h5>{{hour.name}} </h5></li>
               <ol class="row">
               <li class="col-md-12"><h6>Hora: {{hour.hour}} </h6></li>
