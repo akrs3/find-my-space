@@ -13,7 +13,7 @@
 				</router-link>
 				
 				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
-				<router-link class="linksNaviBar" to="novo-espaco">eu tenho um espaço</router-link >
+				<router-link class="linksNaviBar" to="novo-espaco-1">eu tenho um espaço</router-link >
 				<hr>
 				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
 				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
