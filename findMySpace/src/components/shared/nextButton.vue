@@ -1,7 +1,7 @@
 <template>
-  <div style=" display: flex; align-items: center;" align="right">
-      <button class="nextButton" v-on:click="$router.go(-1)" />
-      <span style="color: #6f5278; margin-right: 20px; font-size: 12pt">avançar</span>
+  <div style="display: flex; align-items: center" align="right">
+      <span style="color: #6f5278; margin-right: 10px; font-size: 12pt">avançar</span>
+      <button class="nextButton" v-on:click="$router.go(+1)" />
   </div>
 </template>
 
