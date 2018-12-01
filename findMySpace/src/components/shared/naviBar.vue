@@ -43,16 +43,7 @@
 		
 		<!-- LOGIN -->
 		<b-modal hide-footer size="sm" ok-only align="left" id="myModal" ref="myModal">
-			<login/>
-			<div class="modal-footer">
-				<a style="cursor:pointer" class="linksNaviBar botaoLogin" v-b-modal="'myModalSignup'">
-					<b style="float:left;" class="corBold "> não tenho conta </b>
-				</a>
-				<router-link style="display:inline-block; width:100%; height:100%" :to="{ path: '/perfil' }"> 
-					<button type="button" class="botaoTemaFms btn-primary" @click="hideLogin"> OK </button>
-				</router-link> 
-				
-			</div>
+			<login/>			
 		</b-modal>
 		  
 		  
@@ -94,7 +85,7 @@ export default {
 			//sucesso
 			this.$refs.myModalSignup.hide();
 		}else{
-			alert("a confirmação está diferente da senha");
+			alert("a confirmação está diferente da senha"); 
 		}
     }
   }
@@ -137,19 +128,19 @@ hr{
 
 .sidenav a {
 	width: 250px;
-	//font-family: Nunito;
+	/*font-family: Nunito;*/
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 19px;
     color: #7f5c8a;
     display: block;
     transition: 0.3s;
-	//font-weight: bold;
+	/*font-weight: bold;*/
 	font-weight: normal;
-	//text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.004);*/
 	text-rendering: optimizeLegibility !important;
-	-webkit-font-smoothing: antialiased !important;/text-shadow: 0 0 2px rgba(110,80,119,0.2);
-	//-webkit-text-stroke: .009em rgba(51,51,51,0.30);
+	-webkit-font-smoothing: antialiased !important;/*text-shadow: 0 0 2px rgba(110,80,119,0.2);*/
+	/*-webkit-text-stroke: .009em rgba(51,51,51,0.30);*/
 	font-smooth: always;
 }
 
