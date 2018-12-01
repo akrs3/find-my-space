@@ -1,7 +1,7 @@
 <template>
 <div>
   <naviBarHeader/>
-  <div class="container-fluid profile">
+  <div class="container profile">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
@@ -23,7 +23,7 @@
             <img src="../../assets/profile/edit.png" class="rounded-circle" style="width:30px; float:left; margin-left:10px; "/>
             
 			<!-- AJUSTAR AO SURGIR TELA PREFERENCIAS eh intermediario entre telas profile e grupo-->
-			<router-link to="minhas-preferencias" style="float:left; margin-left: 10px;">minhas preferências</router-link>
+			      <router-link to="minhas-preferencias" style="float:left; margin-left: 10px;">minhas preferências</router-link>
           </div>
           <div class="col-md-4"></div>
         </div><br />
@@ -53,7 +53,6 @@
           <div class="row name-group">
               <span>{{ group.name }}</span>
           </div>
-          <hr>
           <div class="row next">
             <span>próximo encontro</span>
           </div>
@@ -75,18 +74,9 @@
             </div>
             
             <div class="descr-day-place" style="float:right; width:20%; margin-rigth:20px">
-
               <img v-if="group.status == 'confirmado'" src="../../assets/profile/confirm.png" class="rounded-circle" style="width:30px; margin-left:30px;">
               <img v-else src="../../assets/profile/pendent.png" class="rounded-circle" style="width:30px; margin-left:30px;">
-              <span>{{ group.status }}</span>
-
-
-              <!--<div class="row">
-                <div class="next" style="float:rigth; margin-left:20px;">
-                  <span>{{ group.status }}</span>
-                </div>
-              </div>-->
-              
+              <span>{{ group.status }}</span>              
             </div>
 
           </div>
