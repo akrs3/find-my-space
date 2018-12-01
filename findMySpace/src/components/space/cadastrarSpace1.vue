@@ -7,8 +7,9 @@
 				<div class="bodyCadSpac">
 					<!-- Back Button -->
 					<backButton />
-
-					<p align="left" style="margin-left:10px;"><b> cadastrar novo espaço </b> </p>
+					<br>
+					<router-link class="novoespaco2" to="novo-espaco-2">cadastrar novo espaço</router-link>
+					<!--<p align="left" style="margin-left:10px;"><b> cadastrar novo espaço </b> </p>-->
 					<divisor/>
 				</div>
 				<!-- CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
@@ -48,6 +49,12 @@ a{
 	color:#6e5077;
 	margin-left: 6%;
 	margin-right: 6%;
+}
+
+.novoespaco2 {
+	position:absolute;
+  	align:left;
+	margin-left:10px;
 }
 
 </style>
