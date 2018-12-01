@@ -51,7 +51,7 @@
       <div class="profile-my-groups">
         <div v-for="group in groups" style="margin-bottom:20px;">
           <div class="row name-group">
-              <span>{{ group.name }}</span>
+              <span><router-link to="grupo" style="color: #6e5077;">{{ group.name }}</router-link></span>
           </div>
           <div class="row next">
             <span>próximo encontro</span>
@@ -162,6 +162,7 @@ export default {
     margin-top: 10px;
     float:left; 
     margin-left: 30px;
+    color: #6e5077;
 	}
 
 	.title-space span{
