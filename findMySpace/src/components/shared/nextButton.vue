@@ -1,18 +1,20 @@
 <template>
-  <div style=" display: flex; align-items: center;" align="left">
-      <button class="backButton" v-on:click="$router.go(-1)" />
-      <span style="color: #6f5278; margin-left: 10px; font-size: 12pt">voltar</span>
+  <div style="display: flex; align-items: center" align="right">
+      <span style="color: #6f5278; margin-right: 10px; font-size: 12pt">avançar</span>
+      <button class="nextButton" v-on:click="$router.go(+1)" />
   </div>
 </template>
 
 <script>
 export default {
+
 }
 </script>
 
 <style scoped>
-.backButton {
-  background-image: url( '../../assets/back_button.png' );
+
+.nextButton {
+  background-image: url( '../../assets/next_button.png' );
   background-size: 10px 20px;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,7 +25,9 @@ export default {
   width: 10px;
   color: #123123;
 }
-.backButton:focus {
+
+.nextButton:focus {
   outline:0 !important;
 }
+
 </style>

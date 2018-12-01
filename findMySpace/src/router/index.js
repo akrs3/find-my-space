@@ -16,6 +16,7 @@ import favorites from '../components/favorites/favorites'
 import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
 import sitemap from '../components/aboutus/sitemap'
+import resume from '../components/resume/resume'
 
 Vue.use(Router)
 
@@ -100,6 +101,11 @@ export default new Router({
 			path: '/sitemap',
 			name: 'sitemap',
 			component: sitemap
+		},
+		{ 
+			path: '/resume',
+			name: 'resume',
+			component: resume
 		}
 	]
 })
