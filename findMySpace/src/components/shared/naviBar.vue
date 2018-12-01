@@ -50,11 +50,6 @@
 		<!-- SIGUP -->
 		<b-modal hide-footer size="sm" ok-only align="left" id="myModalSignup" ref="myModalSignup">
 			<signup/>
-			
-			<div class="modal-footer">
-				<button type="button" class="botaoTemaFms btn-primary" @click="hideSignup">OK</button>
-				
-			</div>
 		</b-modal>
 	
   </div>
