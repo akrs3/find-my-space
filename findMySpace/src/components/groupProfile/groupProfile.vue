@@ -34,15 +34,13 @@
 				</span>
 			</div>
 
-			<divisor/>
-
 			<div align="left" style="margin-top: 25px">
 				<span style="color: #757376; font-size: 13pt; word-wrap: break-word">
 			      	horário mais votado
 				</span>
 				<br/>
 				<span style="color: #6E5077; font-size: 16pt; font-weight: bold; word-wrap: break-word">
-			      	{{ voting.date | moment("dddd DD/MM - HH") }}h às {{ voting.toDate | moment("HH") }}h
+			      	{{ voting.date | moment("dddd, DD/MM - HH") }}h às {{ voting.toDate | moment("HH") }}h
 				</span>
 			</div>
 
@@ -68,9 +66,8 @@
 
 		</div>
 
-		<!-- Find Button --> 
-		<!-- talvez aqui fique o locais favoritos, pois pela buscaButton esta acessivel nessa tela, favoritos nao... troquei pra favoritos --> 
-		<router-link :to="{ path: '/favoritos' }">
+		<!-- Find Button -->
+		<router-link :to="{ path: '/melhoreslocais' }">
 			<roundedButton title='encontre meu espaço!' style="margin-top: 25px" v-bind:compressed='false' v-bind:handler='findSpace' />
 		</router-link>
 	</div>
