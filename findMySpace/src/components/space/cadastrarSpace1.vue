@@ -1,15 +1,16 @@
 <template>
 	<div>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<naviBarHeader/>
-		<div class="container-fluid cadastrar-space">
-			<div class="cadastrar-space-content">
-				
+
+		<div class="container">
+
+		<backButton />
+
 				<div class="bodyCadSpac">
-					<!-- Back Button -->
-					<backButton />
+
 					<br>
-					<router-link class="novoespaco2" to="novo-espaco-2">cadastrar novo espaço</router-link>
-					<!--<p align="left" style="margin-left:10px;"><b> cadastrar novo espaço </b> </p>-->
+					<p align="left"><b> cadastrar novo espaço </b> </p>
 					<divisor/>
 				</div>
 				<!-- CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
@@ -18,20 +19,25 @@
 					...
 				<!-- FIM DO CORPO DA 1 PAGINA DO CADASTRO DO ESPAÇO -->
 			</div>
-		</div>
+
+		<button onclick="alert('conclui!')" style=" background-color: #6e5077; margin-bottom: 50px; width: 100%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;" align="left">concluído!</button>
+						
 	</div>
 </template>
 
 <script>
 import naviBarHeader from '../shared/naviBarHeader'
 import backButton from '../shared/backButton'
+import nextButton from '../shared/nextButton'
 import divisor from '../shared/divisor'
 import roundedButton from '../shared/roundedButton'
+import designUX from '../../assets/css/designUX.css'
 
 export default {
    components: {
 	naviBarHeader,
 	backButton,
+	nextButton,
 	divisor,
 	roundedButton
   }
@@ -56,5 +62,14 @@ a{
   	align:left;
 	margin-left:10px;
 }
+
+.menu {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  position:fixed; 
+}
+
 
 </style>

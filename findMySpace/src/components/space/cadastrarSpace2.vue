@@ -2,6 +2,8 @@
 	<div>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<naviBarHeader/>
+
+		<div class="container">
 	
 		<div class="bodyCadSpac">
 			<p align="left"><b> cadastrar novo espaço </b> </p>
@@ -38,12 +40,12 @@
 					</tr>
 					
 					<tr>
-						<button onclick="alert('conclui!')" style=" background-color: #6e5077; margin-bottom: 50px; width: 100%; min-height:55px; border-radius: 20px; color: #ffffff; font-weight: bold;" align="left">concluído!</button>
-						
+						<router-link to="novo-espaco-1"><nextButton class="nextButton" align="left"><span>avançar</span></nextButton></router-link >
 					</tr>
-							
+					<br>							
 				</table>
 			</form>
+		</div>
 		</div>
 	</div>
 </template>
@@ -62,6 +64,44 @@ export default {
 <style scoped>
 hr{ 
   margin: 0;
+}
+
+.nextButton {
+  background-color:  #FFFFFF;
+  color:#6e5077;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-bottom: 50px; 
+  width: 100%; 
+  min-height:55px; 
+  border-radius: 20px; 
+  font-weight: bold;
+}
+
+.nextButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.nextButton span:after {
+  content: '\003E';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.nextButton:hover span {
+  padding-right: 25px;
+}
+
+.nextButton:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .corPadrao{
