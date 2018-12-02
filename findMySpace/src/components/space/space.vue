@@ -27,9 +27,7 @@
 	      	</div>
 
 	      	<div style="margin-top: 10px">
-	      		<!-- 
-					<img src="../../assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
-				-->
+
 				<div style="display:block; margin-bottom:11px">
 					<imgslider class="img-fluid space-content-spaceImages-image" alt="Responsive image"/>
 				</div>
@@ -56,6 +54,19 @@
 	      	</div>
 
 	      	<divisor />
+
+			<div align="left" style="margin-top: 25px;">
+				<span style="color: #757376; font-weight: bold; font-size: 10pt;">
+			      	principais recursos do espaço
+				</span>
+
+				<div class="row" style="color: #6E5077; margin-top:10px; font-size: 10pt;">
+					<div class="col-6 col-xl-2 col-md-4" v-for="option in filters" style="font-weight: bold;" align="left">
+						<input type="checkbox" v-bin:id="option.value" v-bind:value="option.text" name="filters" checked>
+						<label for="option.value">{{ option.text }}</label>
+					</div>
+				</div>
+			</div>
 
 	      	<div class="row align-items-center" style="margin-top: 25px;">
 	      		<div class="col-auto" align="left">
@@ -138,7 +149,16 @@ export default {
   		group: {
   			id: 1,
   			name: 'Super Girls'
-  		}
+		},
+		filters: [
+			{text: 'Espelhos', value: 'espelhos'},
+			{text: 'Barra', value: 'barra'},
+			{text: 'Colchões', value: 'colchões'},
+			{text: 'Piso antiderrapante', value: 'piso-antiderrapante'},
+			{text: 'Linóleo', value: 'linoleo'},
+			{text: 'Som', value: 'Som'},
+		],
+		filters_selected: []
 
   	}
   },
