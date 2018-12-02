@@ -29,57 +29,42 @@
 
 <script>
 export default {
-    data() {
-        return {
-            username: "",
-            password: ""
-        };
-    },
-    components: {},
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  props: {
+    onLoginSuccessful: Function
+  },
 
-    methods: {
-        login() {
-            if (!this.username) {
-                alert("Informe o usuário");
-            } else if (!this.password) {
-                alert("Informe a senha");
-            }
+  methods: {
+    login() {
+      if (!this.username) {
+        alert("Informe o usuário");
+      } else if (!this.password) {
+        alert("Informe a senha");
+      }
 
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    firebase
-                    .database()
-                    .ref("/user/" + user.uid)
-                    .once("value")
-                    .then(result => {
-                        if (result.val) {
-                            var value = result.val();
-                            if (value.role == "owner") {
-                                this.$router.push({
-                                    path: "/me"
-                                })
-                            } else if (value.role == "buyer") {
-                                this.$router.push({
-                                    path: "/perfil"
-                                })
-                            } else {
-                                console.error("Malformed data");
-                            return;
-                            }
-                        }
-                    });
-                }
-            });
-
-            firebase.auth().signInWithEmailAndPassword(this.username, this.password)
-            .then(() => {
-                console.log("Login Completed");
-            })
-            .catch(error => {
-                alert(error);
-            });
+      FirebaseManager.registerUserDataChangedEvent(data => {
+        if(!data) return;
+        if (data.role == "owner") {
+          this.$router.push({
+            path: "/me"
+          });
+        } else if (data.role == "buyer") {
+          this.$router.push({
+            path: "/perfil"
+          });
+        } else {
+          console.error("Malformed data");
+          return;
         }
+      });
+      FirebaseManager.loginWithEmail(this.username, this.password);
     }
+  }
 };
 </script>
 
