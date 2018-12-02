@@ -29,7 +29,7 @@
 
       <div class="spaces">
         <div v-for="space in spaces" :key="space">
-          <router-link to="espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
+          <router-link to="meu-espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
           <ol>
             <div v-for=" hour in space.hours" class="row" :key="hour">
               <li class="col-md-12"><h5>{{hour.name}} </h5></li>
