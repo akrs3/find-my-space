@@ -4,7 +4,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     	<div class="container" style="padding-bottom: 20px">
-
+			<backButton/>
         	<!-- Space Description -->
         	<div class="row align-items-start" style="margin-top: 5px">
         		<div class="col" align="left">
@@ -107,6 +107,7 @@
 <script>
 import naviBarHeader from '../shared/naviBarHeader'
 import roundedButton from '../shared/roundedButton'
+import backButton from '../shared/backButton'
 import divisor from '../shared/divisor'
 import imgslider from '../imgslider/imgslider'
 
@@ -115,7 +116,8 @@ export default {
   	naviBarHeader,
   	roundedButton,
   	imgslider,
-  	divisor
+  	divisor,
+	backButton
   },
 
   data() {

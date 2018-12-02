@@ -12,15 +12,14 @@
 	      
 	      	<!-- Header -->
 	      	<div style="margin-top:10px" align="left">
-		      	<span style="font-weight: bold; font-size: 14pt;">cadastrar novo grupo</span>
-		      	<divisor />
+		      	<span style="font-weight: bold; font-size: 14pt;">adicionar novo grupo</span>
 		      </div>
 
 	      	<!-- Group Attributes -->
 	      	<div style="margin-top:30px" align="left">
 		      	<span style="color: #757376; font-size: 11pt">qual o nome do seu grupo</span>
 		      	<br/>
-		      	<input id="name" type="text" v-model="groupName" placeholder="Awesome Dancers">
+		      	<input id="name" type="text" v-model="groupName" placeholder="Awesome Dancers" style="border-bottom: 1px solid #757376;">
 	      	</div>
 
 	      	<!-- Group Invite -->
@@ -34,7 +33,9 @@
 		    </div>
 
   	    <!-- Create Button -->
-        <roundedButton title='concluído!' v-bind:compressed='false' v-bind:handler='createGroup' />
+				<router-link to="perfil">
+        	<roundedButton title='concluído!' v-bind:compressed='false' v-bind:handler='createGroup' />
+				</router-link>
 
       </div>
 
