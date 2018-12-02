@@ -70,58 +70,48 @@ const MomentRange = require('moment-range');
 
 const moment = MomentRange.extendMoment(Moment);
 
+/*
+
+	PRORIEDADES QUE PODEM SER PASSADAS PARA ESTE COMPONENTE
+
+	events (array de objetos) = [
+		{ 
+			fromDate: Date() (hora que comeca o evento),
+			toDate: Date() (hora que termina o evento),
+			group: { (grupo que agendou esse horario - opcional)
+				id: Int,
+				name: String,
+				contact: String
+			},
+			isAccepted: Boolean (indica se o grupo ja foi aceito pelo dono - opcional)
+		}
+	],
+
+	editing: Boolean (indica se esta no modo de edicao ou nao - criacao de um espaco tem editing true por exemplo),
+
+	didChangeShedules: Function (passar uma funcao que tem a assinatura x(schedules) que sera chamada sempre que houver alteracao nos horarios selecionados -- schedules sera um array de horarios (da um console.log pra entender melhor))
+*/
+
 export default {
 
-	data() {
+	props: {
+		events: {
+			type: Array,
+			default: []
+		},
+		editing: {
+			type: Boolean,
+			default: false
+		},
+		didChangeSchedules: Function
+	},
 
+	data() {
 		return {
 			date: new Date(), //props
 
 			weekDays: ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'],
 			hours: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-
-			events: [ 
-				{
-					fromDate: moment().add(-2, 'days').hour(10).toDate(),
-					toDate: moment().add(-2, 'days').hour(12).toDate()
-				},
-				{
-					fromDate: moment().add(-2, 'days').hour(13).toDate(),
-					toDate: moment().add(-2, 'days').hour(15).toDate()
-				},
-				{
-					fromDate: moment().add(0, 'days').hour(10).toDate(),
-					toDate: moment().add(0, 'days').hour(23).toDate(),
-					group: {
-						id: 1,
-						name: 'Super Girls',
-						contact: '(81) 99999-9999'
-					},
-					isAccepted: false
-				},
-
-				{
-					fromDate: moment().add(1, 'days').hour(10).toDate(),
-					toDate: moment().add(1, 'days').hour(18).toDate(),
-					group: {
-						id: 1,
-						name: 'Super Girls',
-						contact: '(81) 99999-9999'
-					},
-					isAccepted: false
-				},
-
-				{
-					fromDate: moment().add(5, 'days').hour(16).toDate(),
-					toDate: moment().add(5, 'days').hour(22).toDate(),
-					group: {
-						id: 1,
-						name: 'Super Girls',
-						contact: '(81) 99999-9999'
-					},
-					isAccepted: false
-				}
-			],
 
 			showingEvent: null
 		}
@@ -138,33 +128,44 @@ export default {
 		},
 
 		handleClickOnCell: function(i, j, clickEvent) {
-			let { event } = this.getEventForCell(i, j)
 
-			if (event == null) {
+			if (this.editing) {
+
+				let moments = this.getStartAndFinalMomentForCell(i, j)
+
 				
-				if (this.showingEvent)
-					this.showingEvent = null
 
-				return
-			}
 
-			let popupTopPosition = clickEvent.clientY
-			if (popupTopPosition + 500 > this.screenSize.height)
-				popupTopPosition = this.screenSize.height - 300
+			} else {
 
-			let popupLeftPosition = clickEvent.clientX
-			if (popupLeftPosition + 400 > this.screenSize.width)
-				popupLeftPosition -= 400
+				let { event } = this.getEventForCell(i, j)
 
-			this.showingEvent = {
-				fromDate: event.fromDate,
-				toDate: event.toDate,
-				group: event.group,
-				isAccepted: event.isAccepted,
-				popup: {
-					position: {
-						top: popupTopPosition,
-						left: popupLeftPosition
+				if (event == null) {
+
+					if (this.showingEvent)
+						this.showingEvent = null
+
+					return
+				}
+
+				let popupTopPosition = clickEvent.clientY
+				if (popupTopPosition + 500 > this.screenSize.height)
+					popupTopPosition = this.screenSize.height - 300
+
+				let popupLeftPosition = clickEvent.clientX
+				if (popupLeftPosition + 400 > this.screenSize.width)
+					popupLeftPosition -= 400
+
+				this.showingEvent = {
+					fromDate: event.fromDate,
+					toDate: event.toDate,
+					group: event.group,
+					isAccepted: event.isAccepted,
+					popup: {
+						position: {
+							top: popupTopPosition,
+							left: popupLeftPosition
+						}
 					}
 				}
 			}
