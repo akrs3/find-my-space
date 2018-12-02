@@ -6,10 +6,14 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
 			<div class="menuNav">	
-				<router-link class="linksNaviBar" to="">				
-					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'" @click="showLogin">
+				<router-link class="linksNaviBar" to="">
+					<b-btn v-if="logged" v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-on:click="logout">
+						<span style="float:left; font-size: 19px" class="corBold "> sair </span>
+					</b-btn>				
+					<b-btn v-else v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'">
 						<span style="float:left; font-size: 19px" class="corBold "> entrar </span>
 					</b-btn>
+
 				</router-link>
 				
 				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
@@ -39,7 +43,7 @@
 		
 		<!-- LOGIN -->
 		<b-modal hide-footer size="sm" ok-only align="left" id="myModal" ref="myModal">
-			<login/>			
+			<login v-bind:onLoginSuccessful="onLoginSuccessful"/>			
 		</b-modal>
 		  
 		  
@@ -56,29 +60,41 @@ import login from '../login/login'
 import signup from '../signup/signup'
 import designUX from '../../assets/css/designUX.css'
 
+
 export default {
   components: {
 	login,
 	signup
   },
+  data() {
+	  return {
+		  logged: false,
+		  role: ""
+	  };
+  },
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged((user) => {
+		console.log(this.logged);
+		console.log('log', user != null);
+		this.logged = user != null;
+	});
+  },
+
   methods: {
+	logout() {
+		firebase.auth().signOut().then(() => {
+			this.$router.push({
+				path: "/"
+			})
+		})
+	},
     showLogin () {
 		this.$refs.myModal.show()
-    },
-    hideLogin () {
-		this.$refs.myModal.hide()
-    },
-    showSignup () {
-		this.$refs.myModalSignup.show()
-    },
-    hideSignup () {
-		if( (document.getElementsByName('confirmesenha')[0].value) === (document.getElementsByName('senhaSignup')[0].value) ){
-			//sucesso
-			this.$refs.myModalSignup.hide();
-		}else{
-			alert("a confirmação está diferente da senha"); 
-		}
-    }
+	},
+	onLoginSuccessful() {
+		this.logged = true;
+		this.role = window.user.role;
+	}
   }
 }
 </script>
@@ -132,7 +148,6 @@ hr{
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;/*text-shadow: 0 0 2px rgba(110,80,119,0.2);*/
 	/*-webkit-text-stroke: .009em rgba(51,51,51,0.30);*/
-	font-smooth: always;
 }
 
 .sidenav a:hover {

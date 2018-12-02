@@ -86,7 +86,7 @@ export default {
 */
 
 .new-group {
-	//font-family: 'Nunito-Regular';
+	/*font-family: 'Nunito-Regular';*/
 	min-height:100%;
   position:relative;
 }

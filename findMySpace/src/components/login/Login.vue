@@ -35,7 +35,9 @@ export default {
             password: ""
         };
     },
-    components: {},
+    props: {
+        onLoginSuccessful: Function
+    },
 
     methods: {
         login() {
@@ -54,6 +56,10 @@ export default {
                     .then(result => {
                         if (result.val) {
                             var value = result.val();
+                            window.user = value;
+
+                            this.onLoginSuccessful();
+
                             if (value.role == "owner") {
                                 this.$router.push({
                                     path: "/me"
