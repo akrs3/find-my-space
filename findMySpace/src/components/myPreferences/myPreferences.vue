@@ -40,8 +40,8 @@
 						</div>
 
 						<div class="row" style="margin-left:10px;">
-							<div class="col-6 col-xl-2 col-md-4" v-for="option in neighborhood" style="font-weight: bold;" align="left">
-								<input type="checkbox" v-bin:id="option.value" v-bind:value="option.text" v-model="neighborhood_selected">
+							<div class="col-6 col-xl-2 col-md-4" v-for="option in neighborhood" style="font-weight: bold;" align="left" :key="option.text">
+								<input type="checkbox" v-bind:id="option.value" v-bind:value="option.text" v-model="neighborhood_selected">
 								<label for="option.value">{{ option.text }}</label>
 							</div>
 						</div>
@@ -53,7 +53,7 @@
 						<br><br>
 					</div>
 					<div align="left" style="margin-left:10px;">
-						<img :src="index === 1 ? blackCat : orangeCat" :width="tooltip.value"/>
+						
 						<b>R$ {{ value[0] }} - R$ {{ value[1] }}/h</b>
 					</div><br><br>
 					
@@ -113,8 +113,8 @@ export default {
 	}
   },
   methods: {
-	  myFunction: function() {
-		  console.log(this.selected)
+	  findSpace: function() {
+		  console.log(this.neighborhood_selected)
 		}
   }
 }
