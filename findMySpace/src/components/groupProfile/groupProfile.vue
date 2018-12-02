@@ -70,7 +70,7 @@
 				</span>
 
 				<div class="row" style="color: #6E5077; margin-top:10px; font-size: 10pt;">
-					<div class="col-6 col-xl-2 col-md-4" v-for="option in filters" style="font-weight: bold;" align="left">
+					<div class="col-6 col-xl-2 col-md-4" v-for="option in filters" v-bind:key="option" style="font-weight: bold;" align="left">
 						<input type="checkbox" v-bin:id="option.value" v-bind:value="option.text" v-model="filters_selected">
 						<label for="option.value">{{ option.text }}</label>
 					</div>
