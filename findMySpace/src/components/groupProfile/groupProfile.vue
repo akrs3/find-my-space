@@ -102,10 +102,6 @@ export default {
 		roundedButton
   },
 
-  beforeMounted() {
-	this.$moment.locale('fr')
-  },
-
   data() {
   	return {
   		group: {

@@ -18,6 +18,9 @@ import bestSpaces from '../components/bestSpaces/bestSpaces'
 import sitemap from '../components/aboutus/sitemap'
 import resume from '../components/resume/resume'
 
+
+import hourTable from '../components/shared/hourTable'
+
 Vue.use(Router)
 
 export default new Router({
@@ -106,6 +109,11 @@ export default new Router({
 			path: '/resume',
 			name: 'resume',
 			component: resume
+		},
+		{
+			path: '/tabela',
+			name: 'tabela',
+			component: hourTable
 		}
 	]
 })
