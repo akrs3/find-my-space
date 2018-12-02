@@ -36,6 +36,7 @@
               <ol class="row">
               <li class="col-md-12"><h6>Hora: {{hour.hour}} </h6></li>
               <li class="col-md-12"><h6>Contato: {{hour.contato}} </h6></li>
+              <li class="col-md-12"><h6>Dia: {{hour.day}} </h6></li>
               </ol>
             </div>
           </ol>
@@ -57,13 +58,15 @@ export default {
   
   data(){
     return {
-      spaces: []
+      spaces: {}
     }
   },
   created(){
-    var userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/spaces/').once('value').then(function(snapshot) {
-    console.log(snapshot.val)
+    //var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/spaces/').once('value').then((snapshot) => {
+      console.log("teste")
+      console.log(snapshot.val())
+      this.spaces = snapshot.val()
 
   });
   }
