@@ -16,24 +16,31 @@
         <table align="left">
           <tr>
             <p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
-            <input align="left" type="text" name="nomeSpace" placeholder="Awesome Space">
+            <input align="left" type="text" name="nomeSpace" placeholder="Ex: Awesome Space" style="border-bottom: 1px solid #757376;">
           </tr>
           
           <tr>
             <p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
-            <input style="width:100px" align="left" type="number" name="custoHora" placeholder="50">
+            <input style="width:100px" align="left" type="number" name="custoHora" placeholder="Ex: 50">
           </tr>
           
           <tr>
             <p class="queryCadSpac" align="left">endereço do espaço</p>
-            <input align="left" type="text" name="endSpace" placeholder="Rua do melhor, n 10">
+            <textArea align="left" type="text" name="endSpace" placeholder="Ex: Av Mascarenhas de Morais, nº 50, Recife - PE"/>
           </tr>
           
           <tr>
-            <p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
-            <textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
+            <p class="queryCadSpac" align="left">que recursos há no seu espaço</p>
+           	
+             <div class="row" style="color: #6E5077; margin-top:10px; font-size: 10pt;">
+              <div class="col-6 col-xl-2 col-md-4" v-for="option in filters" style="font-weight: bold;" align="left">
+                <input type="checkbox" v-bin:id="option.value" v-bind:value="option.text" v-model="filters_selected">
+                <label for="option.value">{{ option.text }}</label>
+              </div>
+            </div>  
+
           </tr>
-          
+
           <tr>
             <p class="queryCadSpac" align="left">adicione algumas fotos do seu espaço</p>
             
@@ -65,7 +72,21 @@
       naviBarHeader,
       roundedButton,
       backButton
-    }  
+    },
+
+    data(){
+      return{
+        filters: [
+          {text: 'Espelhos', value: 'espelhos'},
+          {text: 'Barra', value: 'barra'},
+          {text: 'Colchões', value: 'colchões'},
+          {text: 'Piso antiderrapante', value: 'piso-antiderrapante'},
+          {text: 'Linóleo', value: 'linoleo'},
+          {text: 'Som', value: 'Som'},
+        ],
+        filters_selected: []
+      }
+    }
   }
 </script>
 
@@ -84,9 +105,9 @@
     background: transparent;
     border: none;
     border-bottom: 1px #7f7d80;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     color: #684572;
   }
 
