@@ -7,7 +7,7 @@
 
 
 	      	<div class="row align-items-center" v-for="i in rowsCount">
-	      		<div v-for="j in 9" v-bind:class="getCellStyle(i, j)" v-on:click="handleClickOnCell(i, j)" style="padding-left: 0px; padding-right: 0px;">
+	      		<div v-for="j in 9" v-bind:class="getCellStyle(i, j)" v-on:click="handleClickOnCell(i, j, $event)" style="padding-left: 0px; padding-right: 0px;">
 
 	      			<div v-if="i == 1 && j > 2">
 		      			<span style="color: #6E5077; font-size: 16pt;">{{ getWeekdayForColumn(i, j) }}</span>
@@ -23,6 +23,40 @@
 	      		</div>
 	      	</div>
 
+	      	<div class="eventDetailsPopup" v-show="isShowingEvent" v-bind:style="{ top: showingEventOffsetTop + 'px', left: showingEventOffsetLeft + 'px' }">
+
+		      	<span style="color: #C6853A; font-size: 25pt;">{{ showingEventWeekDay }}</span>
+		      	<br/>
+		      	<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventHourRange }}</span>
+	      		
+	      		<div v-if="showingEventHasGroup" style="margin-top: 15px;">
+		      		<span style="color: #C6853A; font-size: 25pt;">reservado para</span>
+		      		<br/>
+		      		<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventGroupName }}</span>
+	      		</div>
+
+	      		<div v-if="showingEventHasGroup" style="margin-top: 15px;">
+		      		<span style="color: #C6853A; font-size: 25pt; padding-top: 10px">contato</span>
+		      		<br/>
+		      		<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventGroupContact }}</span>
+	      		</div>
+
+	      		<div v-if="showingEventHasGroup && !showingEventGroupIsAccepted" style="margin-top: 30px;">
+
+	      			<div class="row">
+	      				<div class="col-auto">
+	      					<button class="eventDetailsPopupAcceptRequestButton" v-on:click="didAcceptShowingEvent"/>
+	      				</div>
+	      				<div class="col-auto">
+	      					<button class="eventDetailsPopupDenyRequestButton" v-on:click="didDenyShowingEvent"/>
+	      				</div>
+	      			</div>
+	      		</div>
+
+	      		<div v-if="!showingEventHasGroup" style="margin-top: 15px;">
+		      		<span style="color: #C6853A; font-size: 25pt; padding-top: 10px">disponível para reserva</span>
+	      		</div>
+	      	</div>
 
 	    </div>
 
@@ -48,8 +82,16 @@ export default {
 
 			events: [ 
 				{
-					fromDate: moment().add(1, 'days').hour(10).toDate(),
-					toDate: moment().add(1, 'days').hour(23).toDate(),
+					fromDate: moment().add(-2, 'days').hour(10).toDate(),
+					toDate: moment().add(-2, 'days').hour(12).toDate()
+				},
+				{
+					fromDate: moment().add(-2, 'days').hour(13).toDate(),
+					toDate: moment().add(-2, 'days').hour(15).toDate()
+				},
+				{
+					fromDate: moment().add(0, 'days').hour(10).toDate(),
+					toDate: moment().add(0, 'days').hour(23).toDate(),
 					group: {
 						id: 1,
 						name: 'Super Girls',
@@ -59,8 +101,8 @@ export default {
 				},
 
 				{
-					fromDate: moment().add(3, 'days').hour(10).toDate(),
-					toDate: moment().add(3, 'days').hour(18).toDate(),
+					fromDate: moment().add(1, 'days').hour(10).toDate(),
+					toDate: moment().add(1, 'days').hour(18).toDate(),
 					group: {
 						id: 1,
 						name: 'Super Girls',
@@ -79,14 +121,53 @@ export default {
 					},
 					isAccepted: false
 				}
-			]
+			],
+
+			showingEvent: null
 		}
 	},
 
 	methods: {
 
-		handleClickOnCell: function(i, j) {
-			console.log('clicou na tabela ', i, j)
+		didAcceptShowingEvent: function() {
+			alert('Aceitou!')
+		},
+
+		didDenyShowingEvent: function() {
+			alert('Negou!')
+		},
+
+		handleClickOnCell: function(i, j, clickEvent) {
+			let { event } = this.getEventForCell(i, j)
+
+			if (event == null) {
+				
+				if (this.showingEvent)
+					this.showingEvent = null
+
+				return
+			}
+
+			let popupTopPosition = clickEvent.clientY
+			if (popupTopPosition + 500 > this.screenSize.height)
+				popupTopPosition = this.screenSize.height - 300
+
+			let popupLeftPosition = clickEvent.clientX
+			if (popupLeftPosition + 400 > this.screenSize.width)
+				popupLeftPosition -= 400
+
+			this.showingEvent = {
+				fromDate: event.fromDate,
+				toDate: event.toDate,
+				group: event.group,
+				isAccepted: event.isAccepted,
+				popup: {
+					position: {
+						top: popupTopPosition,
+						left: popupLeftPosition
+					}
+				}
+			}
 		},
 
 		getStartAndFinalMomentForCell: function(i, j) {
@@ -97,7 +178,7 @@ export default {
 			let m = moment(this.date).isoWeekday(j-2)
 			let m1 = moment(this.date).isoWeekday(j-2)
 
-			m.hour(hour);
+			m.hour(hour+1);
 			m.minute(0);
 			m.second(0);
 
@@ -174,7 +255,7 @@ export default {
 			return false
 		},
 
-		populateEventForCell: function(i, j) {
+		getEventForCell: function(i, j) {
 			const moments = this.getStartAndFinalMomentForCell(i, j);
 			const cellStartMoment = moments[0]
 			const cellFinalMoment = moments[1]
@@ -189,18 +270,34 @@ export default {
 				const eventFinalMoment = moment(event.toDate) 
 
 				if (!isCellIntermediary) {
-					if (eventStartMoment.within(moment.rangeFromInterval('hour', 1, cellStartMoment)))
-						return 'eventStyleATop'
-					else if (cellFinalMoment.within(moment.rangeFromInterval('hour', 1, eventFinalMoment)))
-						return 'eventStyleABottom'
-				} else if (cellFinalMoment.isAfter(eventFinalMoment))
-					continue;
+					if (eventStartMoment.within(moment.rangeFromInterval('hour', -1, cellStartMoment)))
+						return { event, cellType: 'start' } 
+				} else if (cellFinalMoment.within(moment.rangeFromInterval('hour', -1, eventFinalMoment)))
+					return { event, cellType: 'final' }
+				else if (cellFinalMoment.isAfter(eventFinalMoment))
+					continue
 
 				const eventRangeMoment = moment.range(eventStartMoment, eventFinalMoment)
 
 				if (eventRangeMoment.overlaps(cellRangeMoment) || cellRangeMoment.overlaps(eventRangeMoment)) {
-				 	return 'eventStyleA'
+				 	return { event, cellType: 'normal' }
 				}
+			}
+
+			return { event: null, cellType: null };
+		},
+
+		populateEventForCell: function(i, j) {
+
+			let { event, cellType } = this.getEventForCell(i, j);
+
+			if ((event != null) && (cellType != null)) {
+				if (cellType == 'start')
+					return 'eventStyleATop'
+				else if (cellType == 'final')
+					return 'eventStyleABottom'
+				else if (cellType == 'normal')
+					return 'eventStyleA'
 			}
 
 			return;
@@ -215,6 +312,81 @@ export default {
 
 		rowsCount: function() {
 			return this.hours.length + 20
+		},
+
+		isShowingEvent: function() {
+			return this.showingEvent != null
+		},
+
+		showingEventOffsetTop: function() {
+			if (this.showingEvent == null)
+				return 0
+
+			return this.showingEvent.popup.position.top
+		},
+
+		showingEventOffsetLeft: function() {
+			if (this.showingEvent == null)
+				return 0
+
+			return this.showingEvent.popup.position.left
+		},
+
+		showingEventWeekDay: function() {
+			if (this.showingEvent == null)
+				return
+
+			return moment(this.showingEvent.fromDate).format("dddd").toLowerCase()
+		},
+
+		showingEventHourRange: function() {
+			if (this.showingEvent == null)
+				return
+
+			return `${moment(this.showingEvent.fromDate).format("HH")}h - ${moment(this.showingEvent.toDate).format("HH")}h`
+		},
+
+		showingEventHasGroup: function() {
+			if (this.showingEvent == null)
+				return false
+			else if (this.showingEvent.group == null)
+				return false
+
+			return true
+		},
+
+		showingEventGroupName: function() {
+			if (this.showingEvent == null)
+				return false
+			else if (this.showingEvent.group == null)
+				return false
+
+			return this.showingEvent.group.name 
+		},
+
+		showingEventGroupContact: function() {
+			if (this.showingEvent == null)
+				return false
+			else if (this.showingEvent.group == null)
+				return false
+
+			return this.showingEvent.group.contact 
+		},
+
+		showingEventGroupIsAccepted: function() {
+			if (this.showingEvent == null)
+				return false
+			else if (this.showingEvent.group == null)
+				return false
+
+			return this.showingEvent.isAccepted || false
+		},
+
+		screenSize: function() {
+			const width = document.documentElement.clientWidth;
+			const height = document.documentElement.clientHeight;
+
+			return { width, height}
 		}
 	}
 
@@ -251,19 +423,19 @@ export default {
 }
 
 .roundedTopLeftBorder {
-	border-top-left-radius: 15px
+	border-top-left-radius: 15px;
 }
 
 .roundedTopRightBorder {
-	border-top-right-radius: 15px
+	border-top-right-radius: 15px;
 }
 
 .roundedBottomLeftBorder {
-	border-bottom-left-radius: 15px
+	border-bottom-left-radius: 15px;
 }
 
 .roundedBottomRightBorder {
-	border-bottom-right-radius: 15px
+	border-bottom-right-radius: 15px;
 }
 
 .cell hr {
@@ -285,7 +457,7 @@ export default {
 	background-position: center;
   	background-repeat: no-repeat;
     background-size: 50px 25px;
-	background-color: rgba(110, 80, 119, 1)
+	background-color: rgba(110, 80, 119, 1);
 }
 
 .eventStyleABottom {
@@ -293,6 +465,51 @@ export default {
 	background-position: center;
   	background-repeat: no-repeat;
     background-size: 50px 25px;
-	background-color: rgba(110, 80, 119, 1)
+	background-color: rgba(110, 80, 119, 1);
 }
+
+.eventDetailsPopup {
+	text-align: left;
+	padding: 30px;
+	width: 400px;
+	min-height: 300px;
+	max-height: 500px;
+  	height: auto;
+  	position: absolute;
+  	z-index: 10;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+	background-color: rgba(242, 238, 230, 1.0);
+}
+
+.eventDetailsPopupAcceptRequestButton {
+    width: 70px;
+    height: 70px;
+    background-image: url('../../assets/shared/button-okay.png');
+ 	background-size: 100%; 
+  	background-size: 70px auto; 
+ 	background-color: transparent;
+    border: none;
+}
+
+.eventDetailsPopupAcceptRequestButton:focus {
+  outline:0 !important;
+}
+
+.eventDetailsPopupDenyRequestButton {
+    width: 70px;
+    height: 70px;
+    background-image: url('../../assets/shared/button-cancel.png');
+ 	background-size: 100%; 
+  	background-size: 70px auto; 
+ 	background-color: transparent;
+    border: none;
+}
+
+.eventDetailsPopupDenyRequestButton:focus {
+  outline:0 !important;
+}
+
 </style>
