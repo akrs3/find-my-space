@@ -6,6 +6,19 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
 			<div class="menuNav">	
+				<div v-if="buyer">
+					<router-link class="linksNaviBar" to="perfil">perfil</router-link>
+					<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+				</div>
+				<div v-else-if="owner">
+					<router-link class="linksNaviBar" to="me">perfil</router-link>
+					<router-link class="linksNaviBar" to="novo-espaco-1">novo espaço</router-link>
+				</div>
+				<div v-else>
+					<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+					<router-link class="linksNaviBar" to="novo-espaco-1">eu tenho um espaço</router-link>
+				</div>
+
 				<router-link class="linksNaviBar" to="">
 					<b-btn v-if="logged" v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-on:click="logout">
 						<span style="float:left; font-size: 19px" class="corBold "> sair </span>
@@ -15,9 +28,6 @@
 					</b-btn>
 
 				</router-link>
-				
-				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
-				<router-link class="linksNaviBar" to="novo-espaco-1">eu tenho um espaço</router-link >
 				<hr>
 				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
 				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
@@ -69,24 +79,32 @@ export default {
   data() {
 	  return {
 		  logged: false,
-		  role: ""
+		  role: "",
+		  buyer: false,
+		  owner: false
 	  };
   },
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged((user) => {
-		console.log(this.logged);
-		console.log('log', user != null);
-		this.logged = user != null;
+  created() {
+    FirebaseManager.registerUserDataChangedEvent((data) => {
+		this.logged = data != null;
+		if(data != null)
+		{
+			this.role = data.role;
+			console.log(this.role);
+			this.buyer = this.role == "buyer";
+			this.owner = this.role == "owner";
+		}
+
 	});
   },
 
   methods: {
 	logout() {
-		firebase.auth().signOut().then(() => {
+		FirebaseManager.logout().then(() => {
 			this.$router.push({
 				path: "/"
-			})
-		})
+			});
+		});
 	},
     showLogin () {
 		this.$refs.myModal.show()
