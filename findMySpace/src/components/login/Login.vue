@@ -29,22 +29,25 @@
 
 <script>
 export default {
-    data() {
-        return {
-            username: "",
-            password: ""
-        };
-    },
-    components: {},
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  props: {
+    onLoginSuccessful: Function
+  },
 
-    methods: {
-        login() {
-            if (!this.username) {
-                alert("Informe o usuário");
-            } else if (!this.password) {
-                alert("Informe a senha");
-            }
+  methods: {
+    login() {
+      if (!this.username) {
+        alert("Informe o usuário");
+      } else if (!this.password) {
+        alert("Informe a senha");
+      }
 
+<<<<<<< HEAD
             firebase.auth().onAuthStateChanged(user => {
                 if (user) {
                     firebase
@@ -80,8 +83,26 @@ export default {
             .catch(error => {
                 alert(error);
             });
+=======
+      FirebaseManager.registerUserDataChangedEvent(data => {
+        if(!data) return;
+        if (data.role == "owner") {
+          this.$router.push({
+            path: "/me"
+          });
+        } else if (data.role == "buyer") {
+          this.$router.push({
+            path: "/perfil"
+          });
+        } else {
+          console.error("Malformed data");
+          return;
+>>>>>>> 245d396d3ca175ec0987a32491834fa3c0a6d7bb
         }
+      });
+      FirebaseManager.loginWithEmail(this.username, this.password);
     }
+  }
 };
 </script>
 
