@@ -11,7 +11,7 @@
       <div class="about-me" style="margin-bottom:20px">
         <img src="../../assets/profile/carol.png" class="rounded-circle" style="width:120px; margin-top:10px; "/>
         <div>
-          <span class="name-person">Carol</span>
+          <span class="name-person">{{ userInfo.name }}</span>
         </div>
       </div>
 
@@ -101,6 +101,9 @@ export default {
 
   data(){
     return {
+      userInfo: {
+        name: new String()
+      },
       groups: [
         {
           name: 'Super Girls',
@@ -122,9 +125,11 @@ export default {
         }
       ]
     }
-  }
+  },
 
-   
+  created() {
+    this.userInfo.name = this.$router.params.name;
+  }
 }
 </script>
 

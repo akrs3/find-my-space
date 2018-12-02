@@ -56,11 +56,13 @@ export default {
                             var value = result.val();
                             if (value.role == "owner") {
                                 this.$router.push({
-                                    path: "/me"
+                                    name: "Perfil Dono",
+                                    params: { name: value.data.name }
                                 })
                             } else if (value.role == "buyer") {
                                 this.$router.push({
-                                    path: "/perfil"
+                                    name: "Perfil Dançarino",
+                                    params: { name: value.data.name }
                                 })
                             } else {
                                 console.error("Malformed data");
