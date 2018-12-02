@@ -27,11 +27,7 @@
 		<!-- BOTAO GRID -->
 		<div align="right">
 			<table>
-				<tr>
-					<th>
-						<router-link class="padraoButton buscaButton" :to="{ path: '/melhoreslocais' }"/>	
-					</th>
-					
+				<tr>					
 					<th>
 						<span class="padraoButton  gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"/>
 					</th>
