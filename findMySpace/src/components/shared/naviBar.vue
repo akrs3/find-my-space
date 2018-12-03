@@ -90,7 +90,6 @@ export default {
 		if(data != null)
 		{
 			this.role = data.role;
-			console.log(this.role);
 			this.buyer = this.role == "buyer";
 			this.owner = this.role == "owner";
 		}

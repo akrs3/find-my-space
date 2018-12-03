@@ -26,8 +26,6 @@ var FirebaseManager = {
                     cb(this._userData);
                 });
             }
-
-            
         });
     },
 
@@ -49,5 +47,21 @@ var FirebaseManager = {
     registerUserDataChangedEvent(cb) {
         this._userDataCallback.push(cb);
         cb(this._userData);
+    },
+
+    getGroups(cb) {
+        var userGroups = [];
+        for(var id in this._userData.groups){
+            firebase
+            .database()
+            .ref("/groups/" + this._userData.groups[id])
+            .once("value")
+            .then(result => {
+                if (result.val) {
+                    userGroups.push(result.val());
+                }
+            });
+        }
+        cb(userGroups);
     }
 }

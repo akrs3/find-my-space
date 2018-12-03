@@ -102,33 +102,23 @@ export default {
   data(){
     return {
       userInfo: {
-        name: new String()
+        name: new String(),
+        role: new String()
       },
-      groups: [
-        {
-          name: 'Super Girls',
-          place: 'Lunar Studio de Dança',
-          date: '09/11 - sexta',
-          hour_begin: '17h',
-          hour_end: '20h',
-          address:'Rua das Pernambucanas, 130',
-          status:'confirmado',
-        },
-        {
-          name: 'Awesome People',
-          place: 'Lunar Studio de Dança',
-          date: '11/11 - domingo',
-          hour_begin: '08h',
-          hour_end: '12h',
-          address:'Rua das Pernambucanas, 130',
-          status:'pendente',
-        }
-      ]
+      groups: []
     }
   },
 
   created() {
-    this.userInfo.name = this.$router.params.name;
+    var userGroups = null;
+    FirebaseManager.registerUserDataChangedEvent(cb => {
+        if(!cb) return;
+        this.userInfo.name = cb.data.name;
+        this.userInfo.role = cb.role;
+        FirebaseManager.getGroups(cb2 => {
+          this.groups = cb2;
+        });
+    });
   }
 }
 </script>

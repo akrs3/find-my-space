@@ -47,43 +47,6 @@ export default {
         alert("Informe a senha");
       }
 
-<<<<<<< HEAD
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    firebase
-                    .database()
-                    .ref("/user/" + user.uid)
-                    .once("value")
-                    .then(result => {
-                        if (result.val) {
-                            var value = result.val();
-                            if (value.role == "owner") {
-                                this.$router.push({
-                                    name: "Perfil Dono",
-                                    params: { name: value.data.name }
-                                })
-                            } else if (value.role == "buyer") {
-                                this.$router.push({
-                                    name: "Perfil Dançarino",
-                                    params: { name: value.data.name }
-                                })
-                            } else {
-                                console.error("Malformed data");
-                            return;
-                            }
-                        }
-                    });
-                }
-            });
-
-            firebase.auth().signInWithEmailAndPassword(this.username, this.password)
-            .then(() => {
-                console.log("Login Completed");
-            })
-            .catch(error => {
-                alert(error);
-            });
-=======
       FirebaseManager.registerUserDataChangedEvent(data => {
         if(!data) return;
         if (data.role == "owner") {
@@ -97,7 +60,6 @@ export default {
         } else {
           console.error("Malformed data");
           return;
->>>>>>> 245d396d3ca175ec0987a32491834fa3c0a6d7bb
         }
       });
       FirebaseManager.loginWithEmail(this.username, this.password);
