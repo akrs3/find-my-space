@@ -11,7 +11,7 @@
       <div class="about-me" style="margin-bottom:20px">
         <img src="../../assets/profile/carol.png" class="rounded-circle" style="width:120px; margin-top:10px; "/>
         <div>
-          <span class="name-person">Carol</span>
+          <span class="name-person">{{ userInfo.name }}</span>
         </div>
       </div>
 
@@ -101,30 +101,25 @@ export default {
 
   data(){
     return {
-      groups: [
-        {
-          name: 'Super Girls',
-          place: 'Lunar Studio de Dança',
-          date: '09/11 - sexta',
-          hour_begin: '17h',
-          hour_end: '20h',
-          address:'Rua das Pernambucanas, 130',
-          status:'confirmado',
-        },
-        {
-          name: 'Awesome People',
-          place: 'Lunar Studio de Dança',
-          date: '11/11 - domingo',
-          hour_begin: '08h',
-          hour_end: '12h',
-          address:'Rua das Pernambucanas, 130',
-          status:'pendente',
-        }
-      ]
+      userInfo: {
+        name: new String(),
+        role: new String()
+      },
+      groups: []
     }
-  }
+  },
 
-   
+  created() {
+    var userGroups = null;
+    FirebaseManager.registerUserDataChangedEvent(cb => {
+        if(!cb) return;
+        this.userInfo.name = cb.data.name;
+        this.userInfo.role = cb.role;
+        FirebaseManager.getGroups(cb2 => {
+          this.groups = cb2;
+        });
+    });
+  }
 }
 </script>
 
