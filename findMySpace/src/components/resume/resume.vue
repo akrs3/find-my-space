@@ -101,7 +101,7 @@ export default {
   },
 
   beforeMounted() {
-		this.$moment.locale('fr');
+		this.$moment.locale('pt-br');
   },
 
   data() {
