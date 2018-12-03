@@ -110,7 +110,6 @@ export default {
   },
 
   created() {
-    var userGroups = null;
     FirebaseManager.registerUserDataChangedEvent(cb => {
         if(!cb) return;
         this.userInfo.name = cb.data.name;
