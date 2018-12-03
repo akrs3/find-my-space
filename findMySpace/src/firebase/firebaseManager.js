@@ -49,6 +49,29 @@ var FirebaseManager = {
         cb(this._userData);
     },
 
+    createGroup(groupName, cb) {
+      if(!this._userData) return;
+      if(!groupName) return;
+      var newGroup = firebase.database().ref("/groups/").push();
+      var users = firebase.database().ref("/user/");
+      users.orderByValue().on("value", function(snapshot) {
+        snapshot.forEach(function(data) {
+          if(cb.data.name == data.val().data.name){
+            newGroup.set({
+              name: groupName,
+              members: {
+                owner: data.key
+              }
+            });
+          }
+        });
+      });
+      firebase.database().ref("/groups/"+newGroup.key+"/members").once("value").then(res => {
+        users.child(res.val().owner+"/groups/").push(newGroup.key);
+      });
+      console.log("rolou");
+    },
+
     getGroups(cb) {
         var userGroups = [];
         for(var id in this._userData.groups){

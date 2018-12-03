@@ -109,14 +109,14 @@ export default {
     }
   },
 
-  created() {
+  beforeMount() {
     FirebaseManager.registerUserDataChangedEvent(cb => {
-        if(!cb) return;
-        this.userInfo.name = cb.data.name;
-        this.userInfo.role = cb.role;
-        FirebaseManager.getGroups(cb2 => {
-          this.groups = cb2;
-        });
+      if(!cb) return;
+      this.userInfo.name = cb.data.name;
+      this.userInfo.role = cb.role;
+      FirebaseManager.getGroups(cb2 => {
+        this.groups = cb2;
+      });
     });
   }
 }
