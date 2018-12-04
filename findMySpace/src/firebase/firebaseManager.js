@@ -13,6 +13,7 @@ var FirebaseManager = {
                     if (result.val) {
                         var value = result.val();
                         this._userData = value;
+                        this._userData.uid = user.uid;
                     } else {
                         this._userData = null;
                     }
@@ -49,25 +50,25 @@ var FirebaseManager = {
         cb(this._userData);
     },
 
-    createGroup(groupName, cb) {
-      if(!this._userData) return;
-      if(!groupName) return;
-      var newGroup = firebase.database().ref("/groups/").push();
-      var users = firebase.database().ref("/user/");
-      users.orderByValue().on("value", function(snapshot) {
-        snapshot.forEach(function(data) {
-          if(cb.data.name == data.val().data.name){
-            newGroup.set({
-              name: groupName,
-              members: {
-                owner: data.key
-              }
-            });
-          }
-        });
-      });
-      firebase.database().ref("/groups/"+newGroup.key+"/members").once("value").then(res => {
-        users.child(res.val().owner+"/groups/").push(newGroup.key);
+    createGroup(groupName) {
+      if(!this._userData)
+      {
+        console.error("User not logged");
+        return;    
+      } 
+      if(!groupName){
+        console.error("Group Name not provided");
+        return;   
+      }
+      firebase.database().ref("/groups/").push({
+        name: groupName,
+        members: {
+          owner: this._userData.uid
+        }
+      }).then((groupId) => {
+        firebase.database().ref(`/user/${this._userData.uid}/groups`).push(groupId);
+      }).catch((error) => {
+          console.error(error);
       });
       console.log("rolou");
     },
