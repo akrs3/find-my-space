@@ -1,6 +1,7 @@
 <template>
 	<div>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<div class="displayContainer backgroundImage-static">
 		<div class="displayContainer backgroundImage">
 		  
 			  <ul class="naviBarHeaderBar">
@@ -33,6 +34,7 @@
 				<span class="displayInTheMiddle alignLeft title">Encontre o <b>melhor local</b>,<br>no <b>melhor preço</b>,<br>no <b>horário perfeito</b><br>para seu grupo.</span>      
 				-->
 			</div>
+		</div>
 		</div>
 	</div>
 </template>
@@ -112,13 +114,26 @@ export default {
   
 }
 
-.backgroundImage {
+.backgroundImage-static {
   background: url("../../assets/home/studio.png") no-repeat center center;
   background-position: 32% center;
   background-size: cover; /* background size */
   min-height: 100%; /* Set the minimum height of a element */
   width:100%;
   height:100%;
+  
+  
+}
+
+.backgroundImage {
+  background: url("../../assets/home/studio.gif") no-repeat center center;
+  background-position: 32% center;
+  background-size: cover; /* background size */
+  min-height: 100%; /* Set the minimum height of a element */
+  width:100%;
+  height:100%;
+  
+  
   
 }
 
