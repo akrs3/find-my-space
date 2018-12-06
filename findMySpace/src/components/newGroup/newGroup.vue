@@ -62,10 +62,17 @@
 
 		methods: { 
 				createGroup() {
-					FirebaseManager.registerUserDataChangedEvent(cb => {
-						if(!cb) return;
-						FirebaseManager.createGroup(this.groupName, cb);
-					});
+					var uid = FirebaseManager.getUserID();
+					FirebaseManager.addData('groups', {
+						name: this.groupName,
+						owner: uid,
+						members: [uid]
+					}).then((ref) => {
+						var groupID = ref.key;
+						FirebaseManager.addUserData('groups', groupID).then(() => {
+							console.log("done");
+						})
+					})
 				}
 		}
 	}

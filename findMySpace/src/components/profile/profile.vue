@@ -49,7 +49,7 @@
     <!-- Meus Grupos -->
 
       <div class="profile-my-groups">
-        <div v-for="group in groups" style="margin-bottom:20px;">
+        <div v-for="group in groups" v-bind:key="group" style="margin-bottom:20px;">
           <div class="row name-group">
               <span><router-link to="grupo" style="color: #6e5077;">{{ group.name }}</router-link></span>
           </div>
@@ -110,12 +110,14 @@ export default {
   },
 
   beforeMount() {
-    FirebaseManager.registerUserDataChangedEvent(cb => {
-      if(!cb) return;
-      this.userInfo.name = cb.data.name;
-      this.userInfo.role = cb.role;
-      FirebaseManager.getGroups(cb2 => {
-        this.groups = cb2;
+    FirebaseManager.getUserData('').then(userData => {
+      if(!userData) return;
+      this.userInfo.name = userData.data.name;
+      this.userInfo.role = userData.role;
+      Object.values(userData.groups).forEach((groupID) => {
+        FirebaseManager.getData(`groups/${groupID}`).then(groupData => {
+          this.groups.push(groupData);
+        })
       });
     });
   }
@@ -141,7 +143,6 @@ export default {
 		font-weight: bold;
     margin-bottom: 100px;
     font-size: 16pt; 
-    align: center;
 	}
 
 	.about a {
@@ -190,7 +191,6 @@ export default {
     border: none;
     margin-left: 10px;
     margin-right: 10px;
-    align:center;
   }
 
   ::-webkit-input-placeholder { /* Chrome */

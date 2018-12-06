@@ -42,22 +42,26 @@
           alert("Informe a senha");
         }
 
-        FirebaseManager.registerUserDataChangedEvent(data => {
-          if(!data) return;
-          if (data.role == "owner") {
-            this.$router.push({
-              path: "/me"
-            });
-          } else if (data.role == "buyer") {
-            this.$router.push({
-              path: "/perfil"
-            });
-          } else {
-            console.error("Malformed data");
-            return;
-          }
+        // FirebaseManager.registerUserDataChangedEvent(data => {
+
+        // });
+        FirebaseManager.loginWithEmail(this.username, this.password).then((data) => {
+          FirebaseManager.getUserInfo('role').then((role) => {
+            if(!role) return;
+            if (role == "owner") {
+              this.$router.push({
+                path: "/me"
+              });
+            } else if (role == "buyer") {
+              this.$router.push({
+                path: "/perfil"
+              });
+            } else {
+              console.error("Malformed data");
+              return;
+            }
+          });
         });
-        FirebaseManager.loginWithEmail(this.username, this.password);
       }
     }
   };

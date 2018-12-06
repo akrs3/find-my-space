@@ -85,7 +85,7 @@ export default {
 	  };
   },
   created() {
-    FirebaseManager.registerUserDataChangedEvent((data) => {
+    FirebaseManager.registerOnPlayerAuthStateChanged((data) => {
 		this.logged = data != null;
 		if(data != null)
 		{
@@ -99,10 +99,9 @@ export default {
 
   methods: {
 	logout() {
-		FirebaseManager.logout().then(() => {
-			this.$router.push({
-				path: "/"
-			});
+		FirebaseManager.logout();
+		this.$router.push({
+			path: "/"
 		});
 	},
     showLogin () {
