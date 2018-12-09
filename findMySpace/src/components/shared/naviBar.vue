@@ -29,8 +29,8 @@
 
 				</router-link>
 				<hr>
-				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
-				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
+				<router-link class="linksNaviBar" to="contact">contato</router-link >
+				
 			</div>
 		</div>
 		

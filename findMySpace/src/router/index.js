@@ -18,6 +18,7 @@ import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
 import sitemap from '../components/aboutus/sitemap'
 import resume from '../components/resume/resume'
+import contact from '../components/contact/contact'
 
 
 Vue.use(Router)
@@ -113,6 +114,11 @@ export default new Router({
 			path: '/resume',
 			name: 'resume',
 			component: resume
+		},
+		{ 
+			path: '/contact',
+			name: 'contato',
+			component: contact
 		}
 	]
 })
