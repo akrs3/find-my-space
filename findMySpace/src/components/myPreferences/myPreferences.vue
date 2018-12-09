@@ -30,7 +30,7 @@
 						</div>
 			      	</div>
 					<div>
-			      		<img src="../../assets/my-calendar.png"/>
+			      		<hourTable editing="true" v-bind:didChangeSchedules = "selectSchedule"/>
 			      	</div>
 					<br />
 					<div>
@@ -77,14 +77,23 @@ import backButton from '../shared/backButton'
 import divisor from '../shared/divisor'
 import roundedButton from '../shared/roundedButton'
 import vueSlider from 'vue-slider-component'
+import hourTable from '../shared/hourTable'
+
 export default {
    components: {
 	naviBarHeader,
 	backButton,
 	divisor,
 	roundedButton,
-	vueSlider
+	vueSlider,
+	hourTable
   },
+
+  methods: {
+      selectSchedule:function(schedules) {
+		console.log(schedules)
+		}
+    },
 
   data(){
 	return {

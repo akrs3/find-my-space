@@ -22,8 +22,10 @@
         </span>
         <addButton align="right" style="margin-left: 10px" />
       </div>
-      <div class="hourTable" />
-
+      
+      <hourTable editing="true" v-bind:didChangeSchedules = "selectSchedule"/>
+      <br>
+      
     </div>
     <router-link to="novo-espaco-2">
       <roundedButton title="cadastrar"></roundedButton>
@@ -40,6 +42,7 @@
   import divisor from '../shared/divisor'
   import roundedButton from '../shared/roundedButton'
   import designUX from '../../assets/css/designUX.css'
+  import hourTable from '../shared/hourTable'
 
   export default {
     components: {
@@ -48,9 +51,17 @@
       nextButton,
       divisor,
       roundedButton,
-      addButton
+      addButton,
+      hourTable
+    },
+
+    methods: {
+      selectSchedule:function(schedules) {
+        console.log(schedules)
+      }
     }
   }
+  
 </script>
 
 <style scoped>
@@ -75,15 +86,5 @@
     position: fixed; 
   }
 
-  .hourTable {
-    background-image: url('../../assets/cadSpace/hourTable.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
-    padding: 0px 0px;
-    border: none;
-    height: 643px;  
-    width: 247px;
-    color: #123123;
-  }
+
 </style>
