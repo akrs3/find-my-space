@@ -58,6 +58,11 @@
 	      		</div>
 	      	</div>
 
+
+	      	<div v-if="editing" style="margin-top: 25px; width: 50%; margin: auto;">
+		      	<roundedButton title='resetar horários' v-bind:compressed='true' v-bind:handler='clearSelectedSchedules' />
+	      	</div>
+
 	    </div>
 
 
@@ -65,6 +70,9 @@
 </template>
 
 <script>
+
+import roundedButton from '../shared/roundedButton'
+
 const Moment = require('moment');
 const MomentRange = require('moment-range');
 
@@ -89,19 +97,22 @@ const moment = MomentRange.extendMoment(Moment);
 
 	editing: Boolean (indica se esta no modo de edicao ou nao - criacao de um espaco tem editing true por exemplo),
 
-	didChangeShedules: Function (passar uma funcao que tem a assinatura x(schedules) que sera chamada sempre que houver alteracao nos horarios selecionados -- schedules sera um array de horarios (da um console.log pra entender melhor))
+	didChangeShedules: Function (passar uma funcao que tem a assinatura x(events) que sera chamada sempre que houver alteracao nos horarios selecionados -- events sera um array de horarios (da um console.log pra entender melhor))
 */
 
 export default {
+ 	components: {
+    	roundedButton
+  	},
 
 	props: {
 		events: {
 			type: Array,
-			default: []
+			default: function() { return [] }
 		},
 		editing: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		didChangeSchedules: Function
 	},
@@ -127,14 +138,40 @@ export default {
 			alert('Negou!')
 		},
 
+		clearSelectedSchedules: function() {
+  			this.events = []
+  		},
+
 		handleClickOnCell: function(i, j, clickEvent) {
 
 			if (this.editing) {
 
-				let moments = this.getStartAndFinalMomentForCell(i, j)
+				const cellMoment = this.getStartAndFinalMomentForCell(i, j)[0].add(1,'seconds')
 
-				
+				let eventThatDay = null
+				for (let i = 0; i < this.events.length; i++) {
+					let event = this.events[i]
+					let eventMomentFrom = moment(event.fromDate)
+					if (eventMomentFrom.isSame(cellMoment, 'day')) 
+						eventThatDay = event
+				}
 
+				if (eventThatDay == null) {
+					const event = {
+						fromDate: cellMoment.toDate(),
+						toDate: cellMoment.toDate()
+					}
+
+					this.events.push(event)
+				} else {
+					if (cellMoment.isAfter(eventThatDay.toDate, 'hour'))
+						eventThatDay.toDate = cellMoment.toDate()
+					else if (cellMoment.isBefore(eventThatDay.fromDate, 'hour'))
+						eventThatDay.fromDate = cellMoment.toDate()
+				}
+
+				if (this.didChangeSchedules != null)
+					this.didChangeSchedules(this.events)
 
 			} else {
 
@@ -179,7 +216,7 @@ export default {
 			let m = moment(this.date).isoWeekday(j-2)
 			let m1 = moment(this.date).isoWeekday(j-2)
 
-			m.hour(hour+1);
+			m.hour(hour);
 			m.minute(0);
 			m.second(0);
 
@@ -270,10 +307,10 @@ export default {
 				const eventStartMoment = moment(event.fromDate)
 				const eventFinalMoment = moment(event.toDate) 
 
-				if (!isCellIntermediary) {
-					if (eventStartMoment.within(moment.rangeFromInterval('hour', -1, cellStartMoment)))
-						return { event, cellType: 'start' } 
-				} else if (cellFinalMoment.within(moment.rangeFromInterval('hour', -1, eventFinalMoment)))
+				 if (!isCellIntermediary) {
+				 	if (eventStartMoment.within(moment.rangeFromInterval('hour', 1, cellStartMoment)))
+				 		return { event, cellType: 'start' } 
+				} else if (cellFinalMoment.within(moment.rangeFromInterval('hour', 1, eventFinalMoment)))
 					return { event, cellType: 'final' }
 				else if (cellFinalMoment.isAfter(eventFinalMoment))
 					continue
