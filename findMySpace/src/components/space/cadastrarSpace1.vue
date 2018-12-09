@@ -18,19 +18,18 @@
       </div>
       <div style="display:flex; margin-top: 10px">
         <span align="left" style="color: #757376; font-size: 12pt; word-wrap: break-word">
-          adicione os horários disponíveis
+          adicione os horários disponíveis abaixo
         </span>
-        <addButton align="right" style="margin-left: 10px" />
       </div>
       
       <hourTable editing="true" v-bind:didChangeSchedules = "selectSchedule"/>
       <br>
+
+      <router-link to="espaco">
+        <roundedButton title="cadastrar"></roundedButton>
+      </router-link>
       
-    </div>
-    <router-link to="novo-espaco-2">
-      <roundedButton title="cadastrar"></roundedButton>
-    </router-link>
-            
+    </div>  
   </div>
 </template>
 
