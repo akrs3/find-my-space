@@ -27,6 +27,9 @@
 
       </div>
 
+      <hourTable />
+
+
       <div class="spaces">
         <div v-for="space in spaces" :key="space">
           <router-link to="meu-espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
@@ -50,10 +53,12 @@
 
 <script>
 import naviBarHeader from '../shared/naviBarHeader'
+import hourTable from '../shared/hourTable'
 
 export default {
   components: {
     naviBarHeader,
+    hourTable
   },
   
   data(){
@@ -69,6 +74,18 @@ export default {
       this.spaces = snapshot.val()
 
   });
+  },
+
+  computed: { 
+    events: function() {
+      let events = []
+      for (let i = 0; i < this.spaces.length; i++) {
+        let space = this.spaces[i]
+        for (let j = 0; j < space.hours.length; j++) {
+
+        }
+      }
+    }
   }
 }
 </script>

@@ -112,7 +112,7 @@ export default {
 		},
 		editing: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		didChangeSchedules: Function
 	},
@@ -169,9 +169,8 @@ export default {
 					else if (cellMoment.isBefore(eventThatDay.fromDate, 'hour'))
 						eventThatDay.fromDate = cellMoment.toDate()
 				}
-
-				if (this.didChangeSchedules != null)
-					this.didChangeSchedules(this.events)
+				
+				this.didChangeSchedules(this.events)
 
 			} else {
 
@@ -436,7 +435,7 @@ export default {
 
 .cell {
 	position: relative;
-  	min-height: 50px;
+  	min-height: 40px;
 }
 
 .roundedCell {}
