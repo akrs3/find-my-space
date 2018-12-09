@@ -25,20 +25,20 @@
 
 	      	<div class="eventDetailsPopup" v-show="isShowingEvent" v-bind:style="{ top: showingEventOffsetTop + 'px', left: showingEventOffsetLeft + 'px' }">
 
-		      	<span style="color: #C6853A; font-size: 25pt;">{{ showingEventWeekDay }}</span>
+		      	<span style="color: #C6853A; font-size: 15pt;">{{ showingEventWeekDay }}</span>
 		      	<br/>
-		      	<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventHourRange }}</span>
+		      	<span style="color: #C6853A; font-size: 15pt; font-weight: bold;">{{ showingEventHourRange }}</span>
 	      		
 	      		<div v-if="showingEventHasGroup" style="margin-top: 15px;">
-		      		<span style="color: #C6853A; font-size: 25pt;">reservado para</span>
+		      		<span style="color: #C6853A; font-size: 15pt;">reservado para</span>
 		      		<br/>
-		      		<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventGroupName }}</span>
+		      		<span style="color: #C6853A; font-size: 15pt; font-weight: bold;">{{ showingEventGroupName }}</span>
 	      		</div>
 
 	      		<div v-if="showingEventHasGroup" style="margin-top: 15px;">
-		      		<span style="color: #C6853A; font-size: 25pt; padding-top: 10px">contato</span>
+		      		<span style="color: #C6853A; font-size: 15pt; padding-top: 10px">contato</span>
 		      		<br/>
-		      		<span style="color: #C6853A; font-size: 25pt; font-weight: bold;">{{ showingEventGroupContact }}</span>
+		      		<span style="color: #C6853A; font-size: 10pt; font-weight: bold;">{{ showingEventGroupContact }}</span>
 	      		</div>
 
 	      		<div v-if="showingEventHasGroup && !showingEventGroupIsAccepted" style="margin-top: 30px;">
@@ -59,8 +59,8 @@
 	      	</div>
 
 
-	      	<div v-if="editing" style="margin-top: 25px; width: 50%; margin: auto;">
-		      	<roundedButton title='resetar horários' v-bind:compressed='true' v-bind:handler='clearSelectedSchedules' />
+	      	<div v-if="editing" style="padding-top: 25px; width: 75%; margin: auto;">
+		      	<roundedButton title='resetar horários' v-bind:compressed='false' v-bind:handler='clearSelectedSchedules' />
 	      	</div>
 
 	    </div>
@@ -144,6 +144,8 @@ export default {
 
 		handleClickOnCell: function(i, j, clickEvent) {
 
+			console.log(this.events)
+
 			if (this.editing) {
 
 				const cellMoment = this.getStartAndFinalMomentForCell(i, j)[0].add(1,'seconds')
@@ -169,7 +171,7 @@ export default {
 					else if (cellMoment.isBefore(eventThatDay.fromDate, 'hour'))
 						eventThatDay.fromDate = cellMoment.toDate()
 				}
-				
+
 				this.didChangeSchedules(this.events)
 
 			} else {
@@ -185,12 +187,12 @@ export default {
 				}
 
 				let popupTopPosition = clickEvent.clientY
-				if (popupTopPosition + 500 > this.screenSize.height)
-					popupTopPosition = this.screenSize.height - 300
+				if (popupTopPosition + 300 > this.screenSize.height)
+					popupTopPosition = this.screenSize.height - 100
 
 				let popupLeftPosition = clickEvent.clientX
-				if (popupLeftPosition + 400 > this.screenSize.width)
-					popupLeftPosition -= 400
+				if (popupLeftPosition + 200 > this.screenSize.width)
+					popupLeftPosition -= 200
 
 				this.showingEvent = {
 					fromDate: event.fromDate,
@@ -508,9 +510,9 @@ export default {
 .eventDetailsPopup {
 	text-align: left;
 	padding: 30px;
-	width: 400px;
-	min-height: 300px;
-	max-height: 500px;
+	width: 200px;
+	min-height: 100px;
+	max-height: 300px;
   	height: auto;
   	position: absolute;
   	z-index: 10;
@@ -522,11 +524,11 @@ export default {
 }
 
 .eventDetailsPopupAcceptRequestButton {
-    width: 70px;
-    height: 70px;
+    width: 35px;
+    height: 35px;
     background-image: url('../../assets/shared/button-okay.png');
  	background-size: 100%; 
-  	background-size: 70px auto; 
+  	background-size: 35px auto; 
  	background-color: transparent;
     border: none;
 }
@@ -536,11 +538,11 @@ export default {
 }
 
 .eventDetailsPopupDenyRequestButton {
-    width: 70px;
-    height: 70px;
+    width: 35px;
+    height: 35px;
     background-image: url('../../assets/shared/button-cancel.png');
  	background-size: 100%; 
-  	background-size: 70px auto; 
+  	background-size: 35px auto; 
  	background-color: transparent;
     border: none;
 }

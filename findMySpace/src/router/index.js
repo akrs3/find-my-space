@@ -20,8 +20,6 @@ import sitemap from '../components/aboutus/sitemap'
 import resume from '../components/resume/resume'
 
 
-import hourTable from '../components/shared/hourTable'
-
 Vue.use(Router)
 
 export default new Router({

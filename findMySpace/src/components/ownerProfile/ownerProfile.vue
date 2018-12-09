@@ -27,24 +27,7 @@
 
       </div>
 
-      <hourTable />
-
-
-      <div class="spaces">
-        <div v-for="space in spaces" :key="space">
-          <router-link to="meu-espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
-          <ol>
-            <div v-for=" hour in space.hours" class="row" :key="hour">
-              <li class="col-md-12"><h5>{{hour.name}} </h5></li>
-              <ol class="row">
-              <li class="col-md-12"><h6>Hora: {{hour.hour}} </h6></li>
-              <li class="col-md-12"><h6>Contato: {{hour.contato}} </h6></li>
-              <li class="col-md-12"><h6>Dia: {{hour.day}} </h6></li>
-              </ol>
-            </div>
-          </ol>
-        </div>
-      </div>
+      <hourTable v-bind:events="events" />
 
     </div>
   </div>
@@ -55,6 +38,11 @@
 import naviBarHeader from '../shared/naviBarHeader'
 import hourTable from '../shared/hourTable'
 
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+
+const moment = MomentRange.extendMoment(Moment);
+
 export default {
   components: {
     naviBarHeader,
@@ -63,29 +51,36 @@ export default {
   
   data(){
     return {
-      spaces: {}
+      spaces: {},
+      events: []
     }
   },
   created(){
     //var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/spaces/').once('value').then((snapshot) => {
-      console.log("teste")
-      console.log(snapshot.val())
-      this.spaces = snapshot.val()
 
-  });
-  },
+      snapshot.forEach((child) => {
+        let space = child.val()
 
-  computed: { 
-    events: function() {
-      let events = []
-      for (let i = 0; i < this.spaces.length; i++) {
-        let space = this.spaces[i]
-        for (let j = 0; j < space.hours.length; j++) {
+         Object.values(space.hours).forEach((hour) => {
+          
+          let event = {
+            fromDate: moment(`${hour.day} ${hour.fromHour}:01`, 'DD-MM-YYYY hh:mm').toDate(),
+            toDate: moment(`${hour.day} ${hour.toHour}`, 'DD-MM-YYYY hh').toDate(),
+            group: {
+              id: hour.groupId,
+              name: hour.name,
+              contact: hour.contato
+            },
+            isAccepted: hour.accepted
+          }
+          this.events.push(event)
 
-        }
-      }
-    }
+
+         })
+
+      })
+    });
   }
 }
 </script>
