@@ -114,11 +114,13 @@ export default {
       if(!userData) return;
       this.userInfo.name = userData.data.name;
       this.userInfo.role = userData.role;
-      Object.values(userData.groups).forEach((groupID) => {
-        FirebaseManager.getData(`groups/${groupID}`).then(groupData => {
-          this.groups.push(groupData);
-        })
-      });
+      if (userData.groups) {
+        Object.values(userData.groups).forEach((groupID) => {
+          FirebaseManager.getData(`groups/${groupID}`).then(groupData => {
+            this.groups.push(groupData);
+          })
+        });
+      }
     });
   }
 }
