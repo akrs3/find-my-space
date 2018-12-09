@@ -16,7 +16,6 @@ import myPreferences from '../components/myPreferences/myPreferences'
 import favorites from '../components/favorites/favorites'
 import groupProfiles from '../components/groupProfile/groupProfile'
 import bestSpaces from '../components/bestSpaces/bestSpaces'
-import sitemap from '../components/aboutus/sitemap'
 import resume from '../components/resume/resume'
 import contact from '../components/contact/contact'
 
@@ -104,11 +103,6 @@ export default new Router({
 			path: '/melhoreslocais',
 			name: 'Melhores Locais',
 			component: bestSpaces
-		},
-		{ 
-			path: '/sitemap',
-			name: 'sitemap',
-			component: sitemap
 		},
 		{ 
 			path: '/resume',
