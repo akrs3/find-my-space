@@ -6,14 +6,28 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
 			<div class="menuNav">	
-				<router-link class="linksNaviBar" to="">				
-					<b-btn v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'" @click="showLogin">
+				<div v-if="buyer">
+					<router-link class="linksNaviBar" to="perfil">perfil</router-link>
+					<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+				</div>
+				<div v-else-if="owner">
+					<router-link class="linksNaviBar" to="me">perfil</router-link>
+					<router-link class="linksNaviBar" to="novo-espaco-1">novo espaço</router-link>
+				</div>
+				<div v-else>
+					<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
+					<router-link class="linksNaviBar" to="novo-espaco-1">eu tenho um espaço</router-link>
+				</div>
+
+				<router-link class="linksNaviBar" to="">
+					<b-btn v-if="logged" v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-on:click="logout">
+						<span style="float:left; font-size: 19px" class="corBold "> sair </span>
+					</b-btn>				
+					<b-btn v-else v-b-modal.modalsm variant="primary" style="padding:0; width: 80%;" class="linksNaviBar botaoLogin" v-b-modal="'myModal'">
 						<span style="float:left; font-size: 19px" class="corBold "> entrar </span>
 					</b-btn>
+
 				</router-link>
-				
-				<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
-				<router-link class="linksNaviBar" to="novo-espaco-2">eu tenho um espaço</router-link >
 				<hr>
 				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
 				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
@@ -27,11 +41,7 @@
 		<!-- BOTAO GRID -->
 		<div align="right">
 			<table>
-				<tr>
-					<th>
-						<router-link class="padraoButton buscaButton" :to="{ path: '/melhoreslocais' }"/>	
-					</th>
-					
+				<tr>					
 					<th>
 						<span class="padraoButton  gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"/>
 					</th>
@@ -43,27 +53,13 @@
 		
 		<!-- LOGIN -->
 		<b-modal hide-footer size="sm" ok-only align="left" id="myModal" ref="myModal">
-			<login/>
-			<div class="modal-footer">
-				<a style="cursor:pointer" class="linksNaviBar botaoLogin" v-b-modal="'myModalSignup'">
-					<b style="float:left;" class="corBold "> não tenho conta </b>
-				</a>
-				<router-link style="display:inline-block; width:100%; height:100%" :to="{ path: '/perfil' }"> 
-					<button type="button" class="botaoTemaFms btn-primary" @click="hideLogin"> OK </button>
-				</router-link> 
-				
-			</div>
+			<login v-bind:onLoginSuccessful="onLoginSuccessful"/>			
 		</b-modal>
 		  
 		  
 		<!-- SIGUP -->
 		<b-modal hide-footer size="sm" ok-only align="left" id="myModalSignup" ref="myModalSignup">
 			<signup/>
-			
-			<div class="modal-footer">
-				<button type="button" class="botaoTemaFms btn-primary" @click="hideSignup">OK</button>
-				
-			</div>
 		</b-modal>
 	
   </div>
@@ -74,29 +70,47 @@ import login from '../login/login'
 import signup from '../signup/signup'
 import designUX from '../../assets/css/designUX.css'
 
+
 export default {
   components: {
 	login,
 	signup
   },
+  data() {
+	  return {
+		  logged: false,
+		  role: "",
+		  buyer: false,
+		  owner: false
+	  };
+  },
+  created() {
+    FirebaseManager.registerOnPlayerAuthStateChanged((data) => {
+		this.logged = data != null;
+		if(data != null)
+		{
+			this.role = data.role;
+			this.buyer = this.role == "buyer";
+			this.owner = this.role == "owner";
+		}
+
+	});
+  },
+
   methods: {
+	logout() {
+		FirebaseManager.logout();
+		this.$router.push({
+			path: "/"
+		});
+	},
     showLogin () {
 		this.$refs.myModal.show()
-    },
-    hideLogin () {
-		this.$refs.myModal.hide()
-    },
-    showSignup () {
-		this.$refs.myModalSignup.show()
-    },
-    hideSignup () {
-		if( (document.getElementsByName('confirmesenha')[0].value) === (document.getElementsByName('senhaSignup')[0].value) ){
-			//sucesso
-			this.$refs.myModalSignup.hide();
-		}else{
-			alert("a confirmação está diferente da senha");
-		}
-    }
+	},
+	onLoginSuccessful() {
+		this.logged = true;
+		this.role = window.user.role;
+	}
   }
 }
 </script>
@@ -137,20 +151,19 @@ hr{
 
 .sidenav a {
 	width: 250px;
-	//font-family: Nunito;
+	/*font-family: Nunito;*/
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 19px;
     color: #7f5c8a;
     display: block;
     transition: 0.3s;
-	//font-weight: bold;
+	/*font-weight: bold;*/
 	font-weight: normal;
-	//text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.004);*/
 	text-rendering: optimizeLegibility !important;
-	-webkit-font-smoothing: antialiased !important;/text-shadow: 0 0 2px rgba(110,80,119,0.2);
-	//-webkit-text-stroke: .009em rgba(51,51,51,0.30);
-	font-smooth: always;
+	-webkit-font-smoothing: antialiased !important;/*text-shadow: 0 0 2px rgba(110,80,119,0.2);*/
+	/*-webkit-text-stroke: .009em rgba(51,51,51,0.30);*/
 }
 
 .sidenav a:hover {

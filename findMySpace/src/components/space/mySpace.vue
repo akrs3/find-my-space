@@ -12,10 +12,6 @@
 		      			{{ space.title }}
 			      	</span>
 			    </div>
-			    <div class="col-2" style="margin-top: 2.5px">
-			      	<img v-if="space.isFavorite" src="../../assets/heart_filled.png" width="22px" height="22px" align="top">
-					<img v-else src="../../assets/heart_empty.png" width="22px" height="22px" align="top">
-				</div>
 	      	</div>
 
 	      	<div class="row">
@@ -27,9 +23,7 @@
 	      	</div>
 
 	      	<div style="margin-top: 10px">
-	      		<!-- 
-					<img src="../../assets/studio_example_img.png" class="img-fluid space-content-spaceImages-image" alt="Responsive image">
-				-->
+
 				<div style="display:block; margin-bottom:11px">
 					<imgslider class="img-fluid space-content-spaceImages-image" alt="Responsive image"/>
 				</div>
@@ -55,50 +49,29 @@
 			    </span>
 	      	</div>
 
-	      	<divisor />
+            <div align="left" style="margin-top: 25px;">
+                <span style="color: #757376; font-weight: bold; font-size: 10pt;">
+			      	preço por hora
+				</span><br />
+                <span style="color: #757376; font-size: 12pt; word-wrap: break-word">
+                    R${{ space.pricePerHour }}/hora                       
+                </span>
+            </div>
 
-	      	<div class="row align-items-center" style="margin-top: 25px;">
-	      		<div class="col-auto" align="left">
-					<span style="color: #757376; font-weight: bold; font-size: 10pt;">data</span>
-					<br />
-					<span style="color: #757376; font-size: 12pt; word-wrap: break-word">
-		      			{{ schedule.date | moment("DD/MM/YYYY") }}
-			    	</span>
-	      		</div>
-	      		<div class="col-auto" align="center">
-					<img src="../../assets/right_arrow.png" width="41.88px" height="14.33px">
-	      		</div>
-	      		<div class="col-auto" align="left">
-					<span style="color: #757376; font-weight: bold; font-size: 10pt;">horário</span>
-					<br />
-					<span style="color: #757376; font-size: 12pt; word-wrap: break-word">
-		      			{{ schedule.date | moment("hh") }}h-{{ schedule.toDate | moment("hh") }}h
-			    	</span>
-	      		</div>
-	      	</div>
+			<div align="left" style="margin-top: 25px;">
+				<span style="color: #757376; font-weight: bold; font-size: 10pt;">
+			      	principais recursos do espaço
+				</span>
 
-	      	<div style="margin-top: 25px;" align="left">
-	      		<span style="color: #757376; font-weight: bold; font-size: 10pt;">grupo</span>
-			    <br />
-			    <span style="color: #757376; font-size: 12pt; word-wrap: break-word">
-		      		{{ group.name }}
-			    </span>
-	      	</div>
+				<div class="row" style="color: #6E5077; margin-top:10px; font-size: 10pt;">
+					<div class="col-6 col-xl-2 col-md-4" v-for="option in filters" style="font-weight: bold;" align="left">
+						<input type="checkbox" v-bin:id="option.value" v-bind:value="option.text" name="filters" checked>
+						<label for="option.value">{{ option.text }}</label>
+					</div>
+				</div>
+			</div>
 
-	      	<divisor />
-
-	      	<!-- Schedule Confirm -->
-	      	<div class="row align-items-center" style="margin-top: 25px;">
-	      		<div class="col-auto" align="left">
-					<span style="color: #757376; font-size: 16pt; word-wrap: break-word">
-		      			R${{ space.pricePerHour }}/hora
-			    	</span>
-	      		</div>
-	      		<div class="col" align="left">
-	      			<roundedButton title='reservar' subtitle='você ainda não será cobrado' v-bind:compressed='true' v-bind:handler='scheduleSpace' />
-	      		</div>
-	      	</div>
-
+            
       </div>
 
   </div>
@@ -135,10 +108,15 @@ export default {
   			date: new Date(1541763000*1000), //time in ms
   			toDate: new Date(1541770200*1000) 
   		},
-  		group: {
-  			id: 1,
-  			name: 'Super Girls'
-  		}
+		filters: [
+			{text: 'Espelhos', value: 'espelhos'},
+			{text: 'Barra', value: 'barra'},
+			{text: 'Colchões', value: 'colchões'},
+			{text: 'Piso antiderrapante', value: 'piso-antiderrapante'},
+			{text: 'Linóleo', value: 'linoleo'},
+			{text: 'Som', value: 'Som'},
+		],
+		filters_selected: []
 
   	}
   },

@@ -27,6 +27,22 @@
 
       </div>
 
+      <div class="spaces">
+        <div v-for="space in spaces" :key="space">
+          <router-link to="meu-espaco" style="color: #6E5077; font-weight: bold; font-size: 18pt;"><h4>{{space.name}}</h4></router-link>
+          <ol>
+            <div v-for=" hour in space.hours" class="row" :key="hour">
+              <li class="col-md-12"><h5>{{hour.name}} </h5></li>
+              <ol class="row">
+              <li class="col-md-12"><h6>Hora: {{hour.hour}} </h6></li>
+              <li class="col-md-12"><h6>Contato: {{hour.contato}} </h6></li>
+              <li class="col-md-12"><h6>Dia: {{hour.day}} </h6></li>
+              </ol>
+            </div>
+          </ol>
+        </div>
+      </div>
+
     </div>
   </div>
   </div>
@@ -38,7 +54,22 @@ import naviBarHeader from '../shared/naviBarHeader'
 export default {
   components: {
     naviBarHeader,
-  }  
+  },
+  
+  data(){
+    return {
+      spaces: {}
+    }
+  },
+  created(){
+    //var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/spaces/').once('value').then((snapshot) => {
+      console.log("teste")
+      console.log(snapshot.val())
+      this.spaces = snapshot.val()
+
+  });
+  }
 }
 </script>
 
@@ -116,5 +147,11 @@ export default {
     color: #6E5077;
     opacity: 0.75;
   }
+  .spaces {
+    text-align: left;
+  }
+  ul {
+  list-style-type: none;
+}
 
 </style>

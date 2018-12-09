@@ -2,6 +2,9 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
+  plugins: [
+	new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)	
+  ],
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
