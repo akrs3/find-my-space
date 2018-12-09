@@ -16,7 +16,7 @@
 				</div>
 				<div v-else>
 					<router-link class="linksNaviBar" to="novo-grupo">inscreva seu grupo</router-link>
-					<router-link class="linksNaviBar" to="novo-espaco-1">eu tenho um espaço</router-link>
+					<router-link class="linksNaviBar" to="novo-espaco-2">eu tenho um espaço</router-link>
 				</div>
 
 				<router-link class="linksNaviBar" to="">
@@ -29,8 +29,8 @@
 
 				</router-link>
 				<hr>
-				<router-link class="linksNaviBar" to="">reporte um problema</router-link >
-				<router-link class="linksNaviBar" to="sitemap">sobre nós</router-link >
+				<router-link class="linksNaviBar" to="contact">contato</router-link >
+				
 			</div>
 		</div>
 		
