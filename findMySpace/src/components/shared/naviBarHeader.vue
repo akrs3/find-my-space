@@ -21,7 +21,7 @@
 		<ul class="naviBarHeaderBar">
 			<li class="naviBarHeaderLogo">
 				
-				<router-link :to="{ path: '/' }"> <img src="../../assets/navBar/logo-white.png"> </router-link>
+				<router-link :to="{ path: '/' }"> <img src="../../assets/navBar/logo-white.png" style="width: 149px; height: 38px"> </router-link>
 			</li>
 		  <li align="right" class="naviBarHeaderGridButton">
 			<naviBar/>

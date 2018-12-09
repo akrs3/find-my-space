@@ -5,7 +5,7 @@
 		  
 			  <ul class="naviBarHeaderBar">
 					<li class="naviBarHeaderLogo">
-						<img src="../../assets/navBar/logo-white.png">
+						<img src="../../assets/navBar/logo-white.png" style="width: 149px; height: 38px">
 					</li>
 				  <li align="right" class="naviBarHeaderGridButton">
 					<naviBar/>

@@ -2,7 +2,7 @@
 	<div>		
 		<div id="mySidenav" class="sidenav" style="z-index: 10" align="left">
 			<div style="padding-bottom: 20px">
-				<router-link to="home" style="width:82%" class="title"><img src="../../assets/navBar/logo.png"></router-link>
+				<router-link to="home" style="width:82%" class="title"><img src="../../assets/navBar/logo.png" style="width: 149px; height: 38px"></router-link>
 				<a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'none'; h.style.width = '0'">&times;</a>
 			</div>
 			<div class="menuNav">	
@@ -43,7 +43,7 @@
 			<table>
 				<tr>					
 					<th>
-						<span class="padraoButton  gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},2);}"/>
+						<span class="padraoButton  gridButton" onclick="{ document.getElementById('mySidenav').style.width = '250px'; var h = document.getElementById('areaCloseBehind'); h.style.display = 'block'; setTimeout(function(){h.style.width = '100%'},1);}"/>
 					</th>
 				
 				</tr>
