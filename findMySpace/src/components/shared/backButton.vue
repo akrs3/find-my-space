@@ -2,6 +2,7 @@
   <div style=" display: flex; align-items: center;" align="left">
       <button class="backButton" v-on:click="$router.go(-1)" />
       <span style="color: #6f5278; margin-left: 10px; font-size: 12pt">voltar</span>
+ 
   </div>
 </template>
 

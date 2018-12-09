@@ -169,7 +169,7 @@ export default {
 					else if (cellMoment.isBefore(eventThatDay.fromDate, 'hour'))
 						eventThatDay.fromDate = cellMoment.toDate()
 				}
-				
+				console.log(this.didChangeSchedules)
 				this.didChangeSchedules(this.events)
 
 			} else {
