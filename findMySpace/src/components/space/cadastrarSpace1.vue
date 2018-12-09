@@ -6,9 +6,6 @@
     <div class="bodyCadSpac">
       <div style="display: flex; justify-content: space-between;">
         <backButton align="left" />
-        <router-link to="novo-espaco-2">
-          <nextButton align="right" />
-        </router-link>
       </div>
 
       <div align="left">
@@ -37,7 +34,6 @@
   import naviBarHeader from '../shared/naviBarHeader'
   import backButton from '../shared/backButton'
   import addButton from '../shared/addButton'
-  import nextButton from '../shared/nextButton'
   import divisor from '../shared/divisor'
   import roundedButton from '../shared/roundedButton'
   import designUX from '../../assets/css/designUX.css'
@@ -47,7 +43,6 @@
     components: {
       naviBarHeader,
       backButton,
-      nextButton,
       divisor,
       roundedButton,
       addButton,
