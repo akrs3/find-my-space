@@ -3,54 +3,59 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <naviBarHeader/>
 
-    <div class="bodyCadSpac">
-      <backButton align="left" />
 
-      <div align="left">
-        <span align="left" style="font-size: 13pt; word-wrap: break-word">
-          <b> cadastrar novo espaço </b>
-        </span>
-      </div>
+
+    <div class="container-fluid new-space">
+      <div class ="new-space-content">
+        <!-- Back Button -->
+        <backButton />
       
-      <form action="" onsubmit="{ return false;}">
-        <table align="left">
-          <tr>
-            <p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
-            <input align="left" type="text" name="nomeSpace" placeholder="Awesome Space">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
-            <input style="width:100px" align="left" type="number" name="custoHora" placeholder="50">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">endereço do espaço</p>
-            <input align="left" type="text" name="endSpace" placeholder="Rua do melhor, n 10">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
-            <textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">adicione algumas fotos do seu espaço</p>
-            
-            <div class="fotoArea"> 
-              <button onclick="alert('ok!')" class="centerImg"/>
-            </div>
-          </tr>
-          
-          <tr>
-          </tr>
-          <br>              
-        </table>
-      </form>
+        <!-- Header -->
+        <div style="margin-top:10px" align="left">
+          <span style="font-weight: bold; font-size: 14pt;">cadastrar novo espaço</span>
+        </div>
+
+      <!-- Group Attributes -->
+        <div style="margin-top:30px" align="left">
+          <span style="color: #757376; font-size: 11pt">qual o nome do seu espaço</span>
+          <br/>
+          <input id="name" type="text" v-model="spaceName" placeholder="Espaço Brincarte" style="border-bottom: 1px solid #757376;width: 100%">
+        </div>
+
+        <div style="margin-top:30px" align="left">
+          <span style="color: #757376; font-size: 11pt">delimite o custo por hora</span>
+          <br/>
+          <input id="price" type="text" v-model="pricePerHour" placeholder="R$50/h" style="border-bottom: 1px solid #757376;width: 100%">
+        </div>
+
+        <div style="margin-top:30px" align="left">
+          <span style="color: #757376; font-size: 11pt">endereço do espaço</span>
+          <br/>
+          <input id="address" type="text" v-model="address" placeholder="Rua Conselheiro Portela, 333" style="border-bottom: 1px solid #757376;width: 100%">
+        </div>
+
+        <div style="margin-top:30px" align="left">
+          <span style="color: #757376; font-size: 11pt">como é seu espaço</span>
+          <br/>
+          <input id="description" type="text" v-model="description" placeholder="possui espelho para ensaio..." style="border-bottom: 1px solid #757376; width: 100%">
+        </div>
+
+         <div style="margin-top:30px" align="left">
+          <span style="color: #757376; font-size: 11pt">adicione algumas fotos do seu espaço</span>
+  
+          <div class="fotoArea" style="margin-top:10px"> 
+            <button onclick="alert('ok!')" class="centerImg"/>
+          </div>
+        </div>
+
+      </div>
+
+
+      <router-link to="novo-espaco-1">
+        <roundedButton title="cadastrar horários"></roundedButton>
+      </router-link>
+
     </div>
-    <router-link to="espaco">
-      <roundedButton title="cadastrar"></roundedButton>
-    </router-link>
   </div>
 </template>
 
@@ -70,45 +75,58 @@
 </script>
 
 <style scoped>
-  hr{ 
-    margin: 0;
+  /*
+  @font-face {
+      font-family: 'Nunito-Regular';
+      src: url('https://github.com/google/fonts/blob/master/ofl/nunito/Nunito-Regular.ttf/');
   }
 
-  .corPadrao{
+  */
+
+  .new-space {
+    /*font-family: 'Nunito-Regular';*/
+    min-height:100%;
+    padding-bottom: 10px;
+    position:relative;
+  }
+
+  .new-space-content {
+    min-height: calc(100vh - 170px);
+    
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+
+  .new-space-content span {
     color: #6E5077;
   }
 
-  input {
-    display: inline-block;
-    float: left;
-    background: transparent;
-    border: none;
-    border-bottom: 1px #7f7d80;
-    margin-bottom: 40px;
+  .new-space-content input {
     font-weight: bold;
-    font-size: 24px;
-    color: #684572;
-  }
-
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */    
-    color: #6E5077 !important;
-    opacity: 0.55 !important;
-  }
-
-  textArea {
-    display: inline-block;
-    float: left;
-    background: transparent;
+    font-size: 15pt;
+    color: #6E5077;
     border: none;
-    border-bottom: 0.5px #7f7d80;
-    margin-bottom: 40px;
-    font-size: 20px;
-    color: #684572;
-    width: 100%; height: 100%; min-height:100px;
+    outline: none;
   }
 
+  ::-webkit-input-placeholder { /* Chrome */
+    color: #6E5077;
+    opacity: 0.75;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #6E5077;
+    opacity: 0.75;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #6E5077;
+    opacity: 0.75;
+  }
+  :-moz-placeholder { /* Firefox 4 - 18 */
+    color: #6E5077;
+    opacity: 0.75;
+  }
 
-  .fotoArea {
+   .fotoArea {
       border: 0px solid red;
       padding: 10px;
       border-radius: 25px;
@@ -122,15 +140,5 @@
     border: none;
     background: url("../../assets/ownerProfile/addProfile.png") no-repeat center center;
     width: 100%; height: 100%; min-height: 180px;
-  }
-
-  .bodyCadSpac {
-    color:#6e5077;
-    margin-left: 6%;
-    margin-right: 6%;
-    min-height: calc(100vh - 230px);
-  }
-  .queryCadSpac {
-    margin-top: 20px;
   }
 </style>

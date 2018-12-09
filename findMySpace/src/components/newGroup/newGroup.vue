@@ -18,7 +18,7 @@
 				<div style="margin-top:30px" align="left">
 					<span style="color: #757376; font-size: 11pt">qual o nome do seu grupo</span>
 					<br/>
-					<input id="name" type="text" v-model="groupName" placeholder="Awesome Dancers" style="border-bottom: 1px solid #757376;">
+					<input id="name" type="text" v-model="groupName" placeholder="Awesome Dancers" style="border-bottom: 1px solid #757376;width: 100%">
 				</div>
 
 				<!-- Group Invite -->

@@ -20,7 +20,7 @@
         <div class="row about">
           <div class="col-md-8">
             <img class="rounded-circle addButton padraoButton" style="width:30px; float:left; margin-left:10px; "/>
-            <router-link to="novo-espaco-1" style="float:left; margin-left: 10px;">adicionar novo espaço</router-link>
+            <router-link to="novo-espaco-2" style="float:left; margin-left: 10px;">adicionar novo espaço</router-link>
           </div>
           <div class="col-md-4"></div>
         </div><br />
