@@ -85,14 +85,17 @@ export default {
 	  };
   },
   created() {
-    FirebaseManager.registerOnPlayerAuthStateChanged((data) => {
-		this.logged = data != null;
-		if(data != null)
-		{
-			this.role = data.role;
-			this.buyer = this.role == "buyer";
-			this.owner = this.role == "owner";
-		}
+    FirebaseManager.registerOnPlayerAuthStateChanged(() => {
+    	FirebaseManager.getUserData("").then(data => {
+	    	this.logged = data != null;
+			if(data != null)
+			{
+				this.role = data.role;
+				this.buyer = this.role == "buyer";
+				this.owner = this.role == "owner";
+			}	
+    	})
+		
 
 	});
   },
