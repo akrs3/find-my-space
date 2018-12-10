@@ -23,10 +23,6 @@
 	      	<div class="row" style="margin-top: 30px">
 	      		<div class="col-md-4" align="left" v-for="space in spaces" style="margin-bottom: 30px">
 	      			
-	      			<router-link :to='{path: space.path}'> 
-						<img v-bind:src="space.photo" class="img-fluid  w-100" />						
-	      			</router-link> 
-
 	      			<div class="row align-items-start">
 	      				<div class="col" align="left">
 	      					<span style="color: #6E5077; font-weight: bold; font-size: 15pt; word-wrap: break-word">
@@ -97,21 +93,20 @@ export default {
 
 		const rangeFind = moment.range(momentFindStart, momentFindEnd)
 
+    			console.log(rangeFind)
     	firebase.database().ref('/spaces/').once('value').then((snapshot) => {
 
     		snapshot.forEach((s) => {
     			let space = s.val()
     			console.log(space)
 
-    			console.log(rangeFind)
 
     			for (let i = 0; i < space.hours.length; i++) {
 
 					let rangeAvailableHour = moment.range(space.hours[i][0], space.hours[i][1])
 
-
+					console.log(rangeAvailableHour)
     				if (rangeFind.overlaps(rangeAvailableHour) || rangeAvailableHour.overlaps(rangeFind)) {
-			
     					this.spaces.push(space)
     				}
     			}
