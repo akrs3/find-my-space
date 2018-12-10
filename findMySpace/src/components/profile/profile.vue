@@ -51,7 +51,7 @@
       <div class="profile-my-groups">
         <div v-for="group in groups" v-bind:key="group" style="margin-bottom:20px;">
           <div class="row name-group">
-              <span><router-link to="grupo" style="color: #6e5077;">{{ group.name }}</router-link></span>
+              <span><router-link :to="{ name: 'Grupo', params: { group } }" style="color: #6e5077;">{{ group.name }}</router-link></span>
           </div>
           <div class="row next">
             <span>próximo encontro</span>
@@ -117,6 +117,7 @@ export default {
       if (userData.groups) {
         Object.values(userData.groups).forEach((groupID) => {
           FirebaseManager.getData(`groups/${groupID}`).then(groupData => {
+            groupData.id = groupID
             this.groups.push(groupData);
           })
         });

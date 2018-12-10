@@ -19,18 +19,20 @@
         </span>
       </div>
       
-      <hourTable editing="true" v-bind:didChangeSchedules = "selectSchedule"/>
+      <hourTable v-bind:editing='true' v-bind:didChangeSchedules='selectSchedule'/>
       <br>
 
-      <router-link to="espaco">
-        <roundedButton title="cadastrar"></roundedButton>
+      <router-link to="me">
+        <roundedButton title="cadastrar" v-bind:handler='updateHours'></roundedButton>
       </router-link>
-      
+
     </div>  
   </div>
 </template>
 
 <script>
+
+  
   import naviBarHeader from '../shared/naviBarHeader'
   import backButton from '../shared/backButton'
   import addButton from '../shared/addButton'
@@ -49,9 +51,33 @@
       hourTable
     },
 
+    data() {
+      return {
+        hours: []
+      }
+    },
+
     methods: {
-      selectSchedule:function(schedules) {
-        console.log(schedules)
+      selectSchedule: function(schedules) {
+        this.hours = []
+        schedules.forEach((schedule) => {
+          this.hours.push([schedule.fromDate.toString(), schedule.toDate.toString()])
+        })
+      },
+
+      updateHours: function() {
+        let space = this.$route.params.space
+
+        var uid = FirebaseManager.getUserID();
+        space.owner = uid
+        space.hours = this.hours
+
+        FirebaseManager.addData('spaces', space).then((ref) => {
+          var spaceID = ref.key;
+          FirebaseManager.addUserData('spaces', spaceID).then(() => {
+            console.log('done')
+          })
+        })
       }
     }
   }
