@@ -62,20 +62,15 @@ export default {
       snapshot.forEach((child) => {
         let space = child.val()
 
+
          Object.values(space.hours).forEach((hour) => {
-          
+
+
           let event = {
-            fromDate: moment(`${hour.day} ${hour.fromHour}:01`, 'DD-MM-YYYY hh:mm').toDate(),
-            toDate: moment(`${hour.day} ${hour.toHour}`, 'DD-MM-YYYY hh').toDate(),
-            group: {
-              id: hour.groupId,
-              name: hour.name,
-              contact: hour.contato
-            },
-            isAccepted: hour.accepted
+            fromDate: hour[0],
+            toDate:  hour[1],
           }
           this.events.push(event)
-
 
          })
 

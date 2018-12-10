@@ -19,7 +19,7 @@
 				<br/><br/>
 
 				<span style="color: #757376; font-weight: bold; font-size: 11pt; word-wrap: break-word">
-			      	semana {{ voting.fromWeek | moment("DD/MM") }} - {{ voting.toWeek | moment("DD/MM") }}
+			      	semana atual
 				</span>
 			</div>
 
@@ -79,10 +79,8 @@
 
 		</div>
 
-		<!-- Find Button -->
-		<router-link :to="{ path: '/melhoreslocais' }">
-			<roundedButton title='encontre meu espaço!' style="margin-top: 10px" v-bind:compressed='false' v-bind:handler='findSpace' />
-		</router-link>
+		<roundedButton title='encontre meu espaço!' style="margin-top: 10px" v-bind:compressed='false' v-bind:handler='findSpace' />
+
 	</div>
   </div>
 </template>
@@ -102,19 +100,47 @@ export default {
 		roundedButton
   },
 
-  beforeMounted() {
+  beforeMount() {
 	this.$moment.locale('pt-br')
+
+    FirebaseManager.getUserData('').then(userData => {
+
+      if(!userData) return;
+      if (!userData.preferences) return;
+
+      const preference = userData.preferences[Object.keys(userData.preferences)[0]]
+
+      console.log(preference)
+
+  	  const rangeHour = preference.hours[0]
+  	  this.voting.date = new Date(rangeHour[0])
+  	  this.voting.toDate = new Date(rangeHour[1])
+
+  	  this.voting.pricePerHour = preference.minPrice
+  	  this.voting.MaxPricePerHour = preference.maxPrixe
+  	})
   },
+
+	created() {
+		let group = this.$route.params.group
+		if (group) {
+			this.group.id = group.id
+		    this.group.name = group.name
+		    this.group.members = group.members.length
+		    this.voting.members = group.members.length
+		}
+	},
 
   data() {
   	return {
   		group: {
   			name: 'Super Girls',
+  			id: '',
   			members: 5
   		},
 
   		voting: {
-  			members: 4,
+  			members: 1,
   			fromWeek: new Date(1572566400*1000),
   			toWeek: new Date(1573084800*1000),
   			date: new Date(1541419200*1000),
@@ -137,6 +163,12 @@ export default {
   methods: {
 
   	findSpace: function() {
+        let find = {
+        	group: this.group,
+        	voting: this.voting
+        }
+
+       this.$router.push({ name: 'Melhores Locais', params: { find } })
   	}
   }
 

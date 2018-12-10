@@ -1,4 +1,4 @@
-<template>
+'<template>
   <div>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <naviBarHeader/>
@@ -31,7 +31,7 @@
         <div style="margin-top:30px" align="left">
           <span style="color: #757376; font-size: 11pt">endereço do espaço</span>
           <br/>
-          <input id="address" type="text" v-model="address" placeholder="Rua Conselheiro Portela, 333" style="border-bottom: 1px solid #757376;width: 100%">
+          <input id="neighborhood" type="text" v-model="neighborhood" placeholder="Rua Conselheiro Portela, 333" style="border-bottom: 1px solid #757376;width: 100%">
         </div>
 
         <div style="margin-top:30px" align="left">
@@ -43,52 +43,24 @@
          <div style="margin-top:30px" align="left">
           <span style="color: #757376; font-size: 11pt">adicione algumas fotos do seu espaço</span>
   
-          <div class="fotoArea" style="margin-top:10px"> 
-            <button onclick="alert('ok!')" class="centerImg"/>
-          </div>
+      
+          <form action="" onsubmit="{ return false;}">
+            <table>
+                <div class="fotoArea">
+                  <label for="files" class="btn centerImg"></label>
+                  <input id="files" class="hiddenInput" style="visibility:hidden;" type="file" @change="onFileChanged"> 
+                  <!-- <button onclick="alert('ok!')" class="centerImg"/> -->
+                </div>
+              </tr>
+                          
+            </table>
+          </form>
         </div>
 
       </div>
-      
-      <form action="" onsubmit="{ return false;}">
-        <table align="left">
-          <tr>
-            <p class="queryCadSpac" align="left">qual o nome do seu espaço?</p>
-            <input align="left" type="text" name="nomeSpace" v-model="name" placeholder="Awesome Space">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">delimite o custo por hora <strong>R$ /h</strong></p>
-            <input style="width:100px" align="left" type="number" v-model="pricePerHour" name="custoHora" placeholder="50">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">endereço do espaço</p>
-            <input align="left" type="text" name="endSpace" v-model="neighborhood" placeholder="Rua do melhor, n 10">
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">escreva um pouco sobre seu espaço</p>
-            <textArea align="left" type="text" name="endSpace" placeholder="espaço com espelhos e cantina"/>
-          </tr>
-          
-          <tr>
-            <p class="queryCadSpac" align="left">adicione algumas fotos do seu espaço</p>
-            
-            <div class="fotoArea">
-              <label for="files" class="btn centerImg"></label>
-              <input id="files" class="hiddenInput" style="visibility:hidden;" type="file" @change="onFileChanged"> 
-              <!-- <button onclick="alert('ok!')" class="centerImg"/> -->
-            </div>
-          </tr>
-          
-          <tr>
-          </tr>
-          <br>              
-        </table>
-      </form>
+      <roundedButton :handler="create" title="cadastrar"></roundedButton>
+
     </div>
-      <roundedButton :handler="onUpload" title="cadastrar"></roundedButton>
   </div>
 </template>
 
@@ -109,10 +81,11 @@
         selectedFile: null,
         photo: '',
         error: '',
-        name: '',
+        spaceName: '',
         pricePerHour: '',
         neighborhood: '',
-        rating: 0
+        description: '',
+        rating: 5
 
       }
     },
@@ -122,34 +95,44 @@
         console.log(this.selectedFile)
       },
       
-      generateBase64: function generateBase64() {
+      generateBase64: function generateBase64(callback) {
       var _this = this;
       var canvas = document.createElement('CANVAS');
       var img = document.createElement('img');
       this.url = URL.createObjectURL(this.selectedFile);
       img.src = this.url;
-      console.log("teste3")
-      console.log(img)
+
       img.onload = function () {
         canvas.height = img.height;
         canvas.width = img.width;
-        console.log("teste2")
-        _this.photo = canvas.toDataURL('image/png');
-        console.log(_this.photo)
+        const photo = canvas.toDataURL('image/png');
+        callback(photo)
         canvas = null;
-      };
+      }.bind(this);
+
       img.onerror = function (error) {
         _this.error = 'Could not load image, please check that the file is accessible and an image!';
       };
     },
-    onUpload() {
-        console.log("teste")
-        this.generateBase64()
-        console.log(this.base64)
-        console.log(this.name)
-        console.log(this.neighborhood)
-        console.log(this.pricePerHour)
-      // upload file, get it from this.selectedFile
+
+    create() {
+        this.generateBase64((photo) => {
+
+         const space = {
+            name: this.spaceName,
+            neighborhood: this.neighborhood,
+            description: this.description,
+            pricePerHour: this.pricePerHour,
+            photo: photo,
+            path: 'espaco',
+            rating: this.rating
+          }
+
+          console.log(space)
+          
+          this.$router.push({ name: 'Cadastrar Espaço - 1', params: { space } })
+
+        })
       },   
     }
   }

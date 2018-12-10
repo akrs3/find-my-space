@@ -17,11 +17,14 @@
 					<!-- 3 itens submenu -->
 					<div class="myPreferences-submenu">
 
+
 				        <div class="row about">
+				        	<!--
 				          <div class="col-md-6 col-xd-6">
 				            <img src="../../assets/profile/addProfile.png" class="rounded-circle" style="width:25px; float:left; margin-left:10px;"/>
 							<router-link to="" style="float:left; margin-left: 10px;">adicione seus horários disponíveis</router-link>
 				          </div>
+				      -->
 						  <!--<div class="col-md-6 col-xd-6">
 							<img src="../../assets/profile/favorite.png" class="rounded-circle" style="width:25px; float:left; margin-left:10px; "/>
 							<router-link to="" text-wrap style="float:left; margin-left: 5px;">usar mesmos horários da semana passada</router-link>
@@ -30,7 +33,7 @@
 						</div>
 			      	</div>
 					<div>
-			      		<hourTable editing="true" v-bind:didChangeSchedules = "selectSchedule"/>
+			      		<hourTable v-bind:editing='true' v-bind:didChangeSchedules='selectSchedule'/>
 			      	</div>
 					<br />
 					<div>
@@ -89,26 +92,9 @@ export default {
 	hourTable
   },
 
-  methods: {
-      selectSchedule:function(schedules) {
-		console.log(schedules)
-		}
-    },
-
   data(){
 	return {
-		width: "100%",
-		show: true,
-		value: [
-		20,
-		50
-		],
-		min: 0,
-		max: 250,
-		disabled: false,
-		tooltipMerge: false,
-		tooltip: "always",
-
+		value: [20, 50],
 		neighborhood: [
 			{text: 'Ibura', value: 'ibura'},
 			{text: 'Casa Forte', value: 'casa-forte'},
@@ -118,13 +104,30 @@ export default {
 			{text: 'Jaqueira', value: 'jaqueira'},
 			
 		],
-		neighborhood_selected: []
+		neighborhood_selected: [],
+		hours: []
 	}
   },
   methods: {
-	  findSpace: function() {
-		  console.log(this.neighborhood_selected)
+	findSpace: function() {
+		const preferences = {
+			neighborhoods: this.neighborhood_selected,
+			minPrice: this.value[0],
+			maxPrixe: this.value[1],
+			hours: this.hours
 		}
+
+		FirebaseManager.addUserData('preferences', preferences).then(() => {
+			console.log("done");
+		})
+	},
+
+  	selectSchedule: function(schedules) {
+  		this.hours = []
+  		schedules.forEach((schedule) => {
+  			this.hours.push([schedule.fromDate.toString(), schedule.toDate.toString()])
+  		})
+	}
   }
 }
 </script>

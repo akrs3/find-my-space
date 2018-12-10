@@ -64,6 +64,11 @@ import naviBarHeader from '../shared/naviBarHeader'
 import backButton from '../shared/backButton'
 import divisor from '../shared/divisor'
 
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+
+const moment = MomentRange.extendMoment(Moment);
+
 export default {
 
   	components: {
@@ -85,11 +90,32 @@ export default {
   		 }
 	},
 	created(){
-    //var userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/spaces/').once('value').then((snapshot) => {
-      console.log("teste")
-      console.log(snapshot.val())
-      this.spaces = snapshot.val()
+		let find = this.$route.params.find
+
+		const momentFindStart = moment(find.voting.date)
+		const momentFindEnd = moment(find.voting.toDate)
+
+		const rangeFind = moment.range(momentFindStart, momentFindEnd)
+
+    	firebase.database().ref('/spaces/').once('value').then((snapshot) => {
+
+    		snapshot.forEach((s) => {
+    			let space = s.val()
+    			console.log(space)
+
+    			console.log(rangeFind)
+
+    			for (let i = 0; i < space.hours.length; i++) {
+
+					let rangeAvailableHour = moment.range(space.hours[i][0], space.hours[i][1])
+
+
+    				if (rangeFind.overlaps(rangeAvailableHour) || rangeAvailableHour.overlaps(rangeFind)) {
+			
+    					this.spaces.push(space)
+    				}
+    			}
+    		})
 
   		});
   	}
